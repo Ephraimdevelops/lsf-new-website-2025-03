@@ -7,6 +7,18 @@ const convexDir = path.join(root, "convex");
 const srcDir = path.join(root, "src");
 
 const publicFunctions = new Map([
+  ["aiQuality.evaluate", "authenticated-action"],
+  ["conversationMemory.get", "authenticated"],
+  ["conversationMemory.update", "authenticated"],
+  ["conversationMemory.clear", "authenticated"],
+  ["sara_actions.reviewDocuments", "authenticated-action"],
+  ["socialMessaging.inbox", "admin"],
+  ["socialMessaging.resume", "admin"],
+  ["socialMessaging.conversations", "admin"],
+  ["socialMessaging.conversationMessages", "admin"],
+  ["socialMessaging.reply", "admin"],
+  ["socialMessaging.prepare", "admin"],
+  ["socialMessaging.approve", "admin"],
   ["saadaActionDrafts.caseContext", "case-access"],
   ["saadaActionDrafts.referralOptions", "case-worker"],
   ["saadaActionDrafts.prepare", "authenticated-self"],
@@ -354,6 +366,7 @@ const publicFunctions = new Map([
   ["sara.deleteDocument", "admin"],
   ["sara.listSourceEvidence", "staff"],
   ["sara.withdrawDocument", "admin"],
+  ["sara.flagDocument", "admin"],
   ["sara.reviewDocument", "admin"],
   ["sara.updatePendingSourceMetadata", "admin"],
   ["sara.generateUploadUrl", "staff"],

@@ -57,6 +57,17 @@ export const PUBLIC_HELP_RESOURCES = [
     issues: [],
   },
   {
+    id: "lhrc-paralegal-network",
+    name: "LHRC Paralegal Network",
+    category: "published_directory",
+    titleEn: "LHRC's published paralegal directory",
+    titleSw: "Orodha ya wasaidizi wa kisheria iliyochapishwa na LHRC",
+    descriptionEn: "The source snapshot checked on 15 November 2026 contains 615 listing rows across 36 centres; these are not counts of active or distinct paralegals. Some names repeat across centres; confirm the person's location, current role and availability with LHRC before relying on a listing. These are not verified Haki Yangu profiles or live availability.",
+    descriptionSw: "Nakala ya chanzo iliyokaguliwa tarehe 15 Novemba 2026 ina mistari 615 ya majina katika vituo 36; hii si idadi ya wasaidizi hai au watu tofauti. Baadhi ya majina yanajirudia katika vituo tofauti; thibitisha eneo, jukumu la sasa na upatikanaji kupitia LHRC kabla ya kutegemea orodha. Hizi si profaili zilizothibitishwa na Haki Yangu wala taarifa za upatikanaji wa sasa.",
+    url: "https://legalaid.humanrights.or.tz/en/paralegals-network",
+    issues: [],
+  },
+  {
     id: "nalis",
     name: "NaLIS",
     category: "registry",
@@ -80,5 +91,5 @@ export function publicHelpResourcesForIssue(issue?: string) {
   const selected = issue?.trim().toLowerCase();
   return PUBLIC_HELP_RESOURCES.filter((resource) =>
     !selected || resource.issues.length === 0 || (resource.issues as readonly string[]).includes(selected)
-  ).map((resource) => ({ ...resource, contactPoints: PUBLIC_HELP_CONTACT_POINTS.filter(point => point.resourceId === resource.id), checkedOn: resource.id === "lhrc" ? "2026-10-16" : "2026-10-05", kind: "publisher_information_link" as const }));
+  ).map((resource) => ({ ...resource, contactPoints: PUBLIC_HELP_CONTACT_POINTS.filter(point => point.resourceId === resource.id), checkedOn: resource.id === "lhrc-paralegal-network" ? "2026-11-15" : resource.id === "lhrc" ? "2026-10-16" : "2026-10-05", kind: "publisher_information_link" as const }));
 }

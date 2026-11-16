@@ -52,3 +52,17 @@ dist-ssr
 *.jks
 *.keystore
 *.mobileprovision
+
+# Local account investigations, real-message evidence and unverified contact research
+/docs/haki-yangu/ai-improvements-2026-11-16/
+/docs/haki-yangu/paralegal-source-review-2026-11-15/
+/docs/haki-yangu/resource-page-review-2026-11-16/
+/docs/haki-yangu/service-instagram-review-2026-11-16/
+/docs/haki-yangu/source-curation-2026-11-16/
+/docs/haki-yangu/*2026-11-16.md
+!/docs/haki-yangu/release-readiness-2026-11-16.md
+!/docs/haki-yangu/development-checkpoint-2026-11-16.md
+/docs/haki-yangu/convex-usage-audit-2026-10-29.md
+/docs/haki-yangu/convex-usage-inventory-2026-11-03.json
+/docs/haki-yangu/convex-usage-resumption-2026-11-03.md
+/scripts/.inventory-*.mjs

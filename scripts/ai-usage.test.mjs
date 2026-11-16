@@ -131,3 +131,24 @@ test("only staff can read aggregate costs; users cannot settle another owner or 
     assert.equal(status.alert, "limit_not_configured");
     assert.doesNotMatch(JSON.stringify(status), /ownerClerkId|clerk|test:/);
   }));
+test('consented channel messages reserve and settle without a Clerk session, with the same cap',async()=>limited('1',async()=>{
+ const oldEnabled=process.env.META_MESSAGING_ENABLED,oldPage=process.env.META_PAGE_ID;
+ try{process.env.META_MESSAGING_ENABLED='true';process.env.META_PAGE_ID='lsf';const h=harness();
+ const messageId=await h.db.insert('social_messages',{channel:'messenger',account:'lsf',sender:'tester',status:'drafting'});
+ await h.db.insert('social_conversations',{channel:'messenger',account:'lsf',sender:'tester',consent:true,humanMode:false});
+ const id=await h.invoke(api.reserveSocial,{...request,messageId});
+ await assert.rejects(h.invoke(api.reserveSocial,{...request,messageId}),/allowance/);
+ await h.invoke(api.settleSocial,{messageId,id,actualMicroUsd:100});
+ await h.invoke(api.settleSocial,{messageId,id,actualMicroUsd:100});
+ assert.equal((await h.db.query('ai_usage_months').collect())[0].committedMicroUsd,100);
+ await assert.rejects(h.invoke(api.reserve,request),/Unauthorized/);
+ }finally{if(oldEnabled===undefined)delete process.env.META_MESSAGING_ENABLED;else process.env.META_MESSAGING_ENABLED=oldEnabled;if(oldPage===undefined)delete process.env.META_PAGE_ID;else process.env.META_PAGE_ID=oldPage;}
+}));
+test('channel metering rejects missing consent and wrong account',async()=>{
+ const oldEnabled=process.env.META_MESSAGING_ENABLED,oldPage=process.env.META_PAGE_ID;
+ try{process.env.META_MESSAGING_ENABLED='true';process.env.META_PAGE_ID='lsf';const h=harness();
+ const messageId=await h.db.insert('social_messages',{channel:'messenger',account:'lsf',sender:'tester',status:'drafting'});
+ await assert.rejects(h.invoke(api.reserveSocial,{...request,messageId}),/not authorised/);
+ await h.db.patch(messageId,{account:'different'});await assert.rejects(h.invoke(api.reserveSocial,{...request,messageId}),/scope mismatch/);
+ }finally{if(oldEnabled===undefined)delete process.env.META_MESSAGING_ENABLED;else process.env.META_MESSAGING_ENABLED=oldEnabled;if(oldPage===undefined)delete process.env.META_PAGE_ID;else process.env.META_PAGE_ID=oldPage;}
+});

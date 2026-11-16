@@ -1,3 +1,4 @@
+import {formatHakiReply} from "./saadaVoice";
 type Turn = { role: "user" | "assistant"; content: string };
 
 // Keep whole recent turns within a predictable cost budget. Empty in-flight replies
@@ -26,8 +27,8 @@ export function contextualSaadaSearch(message: string, history: Turn[]) {
 }
 
 export function introduceSaada(content: string, locale: "en" | "sw", history: Turn[]) {
-  if (history.some(turn => turn.role === "assistant" && turn.content.trim()) || /(?:I[’']m|Naitwa) Haki Yangu AI/.test(content)) return content;
-  return (locale === "en"
+  if (history.some(turn => turn.role === "assistant" && turn.content.trim()) || /(?:I[’']m|Naitwa) Haki Yangu AI/.test(content)) return formatHakiReply(content);
+  return formatHakiReply((locale === "en"
     ? "I'm Haki Yangu AI, LSF's AI assistant."
-    : "Naitwa Haki Yangu AI, msaidizi wa LSF anayetumia AI.") + "\n\n" + content;
+    : "Naitwa Haki Yangu AI, msaidizi wa LSF anayetumia AI.") + "\n\n" + content);
 }

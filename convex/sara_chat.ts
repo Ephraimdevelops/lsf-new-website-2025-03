@@ -1,3 +1,4 @@
+import {formatHakiReply,selectConversationRecall} from "./lib/saadaVoice";
 import { query, mutation, internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
@@ -64,10 +65,11 @@ export const getRecentHistoryInternal = internalQuery({
             const conversation = await ctx.db.get(args.conversationId);
             if (!conversation || conversation.userId !== args.userId) throw new Error("Conversation not found.");
         }
+        const context=await ctx.db.query('conversation_context').withIndex('by_scope',q=>q.eq('scope','app:'+JSON.stringify([args.userId,args.conversationId??null]))).unique();
         const messages = await ctx.db.query("sara_chats")
             .withIndex("by_user_conversation", (q) => q.eq("userId", args.userId).eq("conversationId", args.conversationId))
             .order("desc").take(26);
-        return messages.reverse().filter((message) => message.content.trim())
+        return messages.reverse().filter((message) => message.content.trim()&&message.timestamp>(context?.forgotBefore??0))
             .map((message) => ({ role: message.role, content: message.content }));
     },
 });
@@ -82,6 +84,7 @@ export const deleteConversation = mutation({
             .withIndex("by_user_conversation", q => q.eq("userId", identity.subject).eq("conversationId", args.conversationId))
             .collect();
         for (const message of messages) await ctx.db.delete(message._id);
+        const memory=await ctx.db.query('conversation_context').withIndex('by_scope',q=>q.eq('scope','app:'+JSON.stringify([identity.subject,args.conversationId]))).unique();if(memory)await ctx.db.delete(memory._id);
         await ctx.db.delete(args.conversationId);
     },
 });
@@ -221,7 +224,7 @@ export const updateMessage = internalMutation({
         if (!existing || existing.role !== "assistant") throw new Error("Assistant message not found.");
         const previousMetadata = existing.metadata && typeof existing.metadata === "object" && !Array.isArray(existing.metadata) ? existing.metadata : {};
         await ctx.db.patch(args.messageId, {
-            content: args.content,
+            content: args.isDone ? formatHakiReply(args.content) : args.content,
             ...(args.tokens !== undefined && { tokens: args.tokens }),
             ...(args.toolCalls && { toolCalls: args.toolCalls }),
             ...(args.isDone ? { metadata: { ...previousMetadata, completedAt: Date.now(), questionAsked: args.questionAsked, clientRequestId: args.clientRequestId, retrievedSources: args.retrievedSources ?? [], failureCode: args.failureCode } } : {}),
@@ -241,9 +244,8 @@ export const clearHistory = mutation({
             .withIndex("by_user_conversation", (q) => q.eq("userId", userId).eq("conversationId", undefined))
             .collect();
 
-        for (const msg of messages) {
-            await ctx.db.delete(msg._id);
-        }
+        for (const msg of messages) {await ctx.db.delete(msg._id);}
+        const memory=await ctx.db.query('conversation_context').withIndex('by_scope',q=>q.eq('scope','app:'+JSON.stringify([userId,null]))).unique();if(memory)await ctx.db.delete(memory._id);
     }
 });
 
@@ -490,3 +492,13 @@ export const getFeedbackList = query({
         return feedbackWithMessages;
     }
 });
+
+// Identity and chat are supplied by the authenticated action, never model arguments.
+export const recallHistoryInternal=internalQuery({args:{userId:v.string(),conversationId:v.optional(v.id('sara_conversations')),search:v.optional(v.string())},handler:async(ctx,args)=>{
+ if(args.conversationId){const conversation=await ctx.db.get(args.conversationId);if(!conversation||conversation.userId!==args.userId)throw new Error('Conversation not found.');}
+ const query=()=>ctx.db.query('sara_chats').withIndex('by_user_conversation',q=>q.eq('userId',args.userId).eq('conversationId',args.conversationId));
+ const [first,recent]=await Promise.all([query().order('asc').take(6),query().order('desc').take(120)]);
+ const context=await ctx.db.query('conversation_context').withIndex('by_scope',q=>q.eq('scope','app:'+JSON.stringify([args.userId,args.conversationId??null]))).unique();
+ const rows=[...new Map([...first,...recent].map(x=>[x._id,x])).values()].filter(x=>x.timestamp>(context?.forgotBefore??0));
+ return selectConversationRecall(rows.map(x=>({role:x.role,content:x.content,timestamp:x.timestamp})),args.search);
+}});

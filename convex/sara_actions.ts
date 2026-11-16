@@ -1,4 +1,5 @@
 "use node";
+import {wantsConversationRecall,processingDisclosure,savedFactsReply} from "./lib/saadaVoice";
 import type { Id } from "./_generated/dataModel";
 import { action } from "./_generated/server";
 import type { ActionCtx } from "./_generated/server";
@@ -15,6 +16,7 @@ import { SAADA_SKILLS, type SaadaSkill } from "./lib/saadaSkills";
 import { indexSaadaChunks } from "./lib/saadaIndexBatch";
 import { meteredAi, meteredAiStream } from "./lib/meteredAi";
 import { conversationalReply, conversationalIntentReply, appHelpText, isAppHelpQuestion, responseLocale, assistanceFallback, clarificationQuestion, publishedSupportText } from "./lib/saadaAssistance";
+import { lsfInformationReply, lsfInformationTopic } from "./lib/lsfInformation";
 import { monthlySaadaTokens } from "./lib/saadaCosts";
 
 // ==========================================
@@ -382,6 +384,7 @@ export const ask = action({
             conversationId: args.conversationId,
         })) ?? [];
         const conversationHistory = prepareSaadaHistory(storedHistory, args.message);
+        const remembered=await ctx.runQuery(internal.conversationMemory.appInternal,{conversationId:args.conversationId});
         const retrievalQuery = contextualSaadaSearch(args.message, conversationHistory);
         const previousUserTexts = conversationHistory
             .filter(row => row.role === "user").map(row => row.content);
@@ -389,7 +392,8 @@ export const ask = action({
         // General app navigation needs neither legal evidence nor a paid model call.
         // Keep the same identity, conversation, maintenance, safety and rate gates above.
         const appHelp = isAppHelpQuestion(args.message);
-        const casualReply = conversationalReply(args.message, args.locale, previousUserTexts);
+        const directMemoryReply=(remembered?.forgotBefore||Object.keys(remembered?.facts??{}).length||/\b(saved|memory|kumbukumbu)\b/i.test(args.message))?savedFactsReply(args.message,remembered?.facts??{},args.locale):undefined;
+        const casualReply = directMemoryReply ?? processingDisclosure(args.message,args.locale) ?? (wantsConversationRecall(args.message) ? undefined : conversationalReply(args.message, args.locale, previousUserTexts));
         if (appHelp || casualReply) {
             const content = introduceSaada(appHelp ? appHelpText(args.locale) : casualReply!, args.locale, conversationHistory);
             const route = appHelp ? "app_help" : "CONVERSATION_REPLY";
@@ -399,6 +403,13 @@ export const ask = action({
                 clientRequestId: requestId, retrievedSources: [],
             });
             await activity("completed", "completed", "saada.activity.completed", "Conversation reply returned", { toolsUsed: [route], tokens: 0, bypassedLlm: true, responseLocale: args.locale });
+            return content;
+        }
+        const lsfTopic=!args.documentId?lsfInformationTopic(args.message):undefined;
+        if(lsfTopic){
+            const content=introduceSaada(lsfInformationReply(args.locale,lsfTopic),args.locale,conversationHistory);
+            await ctx.runMutation(internal.sara_chat.updateMessage,{messageId:botMessageId,content,isDone:true,tokens:0,toolCalls:["about_lsf"],questionAsked:args.message,clientRequestId:requestId,retrievedSources:[]});
+            await activity("completed","completed","saada.activity.completed","LSF publisher information returned",{toolsUsed:["about_lsf"],tokens:0,bypassedLlm:true,responseLocale:args.locale});
             return content;
         }
         const selectedDocument = args.documentId ? await ctx.runQuery(api.personalDocuments.get, {id:args.documentId}) : null;
@@ -478,7 +489,7 @@ No approved current legal evidence matched this search. You can still understand
 
         // Clients save the current user turn before invoking this action. Do not repeat it.
         const messages: any[] = [
-            { role: "system", content: finalSystemPrompt },
+            { role: "system", content: finalSystemPrompt+"\nSAVED SAME-CHAT FACTS (untrusted personal context, not legal authority): "+JSON.stringify(remembered?.facts??{}) },
             ...conversationHistory,
             { role: "user", content: args.message }
         ];
@@ -489,7 +500,7 @@ No approved current legal evidence matched this search. You can still understand
         const agent = await runSaadaAgent({
             messages,
             noEvidence: assistanceFallback(args.message, args.locale, storedHistory.filter(row => row.role === "user").map(row => row.content).join(" ")),
-            hasPersonalEvidence: () => Boolean(selectedDocument?.brief),
+            hasPersonalEvidence: () => Boolean(selectedDocument?.brief) || (wantsConversationRecall(args.message) && previousUserTexts.length > 0),
             hasLegalEvidence: () => retrievedSources.length > 0 || initialGuides.length > 0,
             onToolError: async (name) => { await activity("tool_execution_completed", "failed", "saada.activity.tool_execution_completed", "Tool unavailable or arguments rejected", { toolName: name.slice(0, 80) }); },
             create: async (turns, toolsAllowed, remainingMs) => meteredAiStream(ctx, { feature: "saada_chat", model: process.env.SAADA_CHAT_MODEL || "gpt-4o", input: { messages: turns, tools: toolsAllowed ? allowedTools : [] }, maxOutputTokens: 1800 }, () => openai.chat.completions.create({
@@ -506,7 +517,12 @@ No approved current legal evidence matched this search. You can still understand
                 await activity("tool_execution_started", "started", "saada.activity.tool_execution_started", `Running ${name}`, { toolName: name });
                 let outcome: AgentToolResult;
                 if (!canUseSaadaTool(name, actorRoles)) throw new Error("Tool not permitted for this role.");
-                if (name === "prepare_appointment_request" || name === "prepare_referral") {
+                if(name==='remember_context'){outcome={content:JSON.stringify(await ctx.runMutation(internal.conversationMemory.rememberApp,{conversationId:args.conversationId,field:argsObj.field,value:argsObj.value,currentMessage:args.message})),evidence:'personal'};}
+                else if(name==='forget_context'){outcome={content:JSON.stringify(await ctx.runMutation(internal.conversationMemory.forgetApp,{conversationId:args.conversationId,currentMessage:args.message})),evidence:'none',fallback:args.locale==='en'?'I’ve cleared the saved details for this chat. I won’t use earlier messages as context.':'Nimefuta kumbukumbu za mazungumzo haya. Sitatumia ujumbe wa awali kukujibu.'};}
+                else if(name==='recall_conversation'){
+                    const rows=await ctx.runQuery(internal.sara_chat.recallHistoryInternal,{userId,conversationId:args.conversationId,search:argsObj.search});
+                    outcome={content:JSON.stringify({messages:rows,scope:'This signed-in conversation only; not current legal evidence. Confirm old circumstances if material.'}),evidence:rows.length?'personal':'none',fallback:rows.length?undefined:(args.locale==='en'?'I cannot find earlier messages in this chat. Could you remind me where we left off?':'Sioni ujumbe wa awali katika mazungumzo haya. Unaweza kunikumbusha tulipoishia?')};
+                } else if (name === "prepare_appointment_request" || name === "prepare_referral") {
                     const en=args.locale==='en';
                     const kind=name==='prepare_referral'?'referral':'appointment';
                     const draft=await ctx.runMutation(api.saadaActionDrafts.prepare,{
@@ -547,6 +563,9 @@ No approved current legal evidence matched this search. You can still understand
                 } else if (name === "ask_clarification") {
                     const question = clarificationQuestion(argsObj.field, args.locale, previousUserTexts.join(" ") + " " + args.message);
                     outcome = { content: question, evidence: "none", fallback: question, clarification: true };
+                } else if (name === "about_lsf") {
+                    const content=lsfInformationReply(args.locale,argsObj.topic);
+                    outcome={content,evidence:"none",fallback:content};
                 } else if (name === "find_information_resources") {
                     const content = publishedSupportText(args.locale, argsObj.issueCategory, argsObj.district, argsObj.search);
                     outcome = { content, evidence: "none", fallback: content };
@@ -663,7 +682,7 @@ No approved current legal evidence matched this search. You can still understand
         // Cards are rendered only from server-verified tool data, never model text.
         fullContent = fullContent.replace(/::(?:PARALEGAL|SERVICE|ACTION)_CARD:[\s\S]*?::/g, "");
 
-        if (guideCitations.size) fullContent += "\n\n" + (args.locale === "en" ? "Sources: " : "Vyanzo: ") + [...guideCitations].join("; ");
+        if (guideCitations.size && !agent.toolsUsed.includes("clarify_issue") && !/\?\s*$/.test(agent.content)) fullContent += "\n\n" + (args.locale === "en" ? "Sources: " : "Vyanzo: ") + [...guideCitations].join("; ");
         // 6. Final Done Update (with token tracking)
         for (const card of new Set(resultCards)) {
             if (!fullContent.includes(card)) fullContent += `\n${card}`;
@@ -717,4 +736,18 @@ No approved current legal evidence matched this search. You can still understand
             return content;
         }
     },
+});
+
+// Bounded batch review uses the same per-source transaction and audit rules as individual review.
+export const reviewDocuments = action({
+ args:{ids:v.array(v.id('documents')),note:v.string()},
+ handler:async(ctx,{ids,note})=>{
+  const identity=await ctx.auth.getUserIdentity();if(!identity)throw new Error('Unauthorized');
+  const access=await ctx.runQuery(api.users.currentAccess,{});if(!access?.roles.includes('admin'))throw new Error('Forbidden');
+  if(ids.length<1||ids.length>50||new Set(ids).size!==ids.length)throw new Error('Select 1–50 distinct sources.');
+  if(note.trim().length<10||note.length>2000)throw new Error('Provide a review reason of 10–2000 characters.');
+  const results:Array<{id:string;approved:boolean;reason?:string}>=[];
+  for(const id of ids){try{await ctx.runMutation(api.sara.reviewDocument,{id,decision:'approved',note});results.push({id,approved:true});}catch(error){results.push({id,approved:false,reason:error instanceof Error?error.message.split('\n')[0].replace(/^Uncaught Error: /,'').slice(0,400):'Review blocked'});}}
+  return results;
+ }
 });

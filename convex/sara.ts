@@ -6,6 +6,7 @@ import { sourceUploadMetadata } from "./lib/saadaUploadMetadata";
 import { canRetrySourceIndex, isStalledSourceIndex } from "./lib/saadaIndexRecovery";
 import { requireReadySourceForApproval } from "./lib/saadaSourceLifecycle";
 import { issueManagedUpload, requireCleanOwnedUpload } from "./lib/managedUploads";
+import { sourceApprovalBlockers } from "./lib/sourceApprovalReadiness";
 import { normalizeSourceMetadata, sourceMetadataSnapshot } from "./lib/saadaSourceMetadata";
 
 // Generate upload URL for PDF files
@@ -242,15 +243,26 @@ export const getDocuments = query({
 });
 
 export const listDocumentsPage = query({
-    args: { paginationOpts: paginationOptsValidator, status: v.union(v.literal("pending"), v.literal("approved"), v.literal("due"), v.literal("history")) },
+    args: { paginationOpts: paginationOptsValidator, search: v.optional(v.string()), status: v.union(v.literal("pending"), v.literal("approved"), v.literal("due"), v.literal("history")) },
     handler: async (ctx, args) => {
-        await requireAnyRole(ctx, ["admin", "staff"]);
+        const {identity}=await requireAnyRole(ctx, ["admin", "staff"]);
+        const search=args.search?.trim();
+        if(search && search.length>200)throw new Error("Use a shorter document search.");
+        if(search){
+            const query=ctx.db.query("documents").withSearchIndex("search_title",q=>{
+                const match=q.search("title",search);
+                return args.status==="pending"||args.status==="approved"?match.eq("approvalStatus",args.status):args.status==="due"?match.eq("approvalStatus","approved"):match;
+            });
+            const filtered=args.status==="due"?query.filter(q=>q.lte(q.field("reviewDueAt"),Date.now()+30*24*60*60*1000)):args.status==="history"?query.filter(q=>q.or(q.eq(q.field("approvalStatus"),"withdrawn"),q.eq(q.field("approvalStatus"),"rejected"),q.eq(q.field("approvalStatus"),undefined))):query;
+            const page=await filtered.paginate(args.paginationOpts);
+            return {...page,page:await Promise.all(page.page.map(async({text,...document})=>({...document,approvalBlockers:sourceApprovalBlockers(document,identity.subject),uploaderIsCurrentUser:document.uploadedByClerkId===identity.subject,sourcePdfUrl:await ctx.storage.getUrl(document.storageId)})))};
+        }
         const page = args.status === "due"
             ? await ctx.db.query("documents").withIndex("by_approval_review_due", (q) => q.eq("approvalStatus", "approved").lte("reviewDueAt", Date.now() + 30 * 24 * 60 * 60 * 1000)).order("asc").paginate(args.paginationOpts)
             : args.status === "history"
             ? await ctx.db.query("documents").filter((q) => q.or(q.eq(q.field("approvalStatus"), "rejected"), q.eq(q.field("approvalStatus"), "withdrawn"), q.eq(q.field("approvalStatus"), undefined))).order("desc").paginate(args.paginationOpts)
             : await ctx.db.query("documents").withIndex("by_approval_status", (q) => q.eq("approvalStatus", args.status === "pending" ? "pending" : "approved")).order("desc").paginate(args.paginationOpts);
-        return { ...page, page: await Promise.all(page.page.map(async ({ text, ...document }) => ({ ...document, sourcePdfUrl: await ctx.storage.getUrl(document.storageId) }))) };
+        return { ...page, page: await Promise.all(page.page.map(async ({ text, ...document }) => ({ ...document, approvalBlockers:sourceApprovalBlockers(document,identity.subject),uploaderIsCurrentUser:document.uploadedByClerkId===identity.subject, sourcePdfUrl: await ctx.storage.getUrl(document.storageId) }))) };
     },
 });
 
@@ -316,6 +328,7 @@ export const reviewDocument = mutation({
         if (doc.approvalStatus !== "pending") throw new Error("Only a pending source can be reviewed. Upload a new version for replacement.");
         if (doc.uploadedByClerkId === identity.subject) throw new Error("A different administrator must review this source.");
         if (args.decision === "approved") {
+            if (doc.curationFlags?.length) throw new Error("Resolve the source curation flags before approval.");
             const archive = await ctx.db.query("saada_research_pdfs").withIndex("by_indexing_storage",q=>q.eq("indexingStorageId",doc.storageId)).first();
             if (archive?.indexingDerivative && archive.indexingDerivative.reviewStatus !== "verified") throw new Error("Complete independent OCR transcription review before approving this source.");
             const indexedChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
@@ -350,13 +363,27 @@ export const getApprovedChunkIds = internalQuery({
     },
 });
 
+// A lexical fallback for short/cross-language queries that miss the vector
+// confidence threshold. Search each current approved document's index slice,
+// so unreviewed chunks cannot crowd approved passages out of the result set.
+export const searchApprovedPassages=internalQuery({args:{search:v.string()},handler:async(ctx,{search})=>{
+    if(!search.trim()||search.length>200)return [];
+    const documents=(await ctx.db.query('documents').withIndex('by_approval_status',q=>q.eq('approvalStatus','approved')).take(40)).filter(x=>(x.reviewDueAt??0)>Date.now());
+    const groups=await Promise.all(documents.map(async document=>({document,chunks:await ctx.db.query('embeddings').withSearchIndex('search_text',q=>q.search('text',search).eq('documentId',document._id)).take(2)})));
+    const stop=new Set(['tanzania','mainland','zanzibar','legal','rights','about','which','what','does','have','with','that','this','sheria','haki','naomba']);
+    const terms=[...new Set(search.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>3&&!stop.has(x)))];
+    if(!terms.length)return [];
+    return groups.flatMap(({document,chunks})=>chunks.map(chunk=>({chunk,document,score:terms.filter(term=>new RegExp('\\b'+term+'\\b','i').test(chunk.text)).length})))
+      .filter(x=>x.score>0).sort((a,b)=>b.score-a.score).slice(0,4).map(({chunk,document})=>({_id:chunk._id,documentId:chunk.documentId,text:chunk.text,chunkIndex:chunk.chunkIndex,sourceTitle:document.title,sourceUrl:document.sourceUrl,publisher:document.publisher,versionLabel:document.versionLabel,jurisdiction:document.jurisdiction}));
+}});
+
 export const withdrawDocument = mutation({
     args: { id: v.id("documents"), reason: v.string() },
     handler: async (ctx, args) => {
         const { user } = await requireAnyRole(ctx, ["admin"]);
         const doc = await ctx.db.get(args.id);
         if (!doc) throw new Error("Document not found.");
-        if (doc.approvalStatus !== "approved") throw new Error("Only approved sources can be withdrawn.");
+        if (!["pending", "approved"].includes(doc.approvalStatus ?? "")) throw new Error("Only pending or approved sources can be removed from the active library.");
         const reason = args.reason.trim();
         if (reason.length < 10 || reason.length > 2000) throw new Error("Record a 10–2000 character withdrawal reason.");
         const now = Date.now();
@@ -410,7 +437,8 @@ export const getChunks = internalQuery({
             if (chunk) {
                 const document = await ctx.db.get(chunk.documentId);
                 if (document?.approvalStatus !== "approved" || !document.reviewDueAt || document.reviewDueAt <= Date.now()) continue;
-                chunks.push({ ...chunk, sourceTitle: document?.title ?? "Approved LSF source", sourceUrl: document?.sourceUrl, publisher: document?.publisher, versionLabel: document?.versionLabel, effectiveDate: document?.effectiveDate, jurisdiction: document?.jurisdiction });
+                // Retrieval needs the passage, not the 1536-number embedding vector.
+                chunks.push({ _id: chunk._id, documentId: chunk.documentId, text: chunk.text, chunkIndex: chunk.chunkIndex, sourceTitle: document.title, sourceUrl: document.sourceUrl, publisher: document.publisher, versionLabel: document.versionLabel, effectiveDate: document.effectiveDate, jurisdiction: document.jurisdiction });
             }
         }
         return chunks;
@@ -542,6 +570,7 @@ export const getReadiness = query({
             countsAreLowerBounds: [originals, sources, guides, research].some(rows => rows.length > 200),
             privatePdfOriginals: bounded(originals).filter(row => !row.archived).length,
             sourceDocuments: bounded(sources).length,
+            pendingSourceDocuments: bounded(sources).filter(row => row.approvalStatus === "pending").length,
             indexedSourceDocuments: bounded(sources).filter(row => row.indexingStatus === "ready").length,
             failedSourceDocuments: bounded(sources).filter(row => row.indexingStatus === "failed").length,
             approvedCurrentSourceDocuments: bounded(sources).filter(row => row.approvalStatus === "approved" && (row.reviewDueAt ?? 0) > now).length,
@@ -551,4 +580,17 @@ export const getReadiness = query({
             privateDirectoryResearch: bounded(research).filter(row => !row.archived).length,
         };
     },
+});
+
+// Curation records suitability concerns; it never approves a source or changes reviewer identity.
+export const flagDocument = mutation({
+ args: {id:v.id("documents"),flags:v.array(v.string()),note:v.string()},
+ handler:async(ctx,{id,flags,note})=>{
+  const {user}=await requireAnyRole(ctx,["admin"]);
+  const doc=await ctx.db.get(id);
+  if(!doc||doc.approvalStatus!=="pending")throw new Error("Only pending sources can have curation flags changed.");
+  if(flags.length>12||flags.some(f=>!f.trim()||f.length>180)||note.trim().length<10||note.length>2000)throw new Error("Provide bounded review flags and a reason.");
+  await ctx.db.patch(id,{curationFlags:[...new Set(flags.map(f=>f.trim()))],curationNote:note.trim()});
+  await ctx.db.insert("audit_logs",{action:"saada.source_curated",entityType:"document",entityId:id,userId:user._id,timestamp:Date.now(),metadata:{previousFlags:doc.curationFlags??[],flags,note}});
+ }
 });

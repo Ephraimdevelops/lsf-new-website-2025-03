@@ -34,7 +34,7 @@ test('asking to recall context quotes only the supplied own user messages',()=>{
 });
 test('clarification advances past facts already supplied in this conversation',()=>{
  assert.match(clarificationQuestion('jurisdiction','en','My landlord evicted me in Kinondoni yesterday'),/Would you like help/);
- assert.match(clarificationQuestion('issue','sw','Niko Tanzania Bara. Sijalipwa mshahara mwezi huu.'),/Unahitaji kuelewa/);
+ assert.match(clarificationQuestion('issue','sw','Niko Tanzania Bara. Sijalipwa mshahara mwezi huu.'),/Anza kuandika/);
 });
 test('a small typo in a standalone identity question does not trigger old support context',()=>{
  assert.match(conversationalReply('unaitwa nanui','sw',['Find a paralegal in Kinondoni']),/Naitwa Haki Yangu AI/);
@@ -49,3 +49,5 @@ test('public AI name is introduced once in both languages', () => {
   assert.equal(introduceSaada('Next step', locale, [{role:'assistant',content:answer}]), 'Next step');
  }
 });
+
+test('a two-month unpaid-wages question gives preparation rather than asking the date again',()=>{const answer=clarificationQuestion('dates','en','I have not been paid for two months. I work in Kinondoni.');assert.match(answer,/writing down the unpaid months/);assert.doesNotMatch(answer,/When did this happen/);});

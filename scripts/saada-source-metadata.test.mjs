@@ -28,3 +28,28 @@ test('approved or indexing sources cannot be relabelled and invalid metadata can
 test('unresolved repository attribution cannot pass legal approval readiness',()=>{
  assert.throws(()=>requireReadySourceForApproval({...metadata(),publisher:'Repository: official.example; publisher review pending',indexingStatus:'ready',processedAt:Date.now()},true,Date.now()),/publisher attribution/);
 });
+
+test('curation flags are admin-only, audited, block approval and can be resolved without approving',async()=>{
+ const {h,admin,id}=await setup();
+ const args={id,flags:['Confirm source identity'],note:'The title and official reference need reconciliation.'};
+ await assert.rejects(h.invoke(handlers.flagDocument,args,await h.user('staff')),/Forbidden/);
+ await h.invoke(handlers.flagDocument,args,admin);
+ await assert.rejects(h.invoke(handlers.reviewDocument,{id,decision:'approved',note:'Reviewed the document and all its current metadata.'},admin),/curation flags/);
+ await h.invoke(handlers.flagDocument,{...args,flags:[],note:'Reconciled the original title with the publisher record.'},admin);
+ assert.deepEqual((await h.db.get(id)).curationFlags,[]);
+ assert.equal((await h.db.get(id)).approvalStatus,'pending');
+ assert.equal((await h.db.query('audit_logs').collect()).filter(x=>x.action==='saada.source_curated').length,2);
+});
+test('removing a pending source retains source text and storage and records the reason',async()=>{
+ const {h,admin,id}=await setup();
+ await h.invoke(handlers.withdrawDocument,{id,reason:'Owner requested removing court-case references from active knowledge.'},admin);
+ const doc=await h.db.get(id);assert.equal(doc.approvalStatus,'withdrawn');assert.equal(doc.storageId,'original-pdf');assert.equal(doc.text,'Unchanged source text');
+ assert.equal((await h.db.query('audit_logs').collect()).filter(x=>x.action==='saada.document_withdrawn').length,1);
+});
+
+test('read-only approval guidance explains uploader, curation and provenance blockers before submission',async()=>{
+ const {sourceApprovalBlockers}=loadHandlerModule('convex/lib/sourceApprovalReadiness.ts');
+ const source={...metadata(),approvalStatus:'pending',indexingStatus:'ready',processedAt:Date.now(),uploadedByClerkId:'uploader',curationFlags:['Check original'],publisher:'Repository: source; publisher review pending',jurisdiction:'other'};
+ const reasons=sourceApprovalBlockers(source,'uploader');assert.ok(reasons.some(r=>/different administrator/.test(r)));assert.ok(reasons.some(r=>/highlighted/.test(r)));assert.ok(reasons.some(r=>/publisher/.test(r)));assert.ok(reasons.some(r=>/Mainland/.test(r)));
+ assert.deepEqual(sourceApprovalBlockers({...source,publisher:'Government',jurisdiction:'national',curationFlags:[]},'independent-reviewer'),[]);
+});

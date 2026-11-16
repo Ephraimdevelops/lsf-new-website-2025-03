@@ -281,7 +281,7 @@ test('short follow-up searches with recent issue and location; source-free text 
  const query=f.reads.find(row=>row.name==='publications:searchPublicLegalGuides').args.search;
  assert.match(query,/not been paid in Kinondoni/);assert.match(query,/What next/);assert.ok(query.length<=300);
  assert.doesNotMatch(query,/Previous assistant/);assert.doesNotMatch(content,/300 days|I'm Haki Yangu AI|Mainland Tanzania or Zanzibar/);
- assert.match(content,/Would you like help/);
+ assert.match(content,/writing down the unpaid months/);
 });
 test('model can interpret unfamiliar identity phrasing through a governed conversational tool',async()=>{
  globalThis.__saadaActionRounds=[[{choices:[{delta:{tool_calls:[{index:0,id:'identity',function:{name:'conversation_reply',arguments:'{"kind":"identity"}'}}]},finish_reason:'tool_calls'}]}],[answer('Invented legal advice')]];
@@ -323,4 +323,25 @@ test("personal evidence in the same turn cannot turn a prepared draft into a boo
  const f=fixture({'caseManagement:myCases':[{publicId:'HY-CASE-1',status:'assigned'}]});
  const result=await actions.ask._handler(f.ctx,{message:'Request a phone appointment on my case.',locale:'en'});
  assert.match(result,/Nothing has been submitted/);assert.doesNotMatch(result,/booked and confirmed/);assert.match(result,/ACTION_CARD/);
+});
+
+test('LSF publisher knowledge answers organization questions without becoming legal evidence',async()=>{
+ globalThis.__saadaActionRounds=[[{choices:[{delta:{tool_calls:[{index:0,id:'lsf-contact',function:{name:'about_lsf',arguments:'{"topic":"contact"}'}}]},finish_reason:'tool_calls'}]}],[answer('Your case is approved and a paralegal is assigned.')]];
+ const f=fixture();const result=await actions.ask._handler(f.ctx,{message:'Where is the LSF office and how can I contact it?',locale:'en'});
+ assert.match(result,/Chole Road, Masaki/);assert.match(result,/260 1534/);assert.match(result,/confirm hours/);assert.doesNotMatch(result,/case is approved|paralegal is assigned/);
+});
+
+test('a basic LSF question bypasses legal retrieval and cannot inherit an unrelated guide citation',async()=>{
+ globalThis.__saadaActionRounds=[];
+ const f=fixture({'publications:searchPublicLegalGuides':[{titleEn:'Unrelated law',sourceTitle:'Wrong legal source',sourceUrl:'https://example.org/unrelated'}]});
+ const result=await actions.ask._handler(f.ctx,{message:'Where is the LSF office and how can I contact LSF?',locale:'en'});
+ assert.match(result,/Chole Road/);assert.match(result,/lsftz.org\/contact/);assert.doesNotMatch(result,/Wrong legal source|unrelated/);
+ assert.equal(f.reads.some(r=>r.name==='publications:searchPublicLegalGuides'),false);
+});
+
+test('recalling an older fact is bound to the authenticated user and selected chat',async()=>{
+ globalThis.__saadaActionRounds=[[tools('recall_conversation')],[answer('You said your name is Asha. You were in Kinondoni.')]];
+ const f=fixture({'sara_chat:recallHistoryInternal':[{role:'user',content:'My name is Asha. I am in Kinondoni.',timestamp:1}]});
+ const content=await actions.ask._handler(f.ctx,{message:'Do you remember my name and where we left off?',locale:'en',conversationId:'owned-chat'});
+ const recall=f.reads.find(x=>x.name==='sara_chat:recallHistoryInternal');assert.equal(recall.args.userId,'alice');assert.equal(recall.args.conversationId,'owned-chat');assert.match(content,/Asha\.\n\nYou were in Kinondoni/);assert.doesNotMatch(content,/cannot verify a legal/);
 });

@@ -21,8 +21,8 @@ export function detectMessageLocale(message: string): Locale | undefined {
   const text = message.toLowerCase().trim();
   if (/^(?:yes|no|ok|okay|sawa|ndiyo|hapana|thanks|thank you|asante)[.!?\s]*$/.test(text)) return undefined;
   const words = text.match(/[a-z]+/g) ?? [];
-  const sw = new Set("habari hujambo mambo shikamoo mimi sisi yangu zangu haki nini wapi lini vipi msaada kisheria nahitaji naomba nisaidie tafadhali kwa lugha kiswahili niko nipo wilaya mkoa mpangaji kodi mshahara sijalipwa mwajiri kazi nimefukuzwa mwenye nyumba sijui nifanye nawezaje kuanza hapa nataka kuelewa nijibu tuongee".split(" "));
-  const en = new Set("hello hi hey i my me we our the am in with for and to of a an is are was were have has help please need want what how where when can could tenant landlord rent salary wages employer eviction fired unpaid understand rights legal find support near live work english".split(" "));
+  const sw = new Set("ni ya za na ilianzishwa ilianza inafanya historia ofisi mawasiliano nani nyie kumbukumbu iko habari hujambo mambo shikamoo mimi sisi yangu zangu haki nini wapi lini vipi msaada kisheria nahitaji naomba nisaidie tafadhali kwa lugha kiswahili niko nipo wilaya mkoa mpangaji kodi mshahara sijalipwa mwajiri kazi nimefukuzwa mwenye nyumba sijui nifanye nawezaje kuanza hapa nataka kuelewa nijibu tuongee".split(" "));
+  const en = new Set("hello hi hey i my me we our the am in with for and to of a an is are was were have has help please need want what how where when can could tenant landlord rent salary wages employer eviction fired unpaid understand rights legal find support near live work english company processes processing processor data messages privacy automated assistant service which who".split(" "));
   let swScore = 0, enScore = 0;
   for (const word of words) {
     if (sw.has(word) || /^(?:nime|sija|nili|nina|ame|ana|hatu|tume|tuna)[a-z]{3,}/.test(word)) swScore++;

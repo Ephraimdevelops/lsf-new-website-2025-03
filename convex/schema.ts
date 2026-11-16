@@ -1233,8 +1233,11 @@ export default defineSchema({
     uploadedByClerkId: v.optional(v.string()),
     reviewedBy: v.optional(v.id("users")),
     reviewNote: v.optional(v.string()),
+    curationFlags: v.optional(v.array(v.string())),
+    curationNote: v.optional(v.string()),
     approvedAt: v.optional(v.number()),
-  }).index("by_storageId", ["storageId"])
+  }).searchIndex("search_title", {searchField:"title",filterFields:["approvalStatus"]})
+    .index("by_storageId", ["storageId"])
     .index("by_approval_status", ["approvalStatus"])
     .index("by_approval_review_due", ["approvalStatus", "reviewDueAt"])
     .index("by_replaces_approval", ["replacesDocumentId", "approvalStatus"]),
@@ -1245,7 +1248,7 @@ export default defineSchema({
     text: v.string(), // Chunk text
     embedding: v.array(v.number()), // Vector embedding (1536 dim for OpenAI)
     chunkIndex: v.number(),
-  }).vectorIndex("by_embedding", {
+  }).searchIndex("search_text",{searchField:"text",filterFields:["documentId"]}).vectorIndex("by_embedding", {
     vectorField: "embedding",
     dimensions: 1536,
   }).index("by_documentId", ["documentId"]),
@@ -1454,6 +1457,7 @@ export default defineSchema({
     timestamp: v.number(),
     sessionDate: v.optional(v.string()), // YYYY-MM-DD for daily aggregation
   }).index("by_type", ["type"])
+    .index("by_type_timestamp", ["type", "timestamp"])
     .index("by_timestamp", ["timestamp"])
     .index("by_user", ["userId"]),
 
@@ -1492,4 +1496,29 @@ export default defineSchema({
     updatedAt: v.number(),
   }).index("by_order", ["order"])
     .index("by_active", ["isActive"]),
+  // Server-only Meta credentials. No public query/mutation exposes this table.
+  meta_instagram_connections: defineTable({
+    stateHash:v.string(),status:v.union(v.literal('processing'),v.literal('connected'),v.literal('failed')),
+    createdAt:v.number(),configId:v.string(),
+    accountId:v.optional(v.string()),username:v.optional(v.string()),businessId:v.optional(v.string()),
+    accessToken:v.optional(v.string()),expiresAt:v.optional(v.number()),webhooksSubscribed:v.optional(v.boolean()),
+    lastWebhookAt:v.optional(v.number()),lastAcceptedMessageAt:v.optional(v.number()),
+  }).index('by_state',['stateHash']).index('by_status',['status']),
+  social_messages: defineTable({
+    channel: v.union(v.literal("whatsapp"), v.literal("messenger"), v.literal("instagram")),
+    account: v.string(), sender: v.string(), eventId: v.string(), text: v.string(), sentAt: v.number(),
+    inputType: v.optional(v.literal("audio")),
+    mediaId:v.optional(v.string()),voiceSourceMessageId:v.optional(v.id("social_messages")),transcribedText:v.optional(v.string()),transcriptionStatus:v.optional(v.string()),transcriptionLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))),
+    aiKind: v.optional(v.string()),
+    aiTools: v.optional(v.array(v.string())), aiSourceUrls: v.optional(v.array(v.string())), aiPromptVersion: v.optional(v.string()),
+    staffReply: v.optional(v.boolean()), automatic: v.optional(v.boolean()), escalationReason: v.optional(v.string()),
+    resumedAfterHandoff: v.optional(v.boolean()),
+    status: v.string(), draft: v.optional(v.string()), approvedText: v.optional(v.string()),
+    consentConfirmedBy: v.optional(v.id("users")), approvedBy: v.optional(v.id("users")),
+    approvedAt: v.optional(v.number()), outboundId: v.optional(v.string()), error: v.optional(v.string()),
+  }).index("by_event", ["channel", "eventId"]).index("by_status", ["status"]).index("by_sender", ["channel", "account", "sender"]),
+
+  conversation_context:defineTable({scope:v.string(),facts:v.object({name:v.optional(v.string()),location:v.optional(v.string()),issue:v.optional(v.string()),desiredOutcome:v.optional(v.string()),nextStep:v.optional(v.string())}),updatedAt:v.number(),forgotBefore:v.optional(v.number())}).index('by_scope',['scope']),
+  social_conversations: defineTable({channel:v.string(),account:v.string(),sender:v.string(),humanMode:v.boolean(),humanModeUntil:v.optional(v.number()),humanModeReason:v.optional(v.string()),consent:v.boolean(),voiceConsent:v.optional(v.boolean()),updatedAt:v.number()}).index("by_identity",["channel","account","sender"]),
+
 });

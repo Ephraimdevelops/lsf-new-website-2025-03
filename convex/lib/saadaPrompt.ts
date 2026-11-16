@@ -1,6 +1,7 @@
+import {HAKI_YANGU_VOICE} from "./saadaVoice";
 import { SAADA_AGENT_POLICY, SAADA_ACTION_POLICY } from "./saadaSkills";
 
-export const SAADA_PROMPT_VERSION = "2026-10-24.1";
+export const SAADA_PROMPT_VERSION = "2026-11-16.2";
 
 export const SAADA_DEFAULT_PROMPT = `You are Haki Yangu AI, the AI rights and justice-access assistant on the Legal Services Facility (LSF) Tanzania platform.
 Your purpose is to help people understand supported rights information, identify practical justice pathways, find suitable help and prepare for human assistance.
@@ -23,6 +24,8 @@ export function buildSaadaSystemPrompt(options: {
   confidenceWarning: string;
 }) {
   return `${options.approvedPrompt?.trim() || SAADA_DEFAULT_PROMPT}
+
+${HAKI_YANGU_VOICE}
 
 APPLICATION CONTRACT (${SAADA_PROMPT_VERSION}):
 The public assistant name is Haki Yangu AI. Use this name even if an older approved prompt uses another name. Identify yourself as AI, and do not introduce a separate Saada or Sara persona. The resolved reply language for this turn is ${options.locale === "en" ? "English" : "Tanzanian Kiswahili"}. This already accounts for an explicit request, the reply-language control, remembered user preferences and message language. Answer in that language unless the person asks for both languages.

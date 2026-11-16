@@ -22,6 +22,10 @@ export function securityMethod(value: string, locale: Locale) {
  return labels[value]?.[locale==='sw'?0:1] ?? (locale==='sw'?'Njia nyingine ya kuthibitisha':'Another verification method');
 }
 const errorCopy: Array<[RegExp,string,string]> = [
+ [/different administrator|different LSF reviewer/i,'Msimamizi mwingine lazima akague na kuidhinisha hati au taarifa hii. Akaunti iliyoiweka haiwezi kujiidhinishia.','A different administrator must review this record. The account that uploaded or created it cannot approve it.'],
+ [/curation flags/i,'Kamilisha masuala ya ukaguzi yaliyoonyeshwa kwenye hati kabla ya kuiidhinisha.','Resolve the highlighted source-review issues before approving this document.'],
+ [/publisher attribution|source provenance/i,'Thibitisha mchapishaji na taarifa za chanzo kabla ya kuidhinisha.','Confirm the publisher and source details before approval.'],
+ [/OCR transcription review/i,'Ukaguzi wa maandishi yaliyotolewa kwenye PDF haujakamilika. Kamilisha ukaguzi huo kabla ya kuidhinisha.','The extracted PDF text still needs independent review before approval.'],
  [/form_code_incorrect|incorrect.*code|invalid.*code|verification.*failed/i,'Msimbo si sahihi. Uangalie, kisha jaribu tena.','The code is incorrect. Check it and try again.'],
  [/expired.*code|code.*expired|verification_expired/i,'Msimbo umeisha muda. Omba msimbo mpya.','The code has expired. Request a new code.'],
  [/form_password_incorrect|incorrect.*password|invalid.*credentials/i,'Barua pepe, namba ya simu au neno la siri si sahihi. Vikague, kisha jaribu tena.','Your email, phone number or password is incorrect. Check them and try again.'],

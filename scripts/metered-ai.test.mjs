@@ -115,3 +115,8 @@ test('speech reserves its allowance before generation and reconciles audio-token
   assert.equal(f.writes[1].args.actualMicroUsd,1221);
   assert.doesNotMatch(JSON.stringify(f.writes),/private answer|not-logged/);
 });
+test('social calls use scoped reservations AND scoped settlement without Clerk',async()=>{
+ const f=fixture();await meteredAi(f.ctx,{...meter,socialMessageId:'social-test'},async()=>({usage:{prompt_tokens:100,completion_tokens:2}}));
+ assert.equal(f.writes[0].name,'aiUsage:reserveSocial');assert.equal(f.writes[1].name,'aiUsage:settleSocial');assert.equal(f.writes[1].args.messageId,'social-test');
+});
+test('failed social calls retain their own scoped reservation',async()=>{const f=fixture();await assert.rejects(meteredAi(f.ctx,{...meter,socialMessageId:'social-test'},async()=>{throw new Error('offline');}));assert.equal(f.writes[1].name,'aiUsage:settleSocial');});

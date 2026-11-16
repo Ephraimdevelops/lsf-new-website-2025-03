@@ -159,15 +159,13 @@ export const getKnowledgeStats = query({
         // Get all publication downloads
         const downloads = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "publication_download"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "publication_download").gte("timestamp", cutoff))
             .collect();
 
         // Get all news views
         const newsViews = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "news_view"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "news_view").gte("timestamp", cutoff))
             .collect();
 
         // Aggregate top PDFs
@@ -223,22 +221,19 @@ export const getParalegalFunnel = query({
         // Stage 1: Page Views
         const pageViews = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "paralegal_page_view"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "paralegal_page_view").gte("timestamp", cutoff))
             .collect();
 
         // Stage 2: Signup Starts
         const signupStarts = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "paralegal_signup_start"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "paralegal_signup_start").gte("timestamp", cutoff))
             .collect();
 
         // Stage 3: Signup Completes
         const signupCompletes = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "paralegal_signup_complete"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "paralegal_signup_complete").gte("timestamp", cutoff))
             .collect();
 
         const stage1 = pageViews.length;
@@ -280,7 +275,7 @@ export const getCostMetrics = query({
         // Get all SARA chats
         const chats = await ctx.db
             .query("sara_chats")
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_timestamp", q => q.gte("timestamp", cutoff))
             .collect();
 
         // Calculate total tokens
@@ -308,8 +303,7 @@ export const getCostMetrics = query({
         // Count unique sessions
         const sessions = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "sara_session_start"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "sara_session_start").gte("timestamp", cutoff))
             .collect();
 
         const sessionCount = sessions.length || 1;
@@ -338,8 +332,7 @@ export const getChatTopicStats = query({
 
         const events = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "chat_topic"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "chat_topic").gte("timestamp", cutoff))
             .collect();
 
         // Aggregate by topic
@@ -388,8 +381,7 @@ export const getDailyChats = query({
 
         const sessions = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "sara_session_start"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "sara_session_start").gte("timestamp", cutoff))
             .collect();
 
         // Aggregate by date
@@ -564,8 +556,7 @@ export const getPageViewStats = query({
 
         const events = await ctx.db
             .query("analytics_events")
-            .withIndex("by_type", (q) => q.eq("type", "page_view"))
-            .filter((q) => q.gte(q.field("timestamp"), cutoff))
+            .withIndex("by_type_timestamp", q => q.eq("type", "page_view").gte("timestamp", cutoff))
             .collect();
 
         const pageStats: Record<string, number> = {};
@@ -620,21 +611,21 @@ export const getDashboardOverview = query({
             recentNews,
             recentPubs
         ] = await Promise.all([
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "publication_download")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_read")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "news_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "opportunity_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "opportunity_apply_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "story_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "donation_click")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "page_view").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "publication_download").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "news_view").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "news_read").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "news_click").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "opportunity_view").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "opportunity_apply_click").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "story_view").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "donation_click").gte("timestamp", cutoff)).collect(),
 
             // Programs tracked via page reads (legacy or specific events)
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_page_view")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_signup_start")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "paralegal_signup_complete")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
-            ctx.db.query("analytics_events").withIndex("by_type", q => q.eq("type", "sara_session_start")).filter(q => q.gte(q.field("timestamp"), cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "paralegal_page_view").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "paralegal_signup_start").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "paralegal_signup_complete").gte("timestamp", cutoff)).collect(),
+            ctx.db.query("analytics_events").withIndex("by_type_timestamp", q => q.eq("type", "sara_session_start").gte("timestamp", cutoff)).collect(),
 
             // Document counts
             ctx.db.query("news").collect().then(res => res.length),

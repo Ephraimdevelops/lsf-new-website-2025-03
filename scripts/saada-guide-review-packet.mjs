@@ -2,7 +2,8 @@
 import fs from 'node:fs';import {anyApi} from 'convex/server';import {qaSession} from './test-support/qa-clerk-session.mjs';
 const s=await qaSession('admin'),guides=[];
 try{let cursor=null;do{const result=await s.call('query',anyApi.publications.listLegalGuidesPage,{status:'pending',paginationOpts:{numItems:10,cursor}});guides.push(...result.page);cursor=result.isDone?null:result.continueCursor;}while(cursor);}finally{await s.close();}
-const audit=JSON.parse(fs.readFileSync('docs/haki-yangu/saada-wider-readiness-2026-10-24.json','utf8'));
+const baseline=process.argv[3]?JSON.parse(fs.readFileSync(process.argv[3],'utf8')):null;
+const audit=baseline?{sourceReviewQueue:baseline.documents.map(x=>({...x,id:x._id}))}:JSON.parse(fs.readFileSync('docs/haki-yangu/saada-wider-readiness-2026-10-24.json','utf8'));
 const register=JSON.parse(fs.readFileSync('docs/haki-yangu/saada-research-pack-2026-10-05/source-register.json','utf8')).sources;
 const citationPath='docs/haki-yangu/saada-guide-citation-check-2026-10-24.json';
 const citationCheck=fs.existsSync(citationPath)?JSON.parse(fs.readFileSync(citationPath,'utf8')):null;
@@ -21,4 +22,4 @@ const report={checkedAt:new Date().toISOString(),status:'prepared_for_independen
  return {id:g._id,titleEn:g.titleEn,titleSw:g.titleSw,category:g.category,jurisdiction:g.jurisdiction,sourceTitle:g.sourceTitle,sourceUrl:g.sourceUrl,citationReachability:citationCheck?.sources.find(s=>s.url===g.sourceUrl)?.status??'not_checked',preparedCitationCorrection:corrections.find(r=>r.id===g._id),citedSourceKind:aliases.some(r=>r.downloadUrl)||/\.pdf(?:$|\?)|\/download(?:$|\?)/i.test(g.sourceUrl)?'pdf_or_catalogue':'publisher_web_page',reviewDueAt:g.reviewDueAt,editVersion:g.editVersion??1,structuralIssues:issues,quantitativeClaimsToVerify:quantitativeClaims,matchingSourceDocuments:sources.map(r=>({id:r.id,indexingStatus:r.indexingStatus,approvalStatus:r.approvalStatus})),independentLegalReviewRequired:true,bilingualReviewRequired:true,publicEligible:false,nextSteps:['Check source identity, current amendments, commencement and jurisdiction','Verify each legal claim and action step against source passages and actual pathway','Check Kiswahili meaning against English and source; preserve distinctions','Use existing review form to record a reasoned independent decision']};
 })};
 report.counts={pending:report.records.length,structurallyComplete:report.records.filter(g=>!g.structuralIssues.length).length,withQuantitativeClaims:report.records.filter(g=>g.quantitativeClaimsToVerify.length).length,withoutMatchingIndexedSource:report.records.filter(g=>!g.matchingSourceDocuments.some(s=>s.indexingStatus==='ready')).length};
-fs.writeFileSync('docs/haki-yangu/saada-guide-review-completion-2026-10-24.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report.counts));
+fs.writeFileSync(process.argv[2]??'docs/haki-yangu/saada-guide-review-completion-2026-10-24.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report.counts));

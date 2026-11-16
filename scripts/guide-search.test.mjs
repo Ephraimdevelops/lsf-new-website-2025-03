@@ -18,3 +18,25 @@ test('full questions ignore generic words and match tenant/rent vocabulary acros
  assert.deepEqual(searchCurrentGuides([guide,tenancy],'Help me understand my rights',undefined,now),[]);
  assert.deepEqual(searchCurrentGuides([guide,tenancy],'Nisaidie kuhusu upangaji',undefined,now),[tenancy]);
 });
+
+test('an LSF office/contact question cannot turn generic guide wording into legal evidence',()=>{
+ const rows=[{titleEn:'Disability support',titleSw:'Msaada',summaryEn:'Contact the LSF office for information.',summarySw:'Wasiliana na ofisi ya LSF.',category:'other',jurisdiction:'national',reviewDueAt:Date.now()+86400000,status:'approved'}];
+ assert.deepEqual(searchCurrentGuides(rows,'Where is the LSF office and how can I contact LSF?'),[]);
+});
+
+test('a word fragment or a lone generic body overlap cannot qualify an unrelated guide',()=>{
+ const unrelated={...guide,titleEn:'Disability benefits',titleSw:'Ulemavu',category:'Disability',summaryEn:'Contact an office if you work.',summarySw:''};
+ assert.deepEqual(searchCurrentGuides([unrelated],'Which Act applies?',undefined,now),[]);
+ assert.deepEqual(searchCurrentGuides([unrelated],'I work in Kinondoni and have unpaid salary',undefined,now),[]);
+ assert.deepEqual(searchCurrentGuides([guide],'unpaid wages',undefined,now),[guide]);
+});
+
+test('personal memory questions do not match a guide merely through pronouns',()=>{
+ const fixture={titleEn:'I need support with disability access',titleSw:'Nahitaji msaada kuhusu ulemavu',summaryEn:'Accessible public services',summarySw:'Huduma zinazofikika',category:'Disability',jurisdiction:'zanzibar',status:'approved',reviewDueAt:Date.now()+86400000};
+ assert.deepEqual(searchCurrentGuides([fixture],'What location is currently saved in my chat memory?'),[]);
+});
+
+test('a factual wage request cannot retrieve disability guidance through generic preparation words',()=>{
+ const fixture={titleEn:'Disability and access',titleSw:'Ulemavu na huduma',summaryEn:'Prepare a factual request with details.',summarySw:'Andaa ombi lenye maelezo.',category:'Disability',jurisdiction:'zanzibar',status:'approved',reviewDueAt:Date.now()+86400000};
+ assert.deepEqual(searchCurrentGuides([fixture],'My name is Asha. I am in Kinondoni and want to prepare a factual request about unpaid wages.'),[]);
+});

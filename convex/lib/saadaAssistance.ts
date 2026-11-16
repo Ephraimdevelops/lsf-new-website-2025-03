@@ -65,14 +65,22 @@ export const CLARIFICATION_FIELDS = [
   "dates",
   "desired_help",
 ] as const;
+export function practicalPreparation(context:string,locale?:"en"|"sw") {
+ if(!/not been paid|haven.t been paid|unpaid|sijalipwa|mshahara|wages/i.test(context))return undefined;
+ return locale==='en'
+ ? "Start by writing down the unpaid months and the amount you expected for each. Keep any contract, payment records and messages with your employer if you have them. You do not need to upload them here. This prepares the facts for a human adviser; I cannot confirm a legal deadline without a reviewed source. Would you like published employment-support information or help drafting a short request?"
+ : "Anza kuandika miezi ambayo hujalipwa na kiasi ulichotarajia kila mwezi. Hifadhi mkataba, kumbukumbu za malipo na ujumbe wa mwajiri kama unavyo. Huhitaji kuzipakia hapa. Hii inaandaa maelezo kwa mshauri; siwezi kuthibitisha muda wa kisheria bila chanzo kilichopitiwa. Ungependa taarifa za msaada wa ajira au tuandae ombi fupi?";
+}
 export function clarificationQuestion(field: string, locale?: "en" | "sw", conversationText = "") {
   const en = locale === "en";
   const knownJurisdiction = /mainland|tanzania bara|zanzibar|unguja|pemba|kinondoni|dar es salaam|dodoma|arusha|mwanza/i.test(conversationText);
   const knownIssue = /tenant|tenancy|rent|landlord|evict|mpangaji|kodi|mshahara|sijalipwa|salary|paid|pay|employer|mwajiri|land|ardhi|inherit|urithi|ndoa|divorce|talaka|violence|ukatili|assault/i.test(conversationText);
-  const knownDates = /yesterday|today|last (?:week|month|year)|days? ago|weeks? ago|months? ago|jana|leo|juzi|wiki|mwezi|miezi|\b20\d{2}\b/i.test(conversationText);
+  const knownDates = /yesterday|today|last (?:week|month|year)|days? ago|weeks? ago|months? ago|(?:\d+|one|two|three|four|five|six) (?:days?|weeks?|months?|years?)|jana|leo|juzi|wiki|mwezi|miezi|\b20\d{2}\b/i.test(conversationText);
   if (field === "jurisdiction" && knownJurisdiction) field = "issue";
   if (field === "issue" && knownIssue) field = knownDates ? "desired_help" : "dates";
   if (field === "dates" && knownDates) field = "desired_help";
+  const prepared=practicalPreparation(conversationText,locale);
+  if(prepared&&knownIssue&&knownDates)return prepared;
   const tenancy = /tenant|tenancy|rent|landlord|mpangaji|upangaji|kodi ya nyumba/i.test(conversationText);
   const questions: Record<string, [string, string]> = {
     jurisdiction: [

@@ -60,7 +60,8 @@ function setup(rounds, overrides = {}) {
 }
 
 test("registry has bounded search, clarification and reviewed drafting tools and rejects forged ownership/side effects", () => {
-  assert.equal(SAADA_TOOLS.length, 24);
+  assert.equal(SAADA_TOOLS.length, 28);
+  for(const name of ["remember_context","forget_context","recall_conversation","about_lsf"]) assert.ok(SAADA_TOOLS.some(tool=>tool.function.name===name));
   for (const name of [
     "send_email",
     "confirm_action",

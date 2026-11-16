@@ -44,3 +44,7 @@ test('clarification uses shared facts, asks one question, and does not assume ev
  assert.match(clarificationQuestion('issue','en','My landlord is asking me to leave'),/When did this happen/);
  assert.match(assistanceFallback('Kinondoni','sw','Nahitaji msaada wa kisheria'),/Kinondoni Legal Aid Clinic/);
 });
+
+test('short LSF questions are recognised as Kiswahili in auto mode',()=>{for(const message of ['LSF ilianzishwa lini?','LSF ni nini?','Ofisi ya LSF iko wapi?'])assert.equal(responseLocale(message,'en'),'sw');});
+
+test('direct English processing questions remain English',()=>{assert.equal(responseLocale('Which company processes my AI messages?'),'en');});

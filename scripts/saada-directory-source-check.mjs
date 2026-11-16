@@ -1,9 +1,9 @@
 // Public-source freshness and contact-presence evidence. Does NOT certify intake,
 // approve directory entries, contact organisations, or publish private addresses.
 import fs from 'node:fs';import {createHash} from 'node:crypto';
-const file='docs/haki-yangu/upload-preparation-2026-10-07/directory-research-import.json';
+const file=process.argv[3]??'docs/haki-yangu/upload-preparation-2026-10-07/directory-research-import.json';
 const rows=JSON.parse(fs.readFileSync(file,'utf8')).entries;
-const out='docs/haki-yangu/saada-directory-source-review-2026-10-24.json';
+const out=process.argv[2]??'docs/haki-yangu/saada-directory-source-review-2026-10-24.json';
 const prior=fs.existsSync(out)?JSON.parse(fs.readFileSync(out,'utf8')):null;
 const results=new Map((prior?.sources??[]).map(r=>[r.url,r]));
 const urls=[...new Set(rows.flatMap(r=>r.sourceUrls))];
@@ -41,4 +41,5 @@ report.records=rows.map(row=>{
  const phone=digits(row.phone),email=row.email?.toLowerCase();
  return {externalKey:row.externalKey,title:row.title,kind:row.kind,sourceUrls:row.sourceUrls,reachableSources:evidence.filter(e=>e?.status==='page_observed_not_intake_verified').length,phoneObserved:!!phone&&evidence.some(e=>e?.phones?.some(p=>digits(p).endsWith(phone.slice(-9)))),emailObserved:!!email&&evidence.some(e=>e?.emails?.includes(email)),missingFields:missing,independentReviewRequired:true,publicEligible:false,nextSteps:['Check that source and record refer to the same office','Confirm phone, district, region and safe public location','Confirm current intake, eligibility, coverage, hours, access needs and fees','Record independent reviewer, evidence and review date; activate through existing lifecycle']};
 });
+report.sources=[...results.values()];
 report.counts={records:rows.length,sourceUrls:urls.length,reachable:report.sources.filter(s=>s.status==='page_observed_not_intake_verified').length,unavailable:report.sources.filter(s=>s.status==='unavailable').length,recordsWithMissingLocation:report.records.filter(r=>r.missingFields.includes('region')||r.missingFields.includes('district')).length,verifiedPublic:0};save();console.log(JSON.stringify(report.counts));

@@ -2,6 +2,7 @@ import type { ActionCtx } from "../_generated/server";
 import { internal } from "../_generated/api";
 import { costMicroUsd, quoteMicroUsd } from "./aiPricing";
 type Meter = {
+  socialMessageId?: import("../_generated/dataModel").Id<"social_messages">;
   feature: string;
   model: string;
   input: unknown;
@@ -22,7 +23,7 @@ async function reserve(ctx: ActionCtx, meter: Meter) {
   const quote = meter.model === "whisper-1" && duration !== undefined && Number.isFinite(duration) && duration > 0 && duration <= 120
     ? Math.ceil((Math.ceil(duration) + 1) * 100)
     : quoteMicroUsd(meter.model, meter.input, meter.maxOutputTokens);
-  return ctx.runMutation(internal.aiUsage.reserve, {
+  return meter.socialMessageId ? ctx.runMutation(internal.aiUsage.reserveSocial, {messageId:meter.socialMessageId,feature:meter.feature,model:meter.model,estimateMicroUsd:quote??0,priced:quote!==null}) : ctx.runMutation(internal.aiUsage.reserve, {
     feature: meter.feature,
     model: meter.model,
     estimateMicroUsd: quote ?? 0,
@@ -35,6 +36,7 @@ async function settle(
   model: string,
   usage?: { input: number; output: number },
   audioSeconds?: number,
+  socialMessageId?: Meter["socialMessageId"],
 ) {
   const cost = usage
     ? costMicroUsd(model, usage.input, usage.output)
@@ -44,11 +46,11 @@ async function settle(
         audioSeconds >= 0
       ? Math.ceil(audioSeconds * 100)
       : null;
-  await ctx.runMutation(internal.aiUsage.settle, {
+  await (socialMessageId ? ctx.runMutation(internal.aiUsage.settleSocial, {messageId:socialMessageId,id,...(cost!==null?{actualMicroUsd:cost}:{}),...(usage?{inputTokens:usage.input,outputTokens:usage.output}:{})}) : ctx.runMutation(internal.aiUsage.settle, {
     id,
     ...(cost !== null ? { actualMicroUsd: cost } : {}),
     ...(usage ? { inputTokens: usage.input, outputTokens: usage.output } : {}),
-  });
+  }));
 }
 export async function meteredAi<T>(
   ctx: ActionCtx,
@@ -60,7 +62,7 @@ export async function meteredAi<T>(
   try {
     result = await call();
   } catch (error) {
-    await settle(ctx, id, meter.model);
+    await settle(ctx, id, meter.model, undefined, undefined, meter.socialMessageId);
     throw error;
   }
   await settle(
@@ -69,6 +71,7 @@ export async function meteredAi<T>(
     meter.model,
     usageOf(result),
     (result as any)?.duration,
+    meter.socialMessageId,
   );
   return result;
 }
@@ -82,7 +85,7 @@ export async function meteredAiStream<T extends { usage?: any }>(
   try {
     stream = await call();
   } catch (error) {
-    await settle(ctx, id, meter.model);
+    await settle(ctx, id, meter.model, undefined, undefined, meter.socialMessageId);
     throw error;
   }
   return (async function* () {

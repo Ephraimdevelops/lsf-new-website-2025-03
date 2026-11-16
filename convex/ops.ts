@@ -1,33 +1,29 @@
 import { mutation, query } from "./_generated/server";
 import { requireAnyRole } from "./lib/auth";
+import { monthlyLimitMicroUsd } from "./lib/aiPricing";
 
 // ==========================================
 // OPS DASHBOARD BACKEND
 // ==========================================
 
 // 1. BUDGET HEALTH
-// Logic: Count total tokens used by SARA, multiply by cost factor.
-// Cost factor: ~$5.00 / 1M input tokens, ~$15.00 / 1M output tokens.
-// Simplified blended rate: $10.00 / 1M tokens ($0.01 / 1k tokens) as per sara_chat.ts
+// Read the same monthly ledger used by AI spending enforcement.
 export const getBudgetStatus = query({
     handler: async (ctx) => {
         await requireAnyRole(ctx, ["admin"]);
 
-        // Calculate usage
-        const allMessages = await ctx.db.query("sara_chats").collect();
-        const totalTokens = allMessages.reduce((sum, m) => sum + (m.tokens || 0), 0);
-
-        // Cost calculation
-        const costPer1k = 0.01;
-        const currentUsage = (totalTokens / 1000) * costPer1k;
-
-        // Hardcoded budget limit
-        const BUDGET_LIMIT = 20.00;
-
+        const month = new Date().toISOString().slice(0, 7);
+        const row = await ctx.db.query("ai_usage_months")
+            .withIndex("by_month", q => q.eq("month", month)).unique();
+        const limit = monthlyLimitMicroUsd(process.env.SAADA_MONTHLY_BUDGET_USD);
+        const usage = (row?.committedMicroUsd ?? 0) + (row?.reservedMicroUsd ?? 0);
+        const unpricedCalls = row?.unpricedCalls ?? 0;
         return {
-            usage: currentUsage,
-            limit: BUDGET_LIMIT,
-            isLocked: currentUsage >= BUDGET_LIMIT
+            month,
+            usage: usage / 1e6,
+            limit: limit === null ? null : limit / 1e6,
+            unpricedCalls,
+            isLocked: limit !== null && (usage >= limit || unpricedCalls > 0),
         };
     },
 });

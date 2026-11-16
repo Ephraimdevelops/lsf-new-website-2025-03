@@ -8,6 +8,7 @@ const chat = await import("data:text/javascript;base64," + Buffer.from(bundle.ou
 
 function fixture(subject = "alice") {
   const rows = {
+    conversation_context: [{_id:"context-a",scope:'app:["alice","a"]',facts:{location:"Synthetic A"}}, {_id:"context-b",scope:'app:["bob","b"]',facts:{location:"Synthetic B"}}],
     users: [{ _id: "user-a", clerkId: "alice" }, { _id: "user-b", clerkId: "bob" }],
     sara_conversations: [{ _id: "a", userId: "alice", title: "First", updatedAt: 1 }, { _id: "b", userId: "bob", title: "Private", updatedAt: 2 }],
     sara_chats: [{ _id: "old", userId: "alice", role: "user", content: "Legacy", timestamp: 1 }, { _id: "new", userId: "alice", conversationId: "a", role: "user", content: "New topic", timestamp: 2 }],
@@ -53,6 +54,7 @@ test("deleting one conversation keeps legacy history and other accounts intact",
   await chat.deleteConversation._handler(ctx, { conversationId: "a" });
   assert.deepEqual(rows.sara_conversations.map(row => row._id), ["b"]);
   assert.deepEqual(rows.sara_chats.map(row => row._id), ["old"]);
+  assert.deepEqual(rows.conversation_context.map(row=>row._id),["context-b"]);
 });
 
 test("history lists only the signed-in user's conversations", async () => {
