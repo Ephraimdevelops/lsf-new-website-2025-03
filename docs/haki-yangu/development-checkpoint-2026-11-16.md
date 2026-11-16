@@ -44,3 +44,9 @@ Local research rosters, actual chat transcripts, account-verification screenshot
 - Confirmed and accepted app testing roles for additional Messenger reviewers; Page access is not evidence that an app tester invitation succeeded.
 - Instagram account authorization and real delivery testing.
 - Production identity, backend, data migration, mobile release and channel cutover checks described in the release-readiness audit.
+
+## Preview build correction
+
+The first pushed preview exposed an environment-specific build failure: web imports of pure helpers beneath `mobile/src` caused Vite to resolve `mobile/tsconfig.json`, which extends Expo’s configuration. Expo is intentionally not installed by the web-only project install, so the remote build failed despite local builds succeeding with mobile dependencies present.
+
+The web build now applies its TypeScript transform options after the React plugin’s configuration hook, using the Vite 5 string configuration form that avoids per-file Expo configuration discovery. The mobile configuration and homepage components remain unchanged. A clean archived checkout, with only root web dependencies and no mobile dependencies, reproduced the original failure and passed after this correction. A regression test exercises the resolved Vite configuration against an Expo-dependent helper directory without Expo installed.

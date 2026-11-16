@@ -31,6 +31,25 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       mode === 'development' && componentTagger(),
+      {
+        name: "haki-web-typescript",
+        apply: "build" as const,
+        enforce: "post" as const,
+        // Pure helpers under mobile/src must not require Expo in a web build.
+        // Apply after react-swc's config hook; Vite 5 needs the string form
+        // to avoid discovering the mobile tsconfig for each imported helper.
+        config: () => ({
+          esbuild: {
+            tsconfigRaw: JSON.stringify({
+              compilerOptions: {
+                target: "ES2021",
+                useDefineForClassFields: true,
+                jsx: "react-jsx",
+              },
+            }),
+          },
+        }),
+      },
     ].filter(Boolean),
     resolve: {
       alias: {
