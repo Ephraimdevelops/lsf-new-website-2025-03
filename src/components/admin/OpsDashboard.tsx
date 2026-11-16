@@ -56,11 +56,13 @@ const OpsDashboard = () => {
                         )}
                         <div>
                             <p className={`text-2xl font-bold ${budget.isLocked ? 'text-red-700' : 'text-green-700'}`}>
-                                {budget.isLocked ? 'LOCKED' : 'Within configured limit'}
+                                {budget.isLocked ? 'Allowance blocked' : budget.limit === null ? 'Monitoring only' : 'Within configured limit'}
                             </p>
                             <p className="text-sm text-gray-600">
-                                ${budget.usage.toFixed(2)} / ${budget.limit.toFixed(2)}
+                                ${budget.usage.toFixed(2)}{budget.limit === null ? ' · No limit configured' : ` / $${budget.limit.toFixed(2)}`}
                             </p>
+                            <p className="text-xs text-gray-600 mt-2">{budget.month} · App estimate including reservations, not the provider invoice.</p>
+                            {budget.unpricedCalls > 0 && <p role="status" className="text-xs text-amber-700 mt-1">Some AI costs need metering review.</p>}
                         </div>
                     </div>
                 </CardContent>

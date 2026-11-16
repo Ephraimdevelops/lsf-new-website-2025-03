@@ -536,3 +536,12 @@ div[class*="cl-developmentBadge"],
 div[class*="cl-badge"] {
   display: none !important;
 }
+
+/* Compact horizontal management rows; details expand without clipping review controls. */
+.resource-horizontal { min-height:20vh; height:auto; position:relative; padding-right:220px; }
+.resource-horizontal:not(:has(> details[open])) { min-height:20vh; max-height:none; }
+.resource-horizontal > details { margin-top:12px; }
+.resource-horizontal:not(:has(> details[open])) > details > summary { position:absolute; right:20px; top:50%; transform:translateY(-50%); }
+.resource-horizontal:has(> details[open]) { padding-right:16px; }
+.resource-horizontal .resource-management-title { font-size:15px; line-height:1.45; font-weight:500; }
+@media (max-width:640px) { .resource-horizontal { padding-right:16px; min-height:0; } .resource-horizontal:not(:has(> details[open])) > details > summary { position:static; transform:none; } }

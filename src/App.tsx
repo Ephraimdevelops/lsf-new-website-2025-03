@@ -76,6 +76,7 @@ const Bookmarks = lazyWithRetry(() => import("./pages/Bookmarks"));
 const SuccessStories = lazyWithRetry(() => import("./pages/SuccessStories"));
 const Whistleblower = lazyWithRetry(() => import("./pages/Whistleblower"));
 const FAQ = lazyWithRetry(() => import("./pages/FAQ"));
+const SocialInbox = lazyWithRetry(() => import("./pages/SocialInbox"));
 const PlatformExplainer = lazyWithRetry(() => import("./pages/PlatformExplainer"));
 const HakiYangu = lazyWithRetry(() => import("./pages/HakiYangu"));
 const SaraAI = lazyWithRetry(() => import("./pages/SaraAI"));
@@ -277,6 +278,7 @@ function App() {
                       <Route path="/become-a-paralegal" element={<ParalegalSignup />} />
                       <Route path="/whistleblower" element={<Whistleblower />} />
                       <Route path="/faq" element={<FAQ />} />
+                      <Route path="/admin/social-inbox" element={<ProtectedRoute allowedRoles={["admin"]}><SocialInbox /></ProtectedRoute>} />
                       <Route path="/haki-yangu" element={<HakiYangu />} />
                       <Route path="/haki-yangu/how-it-works" element={<PlatformExplainer />} />
                       <Route path="/find-help" element={<FindHelp />} />

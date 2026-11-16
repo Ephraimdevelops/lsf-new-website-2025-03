@@ -15,16 +15,20 @@ import { api } from "../../convex/_generated/api";
 import Layout from "../components/layout/Layout";
 import Container from "../components/shared/Container";
 import { Button } from "../components/ui/button";
-import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Settings, Save, Database } from "lucide-react";
+import { Upload, FileText, CheckCircle, AlertCircle, Loader2, Settings, Save, Database, Plus, ArrowRight, FolderOpen } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import ResearchPdfUpload from '../components/haki-yangu/ResearchPdfUpload';
+import './SaraTrain.css';
 import SourceMetadataEditor from '../components/haki-yangu/SourceMetadataEditor';
 import { buildSaadaSystemPrompt, SAADA_DEFAULT_PROMPT, SAADA_PROMPT_VERSION } from '../../convex/lib/saadaPrompt';
 
 const SaraTrain = () => {
   const readError = usePlainError();
   const c = useCopy();
+    const [view,setView]=useState<"approved"|"pending"|"files"|"add"|"settings">("approved");
+    const readiness=useQuery(api.sara.getReadiness);
+    const [sourceSearch,setSourceSearch]=useState("");
     const generateUploadUrl = useMutation(api.sara.generateUploadUrl);
     const generateResearchUploadUrl = useMutation(api.saadaResearchPdfs.generateIndexingUploadUrl);
     const ingestDocument = useAction(api.sara_actions.ingestDocument);
@@ -42,6 +46,7 @@ const SaraTrain = () => {
     const [progress, setProgress] = useState("");
     const [source, setSource] = useState({ title: "", publisher: "", sourceUrl: "", jurisdiction: "national", language: "bilingual", contentCategory: "Law / legal guidance", versionLabel: "", effectiveDate: "", reviewDate: "" });
     function prepareStoredResearch(row: PreparedResearchRow) {
+        setView("add");
         const candidate = JSON.parse(row.provenance).candidate ?? {};
         setStoredResearch({ id: row._id, storageId: row.canReuseIndexingCopy ? row.indexingStorageId ?? row.storageId : row.storageId, filename: row.filename, url: row.url, sha256: row.sha256, byteSize: row.byteSize, needsSecurityScan: !row.canReuseIndexingCopy });
         setFile(null); uploadedFile.current = null;
@@ -157,54 +162,27 @@ const SaraTrain = () => {
 
     return (
         <Layout>
-            <Container className="py-20">
+            <Container className="ai-resource-hub py-6">
+                <header className="resource-hub-heading"><div><p className="resource-hub-eyebrow">Haki Yangu AI</p><h1>AI resources</h1><p>Manage the information the assistant uses to help people.</p></div><Button disabled={isUploading} onClick={()=>setView("add")} className="gap-2"><Plus className="h-4 w-4"/>Add a document</Button></header>
                 <SaadaReadiness />
-                <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
-                    <div className="flex items-center gap-6 mb-10 pb-10 border-b border-gray-100">
-                        <div className="relative">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-purple-600 rounded-full blur opacity-20"></div>
-                            <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                                <img src="/sara-avatar-v2.png" alt="Haki Yangu AI" className="w-full h-full object-cover" />
-                            </div>
-                            <span className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-white rounded-full"></span>
-                        </div>
-                        <div>
-                            <h1 className="text-3xl font-heading font-bold text-gray-900 mb-2">{c("Haki Yangu AI knowledge sources")}</h1>
-                            <Link to="/dashboard/saada-evaluations" className="text-sm font-semibold text-primary underline">{c("Open answer evaluations")}</Link>
-                            <p className="text-gray-600 text-lg max-w-lg leading-relaxed">{c("Upload legal source PDFs with their provenance and edition for independent review.")}</p>
-                        </div>
-                    </div>
+                <nav className="resource-hub-tabs" aria-label="Resource sections">{([{id:'approved',label:'Ready for AI',count:readiness?.approvedCurrentSourceDocuments},{id:'pending',label:'Needs review',count:readiness?.pendingSourceDocuments},{id:'files',label:'Saved files'},{id:'settings',label:'AI settings'}] as const).map(tab=><button key={tab.id} type="button" aria-current={view===tab.id?'page':undefined} onClick={()=>setView(tab.id)}>{tab.label}{'count' in tab&&tab.count!==undefined&&<span>{tab.count}</span>}</button>)}</nav>
+                <div className="resource-hub-panel">
+                    {view==='files'&&<><div className="resource-hub-section-heading"><h2>Saved files</h2><p>Keep original research PDFs here. Saving a file does not make it available to the AI.</p></div><ResearchPdfUpload onPrepare={prepareStoredResearch}/><details className="resource-hub-advanced"><summary>Removed or rejected documents</summary><DocumentList initialStatus="history"/></details></>}
+                    {view==='add'&&<div className="resource-hub-upload"><div className="resource-hub-section-heading"><h2>Add a document</h2><p>Add the PDF and its source details. A different administrator reviews it before the AI can use it.</p></div>
+                    {(recoverableUploads.length > 0 || uploadPage.status === "CanLoadMore" || uploadPage.status === "LoadingMore") && <details className="my-6 rounded-xl border bg-slate-50 p-4" aria-label={c("Recover uploaded sources")}><summary className="cursor-pointer text-sm font-medium">Resume an interrupted upload</summary>
 
-
-                    <div className="bg-yellow-50 p-4 rounded-lg flex gap-3 text-sm text-yellow-800">
-                        <AlertCircle className="h-5 w-5 shrink-0" />
-                        <p>
-                            <strong>{c("Review gate:")}</strong>{c(" Uploaded PDFs are parsed and indexed for review. Haki Yangu AI cannot use them in public answers until a different administrator approves the source.")}</p>
-                    </div>
-                    {(recoverableUploads.length > 0 || uploadPage.status === "CanLoadMore" || uploadPage.status === "LoadingMore") && <section className="my-6 rounded-xl border border-teal-200 bg-teal-50 p-4" aria-label={c("Recover uploaded sources")}>
-                        <h2 className="font-semibold">{c("Resume your uploaded sources")}</h2>
-                        <p className="mt-1 text-sm">{c("Completed uploads with no source record. Load older receipts below. Resume indexing; independent approval is still required.")}</p>
+                        <p className="mt-1 text-sm">{c("If an upload was interrupted, finish it here. The document still needs review.")}</p>
                         {recoverableUploads.map((receipt) => <div key={receipt._id} className="mt-4 rounded-lg border bg-white p-3">
                             <div className="flex flex-wrap items-center justify-between gap-3"><span>{receipt.metadata.title} · {receipt.metadata.versionLabel}</span><Button disabled={isUploading || receipt.metadata.reviewDueAt <= Date.now()} variant="outline" onClick={async () => { setIsUploading(true); setProgress("Resuming saved PDF ingestion..."); try { await ingestDocument({ storageId: receipt.storageId, ...receipt.metadata }); setProgress(""); toast.success("Source indexed for independent review."); } catch (error) { toast.error(readError(error, "Could not resume ingestion.")); } finally { setIsUploading(false); } }}>{c("Resume ingestion")}</Button></div>
                             {receipt.metadata.reviewDueAt <= Date.now() && <div className="mt-3 space-y-2"><p className="text-sm text-amber-800">{c("The review date has expired. Correct it with a reason before resuming. This does not approve the source.")}</p><label className="block text-sm">{c("New review date")}<input type="date" disabled={isUploading} value={corrections[receipt._id]?.date ?? ""} onChange={e => setCorrections(current => ({ ...current, [receipt._id]: { reason: current[receipt._id]?.reason ?? "", date: e.target.value } }))} className="ml-2 rounded border p-2" /></label><input aria-label={`Correction reason for ${receipt.metadata.title}`} placeholder={c("Why is the review date changing?")} value={corrections[receipt._id]?.reason ?? ""} disabled={isUploading} onChange={e => setCorrections(current => ({ ...current, [receipt._id]: { date: current[receipt._id]?.date ?? "", reason: e.target.value } }))} className="w-full rounded border p-2" /><Button variant="outline" disabled={isUploading || !corrections[receipt._id]?.date || (corrections[receipt._id]?.reason.trim().length ?? 0) < 10} onClick={async () => { const correction = corrections[receipt._id]; const reviewDueAt = Date.parse(`${correction.date}T12:00:00+03:00`); if (!Number.isFinite(reviewDueAt) || new Date(reviewDueAt).toISOString().slice(0, 10) !== correction.date) { toast.error("Enter a valid review date."); return; } setIsUploading(true); try { await correctReviewDate({ id: receipt._id, reviewDueAt, reason: correction.reason }); toast.success("Review date corrected and recorded in the audit log."); } catch (error) { toast.error(readError(error, "Could not correct review date.")); } finally { setIsUploading(false); } }}>{c("Save review-date correction")}</Button></div>}
                         </div>)}
                         {uploadPage.status === "CanLoadMore" || uploadPage.status === "LoadingMore" ? <Button className="mt-4" variant="outline" disabled={uploadPage.status === "LoadingMore"} onClick={() => uploadPage.loadMore(20)}>{uploadPage.status === "LoadingMore" ? "Loading older uploads…" : c("Load older uploads")}</Button> : null}
-                    </section>}
-                    <ResearchPdfUpload onPrepare={prepareStoredResearch} />
+                    </details>}
+
                     {/* Upload Section */}
-                    <div className="mb-12">
-                        <div className="grid gap-3 sm:grid-cols-2 mb-5">
-                            <label className="text-sm text-gray-600 sm:col-span-2">{c("Source title *")}<input value={source.title} maxLength={180} disabled={isUploading} onChange={(e) => setSource({ ...source, title: e.target.value })} placeholder={c("Exact document title")} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
-                            <input aria-label={c("Official publisher / authority")} disabled={isUploading} value={source.publisher} onChange={(e) => setSource({ ...source, publisher: e.target.value })} placeholder={c("Official publisher / authority *")} className="rounded-lg border px-3 py-2" />
-                            <input aria-label={c("Official source URL")} disabled={isUploading} value={source.sourceUrl} onChange={(e) => setSource({ ...source, sourceUrl: e.target.value })} placeholder={c("Official source URL (recommended)")} className="rounded-lg border px-3 py-2" />
-                            <select aria-label={c("Jurisdiction")} disabled={isUploading} value={source.jurisdiction} onChange={(e) => setSource({ ...source, jurisdiction: e.target.value })} className="rounded-lg border px-3 py-2"><option value="national">{c("National")}</option><option value="tanzania_mainland">{c("Tanzania Mainland")}</option><option value="zanzibar">Zanzibar</option><option value="other">{c("Other")}</option></select>
-                            <select aria-label={c("Source language")} disabled={isUploading} value={source.language} onChange={(e) => setSource({ ...source, language: e.target.value })} className="rounded-lg border px-3 py-2"><option value="bilingual">{c("Kiswahili & English")}</option><option value="sw">Kiswahili</option><option value="en">{c("English")}</option><option value="other">{c("Other")}</option></select>
-                            <input aria-label={c("Content category")} disabled={isUploading} value={source.contentCategory} onChange={(e) => setSource({ ...source, contentCategory: e.target.value })} placeholder={c("Category *")} className="rounded-lg border px-3 py-2" />
-                            <input aria-label={c("Edition / version / gazette reference")} disabled={isUploading} value={source.versionLabel} onChange={(e) => setSource({ ...source, versionLabel: e.target.value })} placeholder={c("Edition / version / gazette reference *")} className="rounded-lg border px-3 py-2" />
-                            <label className="text-sm text-gray-600">{c("Effective date")}<input type="date" value={source.effectiveDate} onChange={(e) => setSource({ ...source, effectiveDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
-                            <label className="text-sm text-gray-600">{c("Review due *")}<input type="date" value={source.reviewDate} onChange={(e) => setSource({ ...source, reviewDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
-                        </div>
-                        <div className={`border-2 border-dashed rounded-3xl p-12 text-center transition-all duration-300 ${isUploading ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-lg'}`}>
+                    <div className="mb-6">
+                        <h3 className="resource-hub-form-step">1. Choose a PDF</h3>
+                        <div className={`border-2 border-dashed rounded-2xl p-6 text-center transition-all duration-300 ${isUploading ? 'border-primary/50 bg-primary/5' : 'border-gray-200 hover:border-primary hover:bg-gray-50 hover:shadow-lg'}`}>
                             <input
                                 type="file"
                                 accept=".pdf"
@@ -225,12 +203,24 @@ const SaraTrain = () => {
                                         {file ? file.name : storedResearch ? storedResearch.filename : "Choose a source PDF"}
                                     </h3>
                                     <p className="text-gray-500">
-                                        {file ? "Ready to ingest" : storedResearch ? "The original is preserved. Older files pass through security scanning before indexing; review metadata below." : "PDF only, up to 15MB"}
+                                        {file ? "Ready to upload" : storedResearch ? "The original is preserved. Older files pass through security scanning before indexing; review metadata below." : "PDF only, up to 15MB"}
                                     </p>
                                 </div>
                             </label>
                         </div>
 
+                        <h3 className="resource-hub-form-step">2. Add the source details</h3>
+                        <div className="grid gap-3 sm:grid-cols-2 mb-5">
+                            <label className="text-sm text-gray-600 sm:col-span-2">{c("Source title *")}<input value={source.title} maxLength={180} disabled={isUploading} onChange={(e) => setSource({ ...source, title: e.target.value })} placeholder={c("Exact document title")} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
+                            <input aria-label={c("Official publisher / authority")} disabled={isUploading} value={source.publisher} onChange={(e) => setSource({ ...source, publisher: e.target.value })} placeholder={c("Official publisher / authority *")} className="rounded-lg border px-3 py-2" />
+                            <input aria-label={c("Official source URL")} disabled={isUploading} value={source.sourceUrl} onChange={(e) => setSource({ ...source, sourceUrl: e.target.value })} placeholder={c("Official source URL (recommended)")} className="rounded-lg border px-3 py-2" />
+                            <select aria-label={c("Jurisdiction")} disabled={isUploading} value={source.jurisdiction} onChange={(e) => setSource({ ...source, jurisdiction: e.target.value })} className="rounded-lg border px-3 py-2"><option value="national">{c("National")}</option><option value="tanzania_mainland">{c("Tanzania Mainland")}</option><option value="zanzibar">Zanzibar</option><option value="other">{c("Other")}</option></select>
+                            <select aria-label={c("Source language")} disabled={isUploading} value={source.language} onChange={(e) => setSource({ ...source, language: e.target.value })} className="rounded-lg border px-3 py-2"><option value="bilingual">{c("Kiswahili & English")}</option><option value="sw">Kiswahili</option><option value="en">{c("English")}</option><option value="other">{c("Other")}</option></select>
+                            <input aria-label={c("Content category")} disabled={isUploading} value={source.contentCategory} onChange={(e) => setSource({ ...source, contentCategory: e.target.value })} placeholder={c("Category *")} className="rounded-lg border px-3 py-2" />
+                            <input aria-label={c("Edition / version / gazette reference")} disabled={isUploading} value={source.versionLabel} onChange={(e) => setSource({ ...source, versionLabel: e.target.value })} placeholder={c("Edition / version / gazette reference *")} className="rounded-lg border px-3 py-2" />
+                            <label className="text-sm text-gray-600">{c("Effective date")}<input type="date" value={source.effectiveDate} onChange={(e) => setSource({ ...source, effectiveDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
+                            <label className="text-sm text-gray-600">{c("Review due *")}<input type="date" value={source.reviewDate} onChange={(e) => setSource({ ...source, reviewDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
+                        </div>
                         {(file || storedResearch) && !isUploading && (
                             <div className="mt-6 flex justify-center">
                                 <Button
@@ -240,7 +230,7 @@ const SaraTrain = () => {
                                     className="bg-primary hover:bg-primary/90 text-white px-8"
                                 >
                                     <FileText className="w-4 h-4 mr-2" />
-                                    {storedResearch ? 'Index stored PDF for review' : c("Upload for review")}
+                                    {storedResearch ? 'Prepare saved PDF for review' : c("Upload for review")}
                                 </Button>
                             </div>
                         )}
@@ -257,10 +247,10 @@ const SaraTrain = () => {
                     </div>
 
                     {!isUploading && progress.startsWith("Error:") && <p role="alert" className="mb-6 rounded-xl bg-red-50 p-4 text-sm text-red-800">{progress}{c(" Check the source list below before retrying: an interrupted response may still have created a record.")}</p>}
-                    <DocumentList />
+                    </div>}
+                    {(view==='approved'||view==='pending')&&<><div className="resource-hub-section-heading"><div><h2>{view==='approved'?'Ready for AI':'Needs review'}</h2><p>{view==='approved'?'Approved documents. The AI uses those with current review dates; manage outdated sources here.':'Open a document, check the highlighted issues, then record your review decision.'}</p></div><input aria-label="Search documents" placeholder="Search documents" value={sourceSearch} onChange={e=>setSourceSearch(e.target.value)} className="resource-hub-search"/></div><DocumentList key={view} initialStatus={view} search={sourceSearch}/></>}
+                    {view==='settings'&&<><div className="resource-hub-section-heading"><h2>AI settings</h2><p>Change how the assistant behaves. These settings do not add legal knowledge.</p></div><Link className="resource-hub-text-link" to="/dashboard/saada-evaluations">Check answer quality <ArrowRight className="h-4 w-4"/></Link><details className="resource-hub-advanced"><summary>Advanced: assistant instructions</summary><SystemInstructionsEditor/></details></>}
 
-                    {/* System Instructions Section */}
-                    <SystemInstructionsEditor />
                 </div>
             </Container>
         </Layout >
@@ -345,15 +335,23 @@ const SystemInstructionsEditor = () => {
     );
 };
 
-const DocumentList = () => {
+const DocumentList = ({initialStatus="approved",search=""}:{initialStatus?:"approved"|"pending"|"history";search?:string}) => {
+    const batchReview = useAction(api.sara_actions.reviewDocuments);
+    const [selectedSources,setSelectedSources]=useState<string[]>([]);
+    const [batchNote,setBatchNote]=useState('');
+    const [batchBusy,setBatchBusy]=useState(false);
+    const [batchResults,setBatchResults]=useState<Array<{id:string;approved:boolean;reason?:string}>>([]);
+
   const statusLabel = useStatusLabel();
   const readError = usePlainError();
   const c = useCopy();
-    const [sourceStatus, setSourceStatus] = useState<"pending" | "approved" | "due" | "history">("pending");
-    const documentPage = usePaginatedQuery(api.sara.listDocumentsPage, { status: sourceStatus }, { initialNumItems: 20 });
+    const [sourceStatus, setSourceStatus] = useState<"pending" | "approved" | "due" | "history">(initialStatus);
+    const documentPage = usePaginatedQuery(api.sara.listDocumentsPage, { status: sourceStatus,search:search.trim()||undefined }, { initialNumItems: 20 });
     const documents = documentPage.results;
+    useEffect(()=>setSelectedSources([]),[search,sourceStatus]);
     const withdrawDocument = useMutation(api.sara.withdrawDocument);
     const reviewDocument = useMutation(api.sara.reviewDocument);
+    const flagDocument = useMutation(api.sara.flagDocument);
     const retryDocumentIndex = useAction(api.sara_actions.retryDocumentIndex);
     const [reviewNotes, setReviewNotes] = useState<Record<string, string>>({});
     const [withdrawReasons, setWithdrawReasons] = useState<Record<string, string>>({});
@@ -371,44 +369,45 @@ const DocumentList = () => {
     const [changingId, setChangingId] = useState<string | null>(null);
 
     return (
-        <div className="bg-white rounded-2xl p-4 sm:p-5 border border-gray-100 shadow-sm mb-8">
-            <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
-                    <Database className="w-6 h-6" />
-                </div>
-                <div>
-                    <h2 className="text-xl font-bold text-gray-900">{c("Knowledge Base")}</h2>
-                    <p className="text-gray-500 text-sm">{c("Review provenance, indexing and expiry before approval. Withdraw outdated approved sources from future answers.")}</p>
-                </div>
-            </div>
-
-            <label className="mb-4 flex flex-col gap-2 text-sm sm:flex-row sm:items-center">Source review queue<select aria-label="Source review queue" value={sourceStatus} onChange={event => setSourceStatus(event.target.value as typeof sourceStatus)} className="min-w-0 rounded-lg border px-3 py-2"><option value="pending">Awaiting independent review</option><option value="approved">Approved sources</option><option value="due">Reviews due within 30 days</option><option value="history">Rejected, withdrawn and legacy records</option></select></label>
+        <div className="mb-8">
+            {initialStatus==='approved'&&<label className="mb-4 flex flex-col gap-2 text-xs text-slate-500 sm:flex-row sm:items-center">Review dates<select aria-label="Source review queue" value={sourceStatus} onChange={event => setSourceStatus(event.target.value as typeof sourceStatus)} className="min-w-0 rounded-lg border px-3 py-2"><option value="approved">All approved documents</option><option value="due">Review due within 30 days</option></select></label>}
+            {sourceStatus === 'pending' && !!selectedSources.length && <div className="mb-5 rounded-xl border border-rose-100 bg-rose-50/40 p-4 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-3"><strong className="text-sm">{selectedSources.length} selected</strong><div className="flex gap-3"><button className="text-sm underline" onClick={()=>setSelectedSources(documents.slice(0,50).map(x=>x._id))}>Select these documents (up to 50)</button><button className="text-sm underline" onClick={()=>setSelectedSources([])}>Clear</button></div></div>
+              <p className="text-xs text-slate-600">Use one review note for the documents you have reviewed. Each source keeps its own reviewer and audit entry. Indexing, provenance, expiry, OCR and independent-review checks still apply; blocked sources stay pending.</p>
+              <label className="block text-sm">Review note<textarea className="mt-1 w-full rounded-lg border p-2" rows={2} maxLength={2000} value={batchNote} onChange={e=>setBatchNote(e.target.value)} placeholder="What did you review and confirm for these selected sources?"/></label>
+              {selectedSources.some(id=>documents.find(d=>d._id===id)?.approvalBlockers?.length)&&<p className="text-xs text-amber-900">Some selected documents still have approval blockers. Open Review document to see what to fix. Only eligible documents can be approved.</p>}
+              <Button disabled={batchBusy||!selectedSources.some(id=>!documents.find(d=>d._id===id)?.approvalBlockers?.length)||batchNote.trim().length<10} onClick={async()=>{setBatchBusy(true);try{const results=await batchReview({ids:selectedSources.filter(id=>!documents.find(d=>d._id===id)?.approvalBlockers?.length) as Id<'documents'>[],note:batchNote});setBatchResults(results);setSelectedSources([]);toast.success(`${results.filter(x=>x.approved).length} approved; ${results.filter(x=>!x.approved).length} need attention.`);}catch(error){toast.error(readError(error,'Batch review failed.'));}finally{setBatchBusy(false);}}}>{batchBusy?'Reviewing selected sources…':'Approve reviewed selection'}</Button>
+              {!!batchResults.length&&<div role="status" className="text-sm"><p>{batchResults.filter(x=>x.approved).length} approved · {batchResults.filter(x=>!x.approved).length} blocked</p><details className="mt-2"><summary className="cursor-pointer text-sm font-medium">View blocked sources and reasons</summary><ul className="mt-2 space-y-1">{batchResults.filter(x=>!x.approved).map(x=><li key={x.id}>{documents.find(d=>d._id===x.id)?.title||x.id}: {x.reason}</li>)}</ul></details></div>}
+            </div>}
             {documentPage.status === "LoadingFirstPage" ? <BrandLoading compact text={c("Loading Haki Yangu AI sources…")} /> : documents.length === 0 ? (
-                <div className="text-center py-8 text-gray-500 bg-gray-50 rounded-xl border border-dashed border-gray-200">{c("No documents found. Upload one above!")}</div>
+                <div className="text-center py-8 text-gray-500 bg-gray-50 rounded-xl border border-dashed border-gray-200">{c("No documents match this view.")}</div>
             ) : (
-                <div className="grid items-start gap-4 lg:grid-cols-2">
+                <div className="grid items-start gap-4">
                     {documents.map((doc: any) => (
-                        <div key={doc._id} className="resource-management-card rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-primary/30">
+                        <div key={doc._id} className="resource-management-card resource-horizontal rounded-xl border border-gray-200 bg-white p-4 transition-colors hover:border-primary/30">
                             <div className="flex items-start gap-3">
+                                {sourceStatus==='pending'&&<input aria-label={`Select ${doc.title}`} className="mt-2 h-4 w-4" type="checkbox" checked={selectedSources.includes(doc._id)} disabled={batchBusy} onChange={e=>setSelectedSources(current=>e.target.checked?[...current,doc._id].slice(0,50):current.filter(id=>id!==doc._id))}/>}
                                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/5 text-primary">
                                     <FileText className="h-4 w-4" />
                                 </div>
                                 <div className="min-w-0 flex-1">
                                     <h4 className="resource-management-title text-gray-900">{doc.title}</h4>
-                                    <p className="mt-1 text-xs text-gray-500">{c("Uploaded ")}{new Date(doc.uploadedAt).toLocaleDateString()}
+                                    <p className="mt-1 text-xs text-gray-500">{doc.approvalStatus==="approved"?`Review by ${doc.reviewDueAt?new Date(doc.reviewDueAt).toLocaleDateString():"date needed"}`:`Added ${new Date(doc.uploadedAt).toLocaleDateString()}`}
                                     </p>
                                 </div>
                             </div>
                             <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                                <span className={`rounded-full px-2 py-1 font-medium ${doc.approvalStatus === "approved" ? "bg-green-50 text-green-800" : doc.approvalStatus === "rejected" ? "bg-red-50 text-red-800" : "bg-amber-50 text-amber-800"}`}>{statusLabel(doc.approvalStatus) || "Needs legacy review"}</span>
-                                <span className="rounded-full bg-gray-100 px-2 py-1 text-gray-600">{c("Index: ")}{doc.indexingStatus || "Unknown"}</span>
+                                <span className={`rounded-full px-2 py-1 font-medium ${doc.approvalStatus === "approved" ? "bg-green-50 text-green-800" : doc.approvalStatus === "rejected" ? "bg-red-50 text-red-800" : "bg-amber-50 text-amber-800"}`}>{doc.approvalStatus==="approved"&&(doc.reviewDueAt??0)<=Date.now()?"Review expired · unavailable to AI":doc.approvalStatus==="pending"?"Needs review":doc.approvalStatus==="withdrawn"?"Removed":statusLabel(doc.approvalStatus) || "Needs review"}</span>
+                                {doc.indexingStatus!=="ready"&&<span className="rounded-full bg-gray-100 px-2 py-1 text-gray-600">{doc.indexingStatus==="processing"?"Preparing document":"Processing needs attention"}</span>}
                             </div>
+                            {!!doc.curationFlags?.length&&<p className="resource-hub-flag-summary">{doc.curationFlags.length} review issues · {doc.curationFlags[0]}</p>}
                             <div className="resource-management-links mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-medium text-primary">
                                 {doc.sourcePdfUrl && <a href={doc.sourcePdfUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{c("Open source PDF for review")}</a>}
                                 {doc.sourceUrl && <a href={doc.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">{c("Open publisher source")}</a>}
                             </div>
                             <details className="mt-4 border-t border-gray-100 pt-3">
-                            <summary className="cursor-pointer text-sm font-medium text-gray-700">Review and manage</summary>
+                            <summary className="inline-flex min-h-10 cursor-pointer items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white">{doc.approvalStatus==="pending"?"Review document":"Manage document"}</summary>
+                            {!!doc.curationFlags?.length&&<div className="mt-4 rounded-lg bg-amber-50 p-3 text-xs text-amber-950"><strong>Resolve these issues</strong><ul className="mt-2 list-disc pl-4">{doc.curationFlags.map((flag:string)=><li key={flag}>{flag}</li>)}</ul><p className="mt-2">{doc.curationNote}</p></div>}
                             <div className="resource-management-metadata mt-4 grid gap-2 text-xs text-gray-600 sm:grid-cols-2">
                                 <p>{c("Publisher: ")}{doc.publisher || "Not recorded"}</p><p>{c("Jurisdiction: ")}{statusLabel(doc.jurisdiction) || "Not recorded"}</p>
                                 <p>{c("Language: ")}{doc.language || "Not recorded"}{c(" · Version: ")}{doc.versionLabel || "Not recorded"}</p>
@@ -419,9 +418,11 @@ const DocumentList = () => {
                             {doc.approvalStatus === "pending" && doc.indexingStatus === "ready" && <SourceMetadataEditor source={doc} />}
                             {doc.indexingError && <p role="alert" className="mt-2 text-xs text-red-700">{c("Indexing error: ")}{doc.indexingError}</p>}
                             {doc.reviewNote && <p className="mt-2 text-xs text-gray-600">{c("Last review reason: ")}{doc.reviewNote}</p>}
-                            {doc.approvalStatus === "pending" && <div className="mt-3 flex flex-wrap gap-2"><input aria-label={`Review reason for ${doc.title}`} value={reviewNotes[doc._id] ?? ""} onChange={(event) => setReviewNotes((current) => ({ ...current, [doc._id]: event.target.value }))} placeholder={c("Record review reason (10+ characters)")} className="min-w-0 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" /><Button variant="outline" disabled={reviewingId === doc._id || doc.indexingStatus !== "ready" || !doc.reviewDueAt || doc.reviewDueAt <= Date.now() || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "approved")}>{c("Approve")}</Button><Button variant="outline" disabled={reviewingId === doc._id || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "rejected")}>{c("Reject")}</Button></div>}
+                            {doc.approvalStatus==="pending"&&!!doc.approvalBlockers?.length&&<div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-950" role="status"><strong>Not ready to approve yet</strong><ul className="mt-2 list-disc space-y-1 pl-4">{doc.approvalBlockers.map((reason:string)=><li key={reason}>{reason}</li>)}</ul><p className="mt-2">Correct the source details and review issues below. If you uploaded this file, another administrator must make the final decision.</p></div>}
+                            {doc.approvalStatus === "pending" && <div className="mt-3 flex flex-wrap gap-2"><input aria-label={`Review reason for ${doc.title}`} value={reviewNotes[doc._id] ?? ""} onChange={(event) => setReviewNotes((current) => ({ ...current, [doc._id]: event.target.value }))} placeholder={c("Record review reason (10+ characters)")} className="min-w-0 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" /><Button variant="outline" disabled={!!doc.approvalBlockers?.length || reviewingId === doc._id || doc.indexingStatus !== "ready" || !doc.reviewDueAt || doc.reviewDueAt <= Date.now() || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "approved")}>{c("Approve")}</Button><Button variant="outline" disabled={doc.uploaderIsCurrentUser || reviewingId === doc._id || (reviewNotes[doc._id]?.trim().length ?? 0) < 10} onClick={() => void handleReview(doc._id, "rejected")}>{c("Reject")}</Button></div>}
+                            {doc.approvalStatus === "pending" && !!doc.curationFlags?.length && <Button variant="outline" className="mt-3" disabled={changingId===doc._id||(reviewNotes[doc._id]?.trim().length??0)<10} onClick={async()=>{setChangingId(doc._id);try{await flagDocument({id:doc._id,flags:[],note:reviewNotes[doc._id].trim()});toast.success("Curation flags resolved. Independent source approval is still required.");}catch(error){toast.error(readError(error,"Could not resolve flags."));}finally{setChangingId(null);}}}>Resolve curation flags using review note</Button>}
                             {canRetrySourceIndex(doc) && <Button className="mt-3" variant="outline" disabled={changingId === doc._id} onClick={async () => { setChangingId(doc._id); try { await retryDocumentIndex({ id: doc._id }); toast.success("Indexing completed; the source still needs independent approval."); } catch (error) { toast.error(readError(error, "Could not retry indexing.")); } finally { setChangingId(null); } }}>{isStalledSourceIndex(doc) ? c("Recover stalled indexing") : c("Retry indexing")}</Button>}
-                            {doc.approvalStatus === "approved" && <div className="mt-4 flex flex-wrap gap-2"><input aria-label={`Withdrawal reason for ${doc.title}`} value={withdrawReasons[doc._id] ?? ""} onChange={event => setWithdrawReasons(current => ({ ...current, [doc._id]: event.target.value }))} placeholder={c("Reason to withdraw from answers (10+ characters)")} className="min-w-0 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" /><Button variant="outline" disabled={changingId === doc._id || (withdrawReasons[doc._id]?.trim().length ?? 0) < 10} onClick={async () => { setChangingId(doc._id); try { await withdrawDocument({ id: doc._id, reason: withdrawReasons[doc._id].trim() }); toast.success("Source withdrawn from future Haki Yangu AI answers and retained for audit."); } catch (error) { toast.error(readError(error, "Could not withdraw source.")); } finally { setChangingId(null); } }}>{c("Withdraw source")}</Button></div>}
+                            {["pending","approved"].includes(doc.approvalStatus) && <div className="mt-4 flex flex-wrap gap-2"><input aria-label={`Withdrawal reason for ${doc.title}`} value={withdrawReasons[doc._id] ?? ""} onChange={event => setWithdrawReasons(current => ({ ...current, [doc._id]: event.target.value }))} placeholder={c("Reason to withdraw from answers (10+ characters)")} className="min-w-0 w-full rounded-lg border border-gray-200 px-3 py-2 text-sm" /><Button variant="outline" disabled={changingId === doc._id || (withdrawReasons[doc._id]?.trim().length ?? 0) < 10} onClick={async () => { setChangingId(doc._id); try { await withdrawDocument({ id: doc._id, reason: withdrawReasons[doc._id].trim() }); toast.success("Source withdrawn from future Haki Yangu AI answers and retained for audit."); } catch (error) { toast.error(readError(error, "Could not withdraw source.")); } finally { setChangingId(null); } }}>{c("Withdraw source")}</Button></div>}
                             </details>
                         </div>
                     ))}

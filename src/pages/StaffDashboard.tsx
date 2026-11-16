@@ -14,6 +14,7 @@ import { WorkConfirmation } from "@/components/dashboard/WorkConfirmation";
 import { workCaseJourney, finalChecks } from "../../shared/workCaseJourney";
 import SearchFilterBar from "@/components/shared/SearchFilterBar";
 import ParalegalIllustration from "@/components/paralegal/ParalegalIllustration";
+import "./ServiceRecords.css";
 import DirectoryResearchQueue from "@/components/haki-yangu/DirectoryResearchQueue";
 import { useAuth } from "@clerk/clerk-react";
 import type { FunctionReturnType } from "convex/server";
@@ -96,6 +97,7 @@ type ServiceFormState = {
   issueCategories: string;
   serviceTypes: string;
   phone: string;
+  source: string;
   latitude: string;
   longitude: string;
   physicalLocation: string;
@@ -142,6 +144,7 @@ const initialServiceForm: ServiceFormState = {
   issueCategories: "",
   serviceTypes: "",
   phone: "",
+  source: "",
   latitude: "",
   longitude: "",
   physicalLocation: "",
@@ -435,6 +438,9 @@ const StaffDashboard = () => {
   const matchingDecisionQueue = useQuery(api.justiceServices.staffMatchingDecisionQueue, {
     status: matchingReviewStatus,
   });
+  const [directoryShowTests,setDirectoryShowTests]=useState(false);
+  const [directoryView,setDirectoryView]=useState<"services"|"organisations"|"research"|"performance"|"add-organisation"|"add-service">("services");
+  const publicDirectoryServices=useQuery(api.justiceServices.listPublicServices,{});
   const justiceOrganizations = useQuery(api.justiceServices.staffListOrganizations);
   const justiceServices = useQuery(api.justiceServices.staffListServices);
   const partnerPerformance = useQuery(api.justiceServices.staffPartnerPerformance, { days: 30 });
@@ -780,6 +786,7 @@ const StaffDashboard = () => {
         remoteSupport: serviceForm.remoteSupport,
         phoneSupport: serviceForm.phoneSupport,
         phone: serviceForm.phone.trim() || undefined,
+        source: serviceForm.source.trim() || undefined,
         currentIntakeState: serviceForm.currentIntakeState,
         capacity: serviceForm.capacity.trim() && Number.isFinite(Number(serviceForm.capacity)) ? Number(serviceForm.capacity) : undefined,
         emergencyCapability: serviceForm.emergencyCapability,
@@ -1052,7 +1059,7 @@ const StaffDashboard = () => {
       </header>
 
       <main className="work-page mx-auto max-w-[1500px] px-4 py-6 sm:px-8 sm:py-8">
-        <WorkHeader eyebrow={greeting} title={c(({requests:'Requests',cases:'Cases',documents:'Documents',reviews:'Case reviews',assignments:'Cases to accept',matching:'Find a helper',referrals:'Referrals',services:'Service records'})[tab])} description={c(workspaceDescriptions[tab])}/>
+        <WorkHeader eyebrow={tab==="services"?"Directory":greeting} title={c(({requests:'Requests',cases:'Cases',documents:'Documents',reviews:'Case reviews',assignments:'Cases to accept',matching:'Find a helper',referrals:'Referrals',services:'Service directory'})[tab])} description={c(workspaceDescriptions[tab])}/>
 
         {!compactWorkspace && <section className="mb-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-8">
           <button type="button" onClick={() => setTab("requests")} className="rounded-2xl border bg-white p-4 text-left transition hover:border-primary hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary">
@@ -1120,7 +1127,7 @@ const StaffDashboard = () => {
           </button>
         </section>}
 
-        {compactWorkspace && <div className="mb-5 space-y-4"><Link to={isSupervisor ? "/dashboard/supervisor" : "/dashboard/staff"} className="inline-block min-h-11 py-3 text-sm font-semibold text-primary">{c("← LSF workspace")}</Link><SearchFilterBar value={workSearch} onChange={setWorkSearch} placeholder={c("Find a case, request or name")} label={c("Show")} title={c("Work area and status")} summary={workspaceDescriptions[tab]} count={Number(!!workSearch)} onReset={() => setWorkSearch("")}><label className="block text-sm font-medium">{c("Work area")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={tab} onChange={event => setTab(event.target.value as WorkspaceTab)}>{workspaceTabs.map(value => <option key={value} value={value}>{{requests:"Requests",cases:"Cases",documents:"Documents",reviews:"Case reviews",assignments:"Cases to accept",matching:"Find a helper",referrals:"Referrals",services:"Service records"}[value]}</option>)}</select></label>{tab === "requests" && <label className="block text-sm font-medium">{c("Status")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={requestStatus} onChange={event=>setRequestStatus(event.target.value as typeof requestStatus)}>{[["all","All"],["submitted","New"],["under_review","Being reviewed"],["waiting_for_information","Waiting for details"]].map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}{tab === "documents" && <label className="block text-sm font-medium">{c("Status")}<select
+        {compactWorkspace && tab!=="services" && <div className="mb-5 space-y-4"><Link to={isSupervisor ? "/dashboard/supervisor" : "/dashboard/staff"} className="inline-block min-h-11 py-3 text-sm font-semibold text-primary">{c("← LSF workspace")}</Link><SearchFilterBar value={workSearch} onChange={setWorkSearch} placeholder={c("Find a case, request or name")} label={c("Show")} title={c("Work area and status")} summary={workspaceDescriptions[tab]} count={Number(!!workSearch)} onReset={() => setWorkSearch("")}><label className="block text-sm font-medium">{c("Work area")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={tab} onChange={event => setTab(event.target.value as WorkspaceTab)}>{workspaceTabs.map(value => <option key={value} value={value}>{{requests:"Requests",cases:"Cases",documents:"Documents",reviews:"Case reviews",assignments:"Cases to accept",matching:"Find a helper",referrals:"Referrals",services:"Service records"}[value]}</option>)}</select></label>{tab === "requests" && <label className="block text-sm font-medium">{c("Status")}<select className="mt-2 min-h-12 w-full rounded-xl border p-3" value={requestStatus} onChange={event=>setRequestStatus(event.target.value as typeof requestStatus)}>{[["all","All"],["submitted","New"],["under_review","Being reviewed"],["waiting_for_information","Waiting for details"]].map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>}{tab === "documents" && <label className="block text-sm font-medium">{c("Status")}<select
                 value={documentStatus}
                 onChange={(event) =>
                   setDocumentStatus(event.target.value as typeof documentStatus)
@@ -1483,9 +1490,18 @@ const StaffDashboard = () => {
             </div>
           </section>
         ) : tab === "services" ? (
-          <section className="grid gap-5 xl:grid-cols-[420px_1fr]">
-            <DirectoryResearchQueue />
-            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+          <section className="service-records-hub">
+            <header className="directory-actions"><p>Manage the people and places that can help. Research records become visible to the AI only after review and publication.</p><div><Button variant="outline" onClick={()=>{setEditingOrganizationId(null);setOrganizationForm(initialOrganizationForm);setDirectoryView("add-organisation");}}>Add organisation</Button><Button onClick={()=>{setEditingServiceId(null);setServiceForm(initialServiceForm);setDirectoryView("add-service");}}>Add service</Button></div></header>
+            <div className="directory-overview"><div><strong>{publicDirectoryServices?.length??'…'} public service listings</strong><p>Published contacts appear in Find Help. AI matching also requires confirmed intake availability.</p></div><div><strong>{justiceOrganizations?.length??'…'} organisation records · {justiceServices?.length??'…'} service records</strong><p>Draft and test records stay separate from public recommendations.</p><Link to="/dashboard/paralegal-reviews">Review paralegals →</Link></div></div>
+            <nav className="directory-tabs" aria-label="Directory sections">{([{id:'services',label:'Services'},{id:'organisations',label:'Organisations'},{id:'research',label:'Research to review'},{id:'performance',label:'Referral activity'}] as const).map(view=><button key={view.id} aria-current={directoryView===view.id?'page':undefined} onClick={()=>setDirectoryView(view.id)}>{view.label}</button>)}</nav>
+            <label className="directory-search">Search records<input value={workSearch} onChange={e=>setWorkSearch(e.target.value)} placeholder="Search name, region or district"/></label>
+            {directoryView==="services"&&justiceServices?.some(service=>service.syntheticDevelopmentFixture)&&<label className="mb-4 flex items-center gap-2 text-xs text-slate-500"><input type="checkbox" checked={directoryShowTests} onChange={e=>setDirectoryShowTests(e.target.checked)}/>Include synthetic test records</label>}
+            {directoryView==="research"&&<DirectoryResearchQueue onPrepare={(record,kind)=>{
+              if(kind==="organisation"){setEditingOrganizationId(null);setOrganizationForm({...initialOrganizationForm,name:record.title,focalPersonEmail:record.email??"",focalPersonPhone:record.phone??"",notes:`Research draft; not verified. Sources: ${record.sourceUrls.join("; ")}\n${record.notes}`});setDirectoryView("add-organisation");}
+              else{const restricted=/safe.?house|shelter|safe home/i.test(record.title);setEditingServiceId(null);setServiceForm({...initialServiceForm,name:record.title,region:record.region??"",district:record.district??"",physicalLocation:record.address??"",phone:record.phone??"",source:record.sourceUrls.join("; "),serviceCoverageRegions:record.region??"",...(restricted?{servicePointType:"safe_house",visibility:"confidential",classification:"restricted"}: {})});setDirectoryView("add-service");}
+              setNotice({type:"success",text:"Research copied into a draft form. Confirm missing details, save the draft, then have another reviewer verify it. Nothing is published yet."});
+            }}/>}
+            <div hidden={directoryView!=="add-organisation"} className="directory-form rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-xl">{editingOrganizationId ? c("Edit organisation") : "Partner organization"}</h2>{editingOrganizationId && <button className="text-sm underline" onClick={() => { setEditingOrganizationId(null); setOrganizationForm(initialOrganizationForm); }}>{c("Cancel editing")}</button>}
                 <p className="mb-0 text-sm text-neutral-500">{c("Create accountable organizations before linking their service points.")}</p>
@@ -1567,7 +1583,7 @@ const StaffDashboard = () => {
               </div>
             </div>
 
-            <div className="rounded-2xl border bg-white p-5 shadow-sm">
+            <div hidden={directoryView!=="add-service"} className="directory-form rounded-2xl border bg-white p-5 shadow-sm">
               <div className="mb-5">
                 <h2 className="text-xl">{c("Justice Service Management")}</h2>{editingServiceId && <button className="text-sm underline" onClick={() => { setEditingServiceId(null); setServiceForm(initialServiceForm); }}>{c("Cancel editing")}</button>}
                 <p className="mb-0 text-sm text-neutral-500">{c("Add and verify service points for Haki Yangu matching. Public mobile discovery only shows active, verified, public records.")}</p>
@@ -1706,6 +1722,7 @@ const StaffDashboard = () => {
                   ))}
                 </div>
                 {editingServiceId && <label className="block text-sm">{c("Reason for service changes")}<textarea value={serviceEditReason} onChange={event => setServiceEditReason(event.target.value)} className="mt-1 block w-full rounded-lg border p-3" placeholder={c("Explain any intake or lifecycle change (10–1000 characters)")} /></label>}
+                <label className="block text-sm">Source for this draft<input value={serviceForm.source} onChange={e=>updateServiceForm({source:e.target.value})} className="mt-1 block w-full rounded-lg border p-3" placeholder="Public source URL or named information source"/></label>
                 {([['latitude', 'Office latitude (verified pin)'], ['longitude', 'Office longitude (verified pin)'], ['physicalLocation', 'Public address or meeting location'], ['serviceCoverageRegions', 'Coverage regions (comma separated)'], ['eligibility', 'Who can use this service']] as const).map(([key,label]) => <label className="block text-sm" key={key}>{label}<input value={serviceForm[key]} onChange={event => updateServiceForm({ [key]: event.target.value })} className="mt-1 block w-full rounded-lg border p-3" /></label>)}
                 <div className="flex flex-col gap-2 sm:flex-row">
                   <Button onClick={createServicePoint} disabled={pending || !directoryCanManage}>
@@ -1715,12 +1732,12 @@ const StaffDashboard = () => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl border bg-white shadow-sm xl:col-span-2">
+            <div hidden={["research","add-service","add-organisation"].includes(directoryView)} className="directory-list overflow-hidden rounded-2xl border bg-white shadow-sm">
               <div className="border-b p-5">
-                <h2 className="text-xl">{c("Verified service ecosystem")}</h2>
+                <h2 className="text-xl">{directoryView==="services"?"Service records":directoryView==="organisations"?"Organisation records":"Referral activity"}</h2>
                 <p className="mb-0 text-sm text-neutral-500">{c("Review active services, visibility, verification and intake state. Confidential locations must not be made public.")}</p>
               </div>
-              <div className="border-b bg-[#fbf7f8] p-5">
+              <div hidden={directoryView!=="organisations"} className="p-5">
                 <h3 className="mb-3 text-base">{c("Organization accountability")}</h3>
                 <div className="grid gap-3 lg:grid-cols-2">
                   {justiceOrganizations?.filter(organization => matchesWork([organization.name, organization.organizationType])).map((organization) => (
@@ -1734,7 +1751,7 @@ const StaffDashboard = () => {
                         {statusLabel(organization.organizationType)} · {organization.focalPersonName ?? "No focal person"}
                       </p>
                       <p className="mb-0 text-xs text-neutral-500">{c("SLA: ")}{organization.slaHours ? `${organization.slaHours}h` : "not set"}{c(" · Services: ")}{organization.serviceCount}{c(" · Referral capable: ")}{organization.activeReferralServiceCount}
-                      </p><Button disabled={!directoryCanManage} variant="outline" className="mt-3" onClick={() => { setEditingOrganizationId(organization._id); setOrganizationForm({ ...initialOrganizationForm, name: organization.name, organizationType: organization.organizationType, verificationStatus: organization.verificationStatus, referralAgreementStatus: organization.referralAgreementStatus, focalPersonName: organization.focalPersonName ?? "", focalPersonEmail: organization.focalPersonEmail ?? "", focalPersonPhone: organization.focalPersonPhone ?? "", slaHours: organization.slaHours === undefined ? "" : String(organization.slaHours), safeguardingReady: organization.safeguardingReady, dataSharingAgreementVersion: organization.dataSharingAgreementVersion ?? "", notes: organization.notes ?? "" }); }}>{c("Edit organisation")}</Button>{<div className="mt-3 space-y-2">{organization.verificationStatus !== "verified" && organization.verificationStatus !== "inactive" && <Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: "verified", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Organisation independently verified. Service records still require their own review." }); })}>{c("Verify organisation")}</Button>}{organization.verificationStatus === "verified" && organization.referralAgreementStatus !== "active" && <Button disabled={pending || !directoryCanManage || !organization.safeguardingReady || !organization.dataSharingAgreementVersion || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { referralAgreementStatus: "active", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Reviewed referral agreement activated." }); })}>{c("Activate reviewed referral agreement")}</Button>}<p className="text-xs text-neutral-500">{c("A different reviewer must verify this organisation. Activate referrals only after confirming safeguarding readiness and the agreement.")}</p><label className="block text-xs">{c("Review, removal or restoration reason")}<input value={organisationRemovalReasons[organization._id] ?? ""} onChange={event => setOrganisationRemovalReasons(current => ({ ...current, [organization._id]: event.target.value }))} className="mt-1 block w-full rounded-lg border p-2" /></label><Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} variant="outline" onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: organization.verificationStatus === "inactive" ? "draft" : "inactive", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: organization.verificationStatus === "inactive" ? "Organisation restored as a draft. Services require verification before public use." : "Organisation removed from active use. Linked services are deactivated; history is retained." }); })}>{organization.verificationStatus === "inactive" ? "Restore to review" : c("Remove from active directory")}</Button></div>}
+                      </p><details className="directory-record-actions"><summary>Review & manage organisation</summary><Button disabled={!directoryCanManage} variant="outline" className="mt-3" onClick={() => { setDirectoryView("add-organisation"); setEditingOrganizationId(organization._id); setOrganizationForm({ ...initialOrganizationForm, name: organization.name, organizationType: organization.organizationType, verificationStatus: organization.verificationStatus, referralAgreementStatus: organization.referralAgreementStatus, focalPersonName: organization.focalPersonName ?? "", focalPersonEmail: organization.focalPersonEmail ?? "", focalPersonPhone: organization.focalPersonPhone ?? "", slaHours: organization.slaHours === undefined ? "" : String(organization.slaHours), safeguardingReady: organization.safeguardingReady, dataSharingAgreementVersion: organization.dataSharingAgreementVersion ?? "", notes: organization.notes ?? "" }); }}>{c("Edit organisation")}</Button>{<div className="mt-3 space-y-2">{organization.verificationStatus !== "verified" && organization.verificationStatus !== "inactive" && <Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: "verified", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Organisation independently verified. Service records still require their own review." }); })}>{c("Verify organisation")}</Button>}{organization.verificationStatus === "verified" && organization.referralAgreementStatus !== "active" && <Button disabled={pending || !directoryCanManage || !organization.safeguardingReady || !organization.dataSharingAgreementVersion || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { referralAgreementStatus: "active", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: "Reviewed referral agreement activated." }); })}>{c("Activate reviewed referral agreement")}</Button>}<p className="text-xs text-neutral-500">{c("A different reviewer must verify this organisation. Activate referrals only after confirming safeguarding readiness and the agreement.")}</p><label className="block text-xs">{c("Review, removal or restoration reason")}<input value={organisationRemovalReasons[organization._id] ?? ""} onChange={event => setOrganisationRemovalReasons(current => ({ ...current, [organization._id]: event.target.value }))} className="mt-1 block w-full rounded-lg border p-2" /></label><Button disabled={pending || !directoryCanManage || (organisationRemovalReasons[organization._id]?.trim().length ?? 0) < 10} variant="outline" onClick={() => void run(async () => { await updateJusticeOrganization({ id: organization._id, updates: { verificationStatus: organization.verificationStatus === "inactive" ? "draft" : "inactive", notes: organisationRemovalReasons[organization._id] } }); setNotice({ type: "success", text: organization.verificationStatus === "inactive" ? "Organisation restored as a draft. Services require verification before public use." : "Organisation removed from active use. Linked services are deactivated; history is retained." }); })}>{organization.verificationStatus === "inactive" ? "Restore to review" : c("Remove from active directory")}</Button></div>}</details>
                     </div>
                   ))}
                   {justiceOrganizations?.length === 0 && (
@@ -1742,7 +1759,7 @@ const StaffDashboard = () => {
                   )}
                 </div>
               </div>
-              <div className="border-b p-5">
+              <div hidden={directoryView!=="performance"} className="p-5">
                 <div className="mb-4 flex flex-col justify-between gap-2 lg:flex-row lg:items-end">
                   <div>
                     <h3 className="mb-1 text-base">{c("Partner referral performance")}</h3>
@@ -1782,7 +1799,7 @@ const StaffDashboard = () => {
                   ))}
                 </div>
               </div>
-              <div className="divide-y">
+              <div hidden={directoryView!=="services"} className="divide-y">
                 {justiceServices === undefined && (
                   <BrandLoading compact text={c("Loading services...")}/>
                 )}
@@ -1793,7 +1810,7 @@ const StaffDashboard = () => {
                     <p className="mb-0 text-sm text-neutral-500">{c("Add a service manually or seed QA services for mobile testing.")}</p>
                   </div>
                 )}
-                {justiceServices?.filter(service => matchesWork([service.name, service.region, service.district])).map((service) => (
+                {justiceServices?.filter(service => (directoryShowTests||!service.syntheticDevelopmentFixture)&&matchesWork([service.name, service.region, service.district])).map((service) => (
                   <div key={service._id} className="grid gap-4 p-5 lg:grid-cols-[1fr_220px]">
                     <div>
                       <div className="mb-2 flex flex-wrap items-center gap-2">
@@ -1819,8 +1836,8 @@ const StaffDashboard = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="flex flex-col gap-2">
-                      <Button disabled={!directoryCanManage} variant="outline" onClick={() => { setEditingServiceId(service._id); setServiceEditReason(""); setServiceForm({ ...initialServiceForm, name: service.name, organizationId: service.organizationId ?? "", organizationName: service.organizationName ?? "", servicePointType: service.servicePointType, classification: service.classification, visibility: service.visibility, verificationStatus: service.verificationStatus, region: service.region, district: service.district, latitude: service.latitude?.toString() ?? "", longitude: service.longitude?.toString() ?? "", physicalLocation: service.physicalLocation ?? "", serviceCoverageRegions: service.serviceCoverageRegions.join(", "), eligibility: service.eligibility ?? "", issueCategories: service.issueCategories.join(", "), serviceTypes: service.serviceTypes.join(", "), phone: service.phone ?? "", openingHours: service.openingHours ?? "", currentIntakeState: service.currentIntakeState, capacity: service.capacity === undefined ? "" : String(service.capacity), languages: service.languages.join(", "), referralCapability: service.referralCapability, walkIn: service.walkIn, appointmentRequired: service.appointmentRequired, remoteSupport: service.remoteSupport, phoneSupport: service.phoneSupport, emergencyCapability: service.emergencyCapability, privacyAvailable: service.privacyAvailable, genderSensitive: service.genderSensitive }); }}>{c("Edit service")}</Button>
+                    <details className="directory-record-actions"><summary>Review & manage service</summary><div className="flex flex-col gap-2">
+                      <Button disabled={!directoryCanManage} variant="outline" onClick={() => { setDirectoryView("add-service"); setEditingServiceId(service._id); setServiceEditReason(""); setServiceForm({ ...initialServiceForm, name: service.name, organizationId: service.organizationId ?? "", organizationName: service.organizationName ?? "", servicePointType: service.servicePointType, classification: service.classification, visibility: service.visibility, verificationStatus: service.verificationStatus, region: service.region, district: service.district, latitude: service.latitude?.toString() ?? "", longitude: service.longitude?.toString() ?? "", physicalLocation: service.physicalLocation ?? "", serviceCoverageRegions: service.serviceCoverageRegions.join(", "), eligibility: service.eligibility ?? "", issueCategories: service.issueCategories.join(", "), serviceTypes: service.serviceTypes.join(", "), phone: service.phone ?? "", source: service.source??"", openingHours: service.openingHours ?? "", currentIntakeState: service.currentIntakeState, capacity: service.capacity === undefined ? "" : String(service.capacity), languages: service.languages.join(", "), referralCapability: service.referralCapability, walkIn: service.walkIn, appointmentRequired: service.appointmentRequired, remoteSupport: service.remoteSupport, phoneSupport: service.phoneSupport, emergencyCapability: service.emergencyCapability, privacyAvailable: service.privacyAvailable, genderSensitive: service.genderSensitive }); }}>{c("Edit service")}</Button>
                       <textarea value={serviceDecisionReasons[service._id] ?? ""} onChange={(event) => setServiceDecisionReasons((current) => ({ ...current, [service._id]: event.target.value }))} className="min-h-[72px] rounded-xl border bg-white p-3 text-sm" placeholder={c("Verification or deactivation reason (10+ characters)")} aria-label={`Decision reason for ${service.name}`} />
                       {service.verificationStatus !== "verified" ? <><input value={serviceEvidence[service._id]?.source ?? service.source ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: event.target.value, authority: current[service._id]?.authority ?? service.verifyingAuthority ?? "" } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder={c("Checked source (official URL or named contact)")} aria-label={`Checked source for ${service.name}`} /><input value={serviceEvidence[service._id]?.authority ?? service.verifyingAuthority ?? ""} onChange={(event) => setServiceEvidence((current) => ({ ...current, [service._id]: { source: current[service._id]?.source ?? service.source ?? "", authority: event.target.value } }))} className="h-11 rounded-xl border bg-white px-3 text-sm" placeholder={c("Verifying authority")} aria-label={`Verifying authority for ${service.name}`} /><p className="text-xs text-neutral-500">{c("A different LSF reviewer must confirm this source and the service contact.")}</p></> : null}
                       {service.verificationStatus !== "verified" && (
@@ -1830,7 +1847,7 @@ const StaffDashboard = () => {
                         <Button disabled={pending || !directoryCanManage} variant="outline" onClick={() => deactivateService(service._id)}>{c("Remove from active directory")}</Button>
                       ) : null}
                       <p className="mb-0 rounded-xl bg-[#fbf7f8] p-3 text-xs text-neutral-600">{c("Public app can only show active, verified, public service records.")}</p>
-                    </div>
+                    </div></details>
                   </div>
                 ))}
               </div>

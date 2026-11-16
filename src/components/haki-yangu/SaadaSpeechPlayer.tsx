@@ -82,7 +82,7 @@ export function SaadaSpeechPlayer({ messageId, sw, onClose }: { messageId: Id<'s
       {count > 1 && <span className="text-xs text-stone-500">{sw ? 'Sehemu' : 'Part'} {part + 1}/{count}</span>}
       <button type="button" onClick={onClose} className="ml-auto p-3 text-stone-500" aria-label={sw ? 'Funga sauti' : 'Close audio'}><X size={16}/></button>
     </div>
-    <p className="text-[11px] text-stone-500">{sw ? 'Sauti ya AI · OpenAI' : 'AI-generated voice · OpenAI'}</p>
+    <p className="text-[11px] text-stone-500">{sw ? 'Sauti ya AI' : 'AI-generated voice'}</p>
     {error && <p role="alert" className="mt-2 text-xs text-primary">{error}</p>}
   </div>;
 }

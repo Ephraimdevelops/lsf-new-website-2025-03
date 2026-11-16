@@ -1,0 +1,12 @@
+/* Scope the messaging layout so public article typography cannot enlarge bubbles. */
+.support-inbox p { margin-bottom: 0; font-size: 12px; }
+.support-inbox .support-message-copy { font-size: 14px; line-height: 1.65; }
+.support-inbox p[class*="text-[10px]"] { font-size: 10px; }
+.support-inbox p[class*="text-[11px]"] { font-size: 11px; }
+.support-inbox textarea { box-shadow: none; }
+.support-inbox button { letter-spacing: normal; }
+@media (max-width: 1023px) { .support-inbox { padding-inline: 12px; } }
+
+.support-inbox h1 { font-size: 22px; line-height: 1.25; margin: 4px 0; }
+.support-inbox h2 { font-size: 14px; line-height: 1.4; margin: 0; }
+.support-inbox textarea { padding-top: 4px; padding-bottom: 4px; }

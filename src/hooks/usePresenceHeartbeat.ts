@@ -9,7 +9,8 @@ export function usePresenceHeartbeat(ready: boolean) {
     const sessionId = crypto.randomUUID();
     let sequence = 0;
     const send = () => void heartbeat({ sessionId, sequence: ++sequence, surface: 'web', foreground: document.visibilityState === 'visible' }).catch(() => undefined);
-    send(); const timer = setInterval(send, 30_000);
+    const tick = () => { if (document.visibilityState === 'visible') send(); };
+    tick(); const timer = setInterval(tick, 30_000);
     document.addEventListener('visibilitychange', send);
     return () => { clearInterval(timer); document.removeEventListener('visibilitychange', send); void heartbeat({ sessionId, sequence: ++sequence, surface: 'web', foreground: false }).catch(() => undefined); };
   }, [ready, prefs?.sharePresence, heartbeat]);

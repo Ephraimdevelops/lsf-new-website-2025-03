@@ -5137,5 +5137,6 @@
   "Could not disable external alerts. Please retry.": "Hatukuweza kuthibitisha kama arifa zimezimwa. Angalia mipangilio kabla ya kujaribu tena.",
   "Loading alert settings…": "Inafungua mipangilio ya arifa…",
   "Device alerts are enabled. You can turn them off here.": "Arifa za kifaa zimewashwa. Unaweza kuzizima hapa.",
-  "Device alerts are off. Turn them on from the mobile app and grant device permission.": "Arifa za kifaa zimezimwa. Ziwashie kwenye programu ya simu na uruhusu kifaa kupokea arifa."
+  "Device alerts are off. Turn them on from the mobile app and grant device permission.": "Arifa za kifaa zimezimwa. Ziwashie kwenye programu ya simu na uruhusu kifaa kupokea arifa.",
+  "AI resources": "Rasilimali za AI"
 }

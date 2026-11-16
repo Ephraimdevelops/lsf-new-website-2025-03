@@ -97,12 +97,12 @@ export default function ResearchPdfUpload({ onPrepare }: { onPrepare: (row: Prep
     {error && <p role="alert" className="text-sm text-red-800">{error}</p>}
     {!busy && receipts.current.length > 0 && <button className="underline text-sm" onClick={exportReceipts}>Download PDF upload receipts</button>}
     <label className="block text-sm"><input type="checkbox" checked={removed} onChange={event => setRemoved(event.target.checked)} /> Show removed research PDFs</label>
-    <ul className="grid items-start gap-4 lg:grid-cols-2">{queue.results.map(row => <li key={row._id} className="resource-management-card rounded-xl border border-gray-200 bg-white p-4 text-sm transition-colors hover:border-primary/30">
+    <ul className="grid items-start gap-4">{queue.results.map(row => <li key={row._id} className="resource-management-card resource-horizontal rounded-xl border border-gray-200 bg-white p-4 text-sm transition-colors hover:border-primary/30">
       <h3 className="resource-management-title text-gray-900">{row.title}</h3>
       <p className="mt-1 text-xs text-gray-500">{row.researchSourceId} · {(row.byteSize / 1024 / 1024).toFixed(2)} MiB</p>
       <div className="my-3 flex flex-wrap gap-2 text-xs"><span className="rounded-full bg-gray-100 px-2 py-1 text-gray-600">{row.indexingStatus ? `Index: ${row.indexingStatus}` : 'Not indexed'}</span><span className="rounded-full bg-amber-50 px-2 py-1 text-amber-800">Review: {row.approvalStatus ?? 'pending'}</span></div>
       {row.url && <a className="resource-management-links text-xs font-medium text-primary underline underline-offset-4" href={row.url} target="_blank" rel="noreferrer">Open original research PDF</a>}
-      <details className="mt-4 border-t border-gray-100 pt-3"><summary className="cursor-pointer text-sm font-medium text-gray-700">Manage research PDF</summary>
+      <details className="mt-4 border-t border-gray-100 pt-3"><summary className="inline-flex min-h-10 cursor-pointer items-center rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-gray-700">Manage research PDF</summary>
       <details className="my-3"><summary className="cursor-pointer text-xs text-gray-600">Original provenance and unresolved checks</summary><pre className="mt-2 max-h-64 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-gray-50 p-3 text-xs">{JSON.stringify(JSON.parse(row.provenance), null, 2)}</pre></details>
       {row.indexingDerivative && <div className="my-3 space-y-2 rounded border border-amber-200 bg-amber-50 p-3">
         <p className="font-medium">Machine OCR transcription: {row.indexingDerivative.reviewStatus}</p>

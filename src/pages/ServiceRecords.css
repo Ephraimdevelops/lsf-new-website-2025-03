@@ -1,0 +1,23 @@
+.service-records-hub [hidden] { display:none!important; }
+.directory-actions { display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:20px; }
+.directory-actions>p { max-width:600px; color:#807585; font-size:13px; }
+.directory-actions>div { display:flex; gap:10px; flex-shrink:0; }
+.directory-overview { display:grid; grid-template-columns:1fr 1fr; background:white; border:1px solid #e4dfe8; border-radius:14px; margin-bottom:20px; }
+.directory-overview>div { padding:20px; }
+.directory-overview>div+div { border-left:1px solid #ece7ef; }
+.directory-overview strong { font-size:14px; color:#44384b; font-weight:600; }
+.service-records-hub p { font-size:12px; line-height:1.6; }
+.directory-overview p { margin-top:5px; color:#8b8091; }
+.directory-overview a { display:inline-block; margin-top:8px; font-size:12px; color:#84264f; }
+.directory-tabs { display:flex; gap:24px; overflow-x:auto; border-bottom:1px solid #e5dfe8; margin-bottom:20px; }
+.directory-tabs button { min-height:48px; white-space:nowrap; font-size:13px; color:#85798c; border-bottom:2px solid transparent; }
+.directory-tabs button[aria-current] { color:#84264f; font-weight:600; border-color:#84264f; }
+.directory-search { display:flex; align-items:center; gap:12px; font-size:12px; color:#8a7f91; margin-bottom:18px; }
+.directory-search input { border:1px solid #e2dce7; border-radius:9px; background:white; min-height:40px; padding:8px 12px; width:280px; }
+.directory-form { max-width:850px; margin:auto; }
+.service-records-hub h2 { font-size:17px; margin:0 0 8px; }
+.service-records-hub h3 { font-size:14px; }
+.directory-record-actions { margin-top:14px; }
+.directory-record-actions>summary { cursor:pointer; font-size:12px; font-weight:600; color:#84264f; padding:10px 0; }
+.directory-record-actions[open] { border-top:1px solid #eee; }
+@media(max-width:700px){.directory-actions{align-items:flex-start;flex-direction:column}.directory-overview{grid-template-columns:1fr}.directory-overview>div+div{border-left:0;border-top:1px solid #eee}.directory-tabs{gap:18px}.directory-search{align-items:flex-start;flex-direction:column}.directory-search input{width:100%}}
