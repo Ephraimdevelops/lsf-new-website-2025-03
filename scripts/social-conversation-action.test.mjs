@@ -105,3 +105,13 @@ test('an empty directory returns a real published LSF office alternative without
  assert.match(context.data.publishedOfficeAlternative.note,/Not the nearest/);
  const saved=f.writes.find(x=>x.name==='socialMessaging:finishDraft').args;assert.equal(saved.escalate,undefined);assert.match(saved.text,/https:\/\/lsftz.org\/contact/);
 });
+
+test('AI finds a recorded ward and receives only the selected public meeting office',async()=>{
+ globalThis.__socialCalls=[];globalThis.__socialRounds=[tool('find_paralegals',{district:'Kata ya Ukonga'}),answer('A verified fixture profile matches the recorded ward.','directory',['paralegal:ward-fixture'])];
+ const f=fixture({'socialMessaging:get':{status:'drafting',text:'Nahitaji msaidizi wa kisheria Ukonga'},'socialMessaging:history':[{question:'Nahitaji msaidizi wa kisheria Ukonga'}],'paralegals:listApprovedParalegals':[{_id:'ward-fixture',fullName:'Fictional Person',region:'Dar es Salaam',district:'Ilala',ward:'Ukonga',phone:'+255000000000',meetingPoint:{id:'office-fixture',name:'Public meeting office'}}],'justiceServices:getPublicService':{name:'Public meeting office',physicalLocation:'Published fixture address',phone:'+255000000001',openingHours:'Published fixture hours',servicePointType:'legal_aid_provider'}});
+ await actions.draft._handler(f.ctx,{id:'message-fixture'});
+ const data=JSON.parse(globalThis.__socialCalls[1].messages.find(x=>x.role==='tool').content).data;
+ assert.equal(data.paralegals.length,1);assert.equal(data.paralegals[0].ward,'Ukonga');assert.equal(data.paralegals[0].district,'Ilala');assert.equal(data.paralegals[0].meetingOffice.address,'Published fixture address');
+ assert.deepEqual(f.reads.find(x=>x.name==='paralegals:listApprovedParalegals').args,{});
+ assert.equal(f.writes.find(x=>x.name==='socialMessaging:finishDraft').args.escalate,undefined);
+});

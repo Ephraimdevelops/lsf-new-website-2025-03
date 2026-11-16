@@ -16,6 +16,7 @@ import { SAADA_SKILLS, type SaadaSkill } from "./lib/saadaSkills";
 import { indexSaadaChunks } from "./lib/saadaIndexBatch";
 import { meteredAi, meteredAiStream } from "./lib/meteredAi";
 import { conversationalReply, conversationalIntentReply, appHelpText, isAppHelpQuestion, responseLocale, assistanceFallback, clarificationQuestion, publishedSupportText } from "./lib/saadaAssistance";
+import {matchesParalegalArea} from "./lib/paralegalSearch";
 import { lsfInformationReply, lsfInformationTopic } from "./lib/lsfInformation";
 import { monthlySaadaTokens } from "./lib/saadaCosts";
 
@@ -655,11 +656,10 @@ No approved current legal evidence matched this search. You can still understand
                         }
 
                     } else if (name === "find_paralegals") {
-                        const rows = await ctx.runQuery(api.paralegals.listApprovedParalegals, { region: argsObj.region });
-                        const normalizeLocation = (value: string) => value.trim().toLocaleLowerCase();
-                        const matches = rows.filter(row => !argsObj.district || normalizeLocation(row.district) === normalizeLocation(argsObj.district)).slice(0, 3);
+                        const rows = await ctx.runQuery(api.paralegals.listApprovedParalegals, {});
+                        const matches = rows.filter(row => matchesParalegalArea(row,argsObj.region,argsObj.district)).slice(0, 3);
                         toolResultCount = matches.length;
-                        searchResults = matches.length ? "Verified public paralegal profiles matched the requested region/district. No referral was sent." : "No verified public paralegal matched that region/district. Ask before searching a different district.";
+                        searchResults = matches.length ? "Verified public paralegal profiles matched a recorded region, district or ward. This is not a calculated nearest match. No referral was sent." : "No verified public paralegal matched that region/district. Ask before searching a different district.";
                         for (const target of matches) resultCards.push(`::PARALEGAL_CARD:${JSON.stringify({ name: target.fullName, region: target.region, district: target.district, phone: target.phone, verified: target.isVerified })}::`);
                     }
                     outcome = { content: searchResults, evidence: toolResultCount ? (name === "find_guides" ? "legal" : "directory") : "none", fallback: name === "find_guides" ? searchResults : noSourceResponse(args.locale, name === "find_services" ? "services" : "paralegals", toolResultCount) };

@@ -57,6 +57,7 @@ import type * as lib_metaMessaging from "../lib/metaMessaging.js";
 import type * as lib_meteredAi from "../lib/meteredAi.js";
 import type * as lib_notifications from "../lib/notifications.js";
 import type * as lib_paralegalAccess from "../lib/paralegalAccess.js";
+import type * as lib_paralegalSearch from "../lib/paralegalSearch.js";
 import type * as lib_pdfText from "../lib/pdfText.js";
 import type * as lib_presence from "../lib/presence.js";
 import type * as lib_publicHelpResources from "../lib/publicHelpResources.js";
@@ -196,6 +197,7 @@ declare const fullApi: ApiFromModules<{
   "lib/meteredAi": typeof lib_meteredAi;
   "lib/notifications": typeof lib_notifications;
   "lib/paralegalAccess": typeof lib_paralegalAccess;
+  "lib/paralegalSearch": typeof lib_paralegalSearch;
   "lib/pdfText": typeof lib_pdfText;
   "lib/presence": typeof lib_presence;
   "lib/publicHelpResources": typeof lib_publicHelpResources;
