@@ -11,10 +11,11 @@ import { useAuth } from "../../src/auth";
 import { api } from "../../src/backend/api";
 import { Button } from "../../src/components/Button";
 import { CivicPageHeader } from "../../src/components/CivicPageHeader";
+import { CivicIllustration } from "../../src/components/CivicIllustration";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
 import { useAccountSync } from "../../src/useStoreUserEffect";
-import { colors, type } from "../../src/theme";
+import { colors, type, typography } from "../../src/theme";
 
 export default function MessagesScreen() {
   const { mode } = useWorkMode();
@@ -32,12 +33,12 @@ export default function MessagesScreen() {
   const filtered = conversations?.filter((item) => [item.summary, item.publicId, item.lastMessage?.senderName, item.lastMessage?.body].some((value) => value?.toLowerCase().includes(search.trim().toLowerCase())));
 
   return <Screen>
-    <CivicPageHeader title={sw ? "Ujumbe" : "Messages"} subtitle={workRole ? (sw ? "Ujumbe wa kesi unazosaidia." : "Messages for the cases you support.") : (sw ? "Mazungumzo yako na mtoa msaada." : "Conversations with your support provider.")} actionIcon="notifications-outline" actionLabel={sw ? "Arifa" : "Notifications"} onAction={() => router.push("/notifications")} />
+    <View style={styles.messageHeading}><View style={{ flex: 1, minWidth: 0 }}><CivicPageHeader title={sw ? "Ujumbe" : "Messages"} subtitle={workRole ? (sw ? "Ujumbe wa kesi unazosaidia." : "Messages for the cases you support.") : (sw ? "Mazungumzo yako na mtoa msaada." : "Conversations with your support provider.")} actionIcon="notifications-outline" actionLabel={sw ? "Arifa" : "Notifications"} onAction={() => router.push("/notifications")} /></View>{!workRole && <CivicIllustration pose="contact" size={76} />}</View>
 
     {workRole && <ParalegalIntro pose="contact" title={sw ? "Wasiliana. Fuatilia msaada." : "Keep the conversation going."} body={sw ? "Ujumbe hukaa na kesi ili kila hatua iwe wazi." : "Messages stay with each case so the next step is clear."} />}
     {isSignedIn && conversations?.length ? <SearchFilters value={search} onChange={setSearch} placeholder={sw ? "Tafuta mazungumzo" : "Find a conversation"} sw={sw} /> : null}
 
-    {!workRole && !!requestThreads?.length && <View style={{ gap: 12, marginBottom: 24 }}><Text style={styles.sectionLabel}>{sw ? "UJUMBE WA MAOMBI" : "REQUEST MESSAGES"}</Text>{requestThreads.filter(item => !search.trim() || [item.publicId, item.issueCategory, item.district].join(' ').toLowerCase().includes(search.trim().toLowerCase())).map(item => <Pressable accessibilityRole="button" key={item._id} style={[styles.conversation, { backgroundColor: "#EEF5F3", padding: 16, borderRadius: 10 }]} onPress={() => router.push({ pathname: "/request/[id]", params: { id: item._id } })}><Ionicons name="chatbubble-ellipses-outline" size={24} color={colors.teal} /><View style={styles.copy}><Text style={styles.caseTitle}>{item.publicId}</Text><Text style={styles.muted}>{item.status === "waiting_for_information" ? (sw ? "LSF inahitaji jibu lako. Fungua ombi." : "LSF needs your reply. Open the request.") : (sw ? "Ujumbe wako na timu ya LSF" : "Your messages with the LSF review team")}</Text></View><Ionicons name="chevron-forward" size={18} color={colors.teal} /></Pressable>)}</View>}
+    {!workRole && !!requestThreads?.length && <View style={{ gap: 12, marginBottom: 20 }}><Text style={styles.sectionLabel}>{sw ? "Ujumbe wa maombi" : "Request messages"}</Text>{requestThreads.filter(item => !search.trim() || [item.publicId, item.issueCategory, item.district].join(' ').toLowerCase().includes(search.trim().toLowerCase())).map(item => <Pressable accessibilityRole="button" key={item._id} style={[styles.conversation, styles.requestConversation]} onPress={() => router.push({ pathname: "/request/[id]", params: { id: item._id } })}><Ionicons name="document-text-outline" size={27} color={colors.burgundy} /><View style={styles.copy}><Text style={styles.caseTitle}>{item.publicId}</Text><Text style={styles.muted}>{item.status === "waiting_for_information" ? (sw ? "LSF inahitaji jibu lako. Fungua ombi." : "LSF needs your reply. Open the request.") : (sw ? "Ujumbe wako na timu ya LSF" : "Your messages with the LSF review team")}</Text></View><Ionicons name="chevron-forward" size={20} color={colors.burgundy} /></Pressable>)}</View>}
     {!isSignedIn ? <View style={styles.empty}>
       <View style={styles.emptyIcon}><Ionicons name="chatbubbles-outline" size={29} color={colors.teal} /></View>
       <Text style={styles.emptyTitle}>{sw ? "Ujumbe wako utaonekana hapa." : "Your messages will appear here."}</Text>
@@ -80,18 +81,20 @@ const styles = StyleSheet.create({
   searchInput: { flex: 1, minWidth: 0, minHeight: 50, fontFamily: type.regular, fontSize: 14, color: colors.ink },
   clear: { width: 32, minHeight: 44, alignItems: "center", justifyContent: "center" },
   sectionHeader: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: 12 },
-  sectionLabel: { fontFamily: type.medium, fontSize: 11, color: colors.inkMuted },
+  messageHeading: { flexDirection: "row", alignItems: "center", gap: 8 },
+  requestConversation: { backgroundColor: "#FCF4F7" },
+  sectionLabel: { ...typography.sectionTitle },
   count: { fontFamily: type.medium, fontSize: 12, color: colors.inkMuted },
-  conversation: { minHeight: 112, paddingVertical: 18, flexDirection: "row", alignItems: "flex-start", gap: 13 },
-  avatar: { width: 44, height: 44, borderRadius: 15, backgroundColor: "#EEF5F3", alignItems: "center", justifyContent: "center" },
-  copy: { flex: 1, minWidth: 0 },
+  conversation: { minHeight: 88, padding: 14, marginBottom: 10, borderRadius: 8, backgroundColor: "#F3F8F7", flexDirection: "row", alignItems: "flex-start", gap: 12 },
+  avatar: { width: 30, height: 36, alignItems: "center", justifyContent: "center" },
+  copy: { flex: 1, minWidth: 0, gap: 3 },
   row: { flexDirection: "row", alignItems: "center", gap: 8 },
-  caseTitle: { flex: 1, fontFamily: type.semibold, fontSize: 15, color: colors.ink, lineHeight: 21 },
-  time: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 11 },
-  preview: { marginTop: 5, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
-  caseRef: { marginTop: 7, fontFamily: type.medium, color: colors.teal, fontSize: 11 },
+  caseTitle: { ...typography.itemTitle, flexShrink: 1 },
+  time: { ...typography.metadata },
+  preview: { ...typography.supporting, marginTop: 4 },
+  caseRef: { ...typography.metadata, marginTop: 7, color: colors.teal },
   empty: { paddingTop: 22, paddingBottom: 24 },
-  emptyIcon: { width: 58, height: 58, borderRadius: 18, backgroundColor: "#EEF5F3", alignItems: "center", justifyContent: "center", marginBottom: 20 },
+  emptyIcon: { width: 48, height: 48, alignItems: "center", justifyContent: "center", marginBottom: 16 },
   emptyTitle: { fontFamily: type.editorial, fontSize: 25, lineHeight: 32, color: colors.ink },
   emptyBody: { marginTop: 9, fontFamily: type.regular, fontSize: 14, lineHeight: 22, color: colors.inkMuted },
   context: { marginTop: 24, flexDirection: "row", gap: 12, alignItems: "center" },
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
   aiLink: { flexDirection: "row", alignItems: "center", minHeight: 80, gap: 12, marginTop: 12 },
   aiCopy: { flex: 1, gap: 3 },
   aiTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 14 },
-  muted: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
+  muted: { ...typography.supporting },
   privacy: { marginTop: 22, flexDirection: "row", alignItems: "center", gap: 6 },
   privacyText: { flex: 1, fontFamily: type.regular, fontSize: 11, lineHeight: 17, color: colors.inkMuted },
   loading: { minHeight: 160, justifyContent: "center", alignItems: "center", gap: 14 },

@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   summaryTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.burgundy, fontSize: 30 },
   summaryText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13 },
   card: { flexDirection: "row", gap: spacing.md, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.lg, marginBottom: spacing.md },
-  icon: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
+  icon: { width: 36, height: 44, alignItems: "center", justifyContent: "center" },
   copy: { flex: 1, gap: spacing.xs },
   row: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm },
   name: { flex: 1, fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 14, lineHeight: 20 },

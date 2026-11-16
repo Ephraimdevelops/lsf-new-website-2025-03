@@ -35,7 +35,7 @@ export default function SaadaGovernanceScreen() {
   const documentPage = usePaginatedQuery(api.sara.listDocumentsPage, allowed ? { status: sourceTab } : "skip", { initialNumItems: 20 });
   const documents = documentPage.status === "LoadingFirstPage" ? undefined : documentPage.results;
   const versions = useQuery(api.sara.listPromptVersions, isAdmin ? {} : "skip");
-  const analytics = useQuery(api.sara_chat.getAnalytics, allowed ? {} : "skip");
+  const analytics = useQuery(api.sara_chat.getAnalytics, allowed && tab === "insights" ? {} : "skip");
   const evidence = useQuery(api.sara.listSourceEvidence, allowed && tab === "evidence" ? {} : "skip");
   const uploadUrl = useMutation(api.sara.generateUploadUrl);
   const ingest = useAction(api.sara_actions.ingestDocument);

@@ -14,7 +14,7 @@ import { AppHeader } from "../../src/components/AppHeader";
 import { useAuth, useUser } from "../../src/auth";
 import { useLanguage } from "../../src/i18n";
 import { useSavedResources } from "../../src/useSavedResources";
-import { colors, spacing, type } from "../../src/theme";
+import { colors, spacing, type, typography } from "../../src/theme";
 import { useAccountSync } from "../../src/useStoreUserEffect";
 import { LogOutButton } from "../../src/components/LogOutButton";
 import { PersonalAvatar } from "../../src/components/PersonalIntro";
@@ -264,12 +264,12 @@ const styles = StyleSheet.create({
   scopeCard: { backgroundColor: colors.orangeSoft, borderRadius: 8, padding: spacing.lg, gap: spacing.sm, marginBottom: spacing.xl },
   scopeTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 15 },
   scopeBody: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
-  sectionTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 16, marginBottom: spacing.sm, marginTop: spacing.sm },
+  sectionTitle: { ...typography.sectionTitle, marginBottom: spacing.sm, marginTop: spacing.sm },
   menuGroup: { backgroundColor: "#F6F6F6", borderRadius: 8, paddingVertical: 5, marginBottom: spacing.xl },
   row: { minHeight: 56, flexDirection: "row", alignItems: "center", gap: spacing.md, paddingHorizontal: spacing.lg },
   rowPressed: { backgroundColor: "#EBE9EA" },
-  rowText: { flex: 1, fontFamily: type.medium, color: colors.charcoal, fontSize: 15 },
-  rowDetail: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12 },
+  rowText: { ...typography.body, flex: 1, fontFamily: type.medium },
+  rowDetail: { ...typography.metadata },
   secureButton: { alignSelf: "flex-start", marginTop: spacing.sm, marginBottom: spacing.xl, minHeight: 48, flexDirection: "row", alignItems: "center", gap: spacing.sm },
   secureText: { fontFamily: type.medium, color: colors.burgundy, fontSize: 14 },
 });

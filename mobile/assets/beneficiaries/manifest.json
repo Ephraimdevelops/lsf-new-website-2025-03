@@ -1,0 +1,27 @@
+{
+  "generator": "Built-in image_gen",
+  "disclosure": "AI-generated fictional people and illustrative scenarios. Not real beneficiaries, testimonials, case evidence or measured achievements.",
+  "assets": [
+    {
+      "file": "market-trader-guidance.png",
+      "placement": "Onboarding / understand your rights",
+      "copySw": "Haki zako, katika maisha ya kila siku.",
+      "scenario": "A market trader seeks guidance on her phone.",
+      "prompt": "Use case: photorealistic-natural. Create a premium editorial photograph for Haki Yangu, a Tanzanian access-to-justice mobile app supported by LSF. Fictional scenario: an adult Tanzanian woman who runs a small produce stall in a contemporary Dar es Salaam neighbourhood pauses beside her neatly arranged tomatoes and greens to use a modest Android smartphone for legal guidance. She wears an everyday patterned kitenge skirt and plain burgundy blouse, natural hair, has an attentive hopeful expression, not posing for camera. Show her face and hands naturally, phone screen angled away without readable UI. Authentic modest urban market surroundings softly blurred, warm natural morning light, truthful skin texture, quiet dignity and personal agency. Beautiful restrained palette burgundy, warm cream, muted teal, natural greens. Square composition, medium environmental portrait, subjects safely inside central 75 percent for mobile crop. No text, logos, watermarks, courtroom props, fake statistics, charity stereotypes, exaggerated distress, luxury styling, or claims of a resolved legal outcome. This is an illustrative fictional beneficiary, not a real testimonial."
+    },
+    {
+      "file": "paralegal-consultation.png",
+      "placement": "Request help / connect with a paralegal",
+      "copySw": "Eleza tatizo lako. Pata msaada.",
+      "scenario": "A beneficiary discusses documents with a community paralegal.",
+      "prompt": "Use case: photorealistic-natural. Create a premium editorial photograph for Haki Yangu Tanzanian legal-help app, visually cohesive warm cream, burgundy, subdued teal colour treatment. Fictional scenario: a Tanzanian female community paralegal in a plain burgundy polo without logos sits at eye level with an adult Tanzanian man in a simple blue shirt at a modest welcoming community advice office in Morogoro. They collaboratively review a few papers and an Android phone on a wooden desk; she listens and points gently at a document while he speaks, both engaged, dignified, natural expressions. Tanzania setting with plain plaster walls, a louvred window and leafy courtyard outside. Candid human connection, not posed stock handshake. Realistic contemporary clothing, natural dark skin texture, soft daylight, warm editorial photography. Square composition, medium view, all faces and hands within central 75 percent for mobile crop. No readable document text, no logos, no scales of justice, no wigs, no flags, no watermark, no staged courtroom win, no poverty spectacle. Clearly conceptual fictional people, no testimonial or measured-outcome claim."
+    },
+    {
+      "file": "family-next-step.png",
+      "placement": "Case tracking / next steps",
+      "copySw": "Jua hatua yako inayofuata.",
+      "scenario": "A woman checks her next step with family support.",
+      "prompt": "Use case: photorealistic-natural. Create a premium editorial lifestyle photograph for Haki Yangu, a Tanzanian mobile app helping people understand rights and follow legal-help requests. Fictional scenario: an adult Tanzanian woman in a tasteful everyday teal hijab and patterned kitenge dress sits on a shaded veranda in a contemporary coastal Tanzanian neighbourhood, looking at her Android smartphone with a calm small relieved smile while an older adult Tanzanian woman beside her looks on supportively. A closed plain document folder rests nearby. The story is knowing her next step and feeling supported, not a guaranteed case victory. Authentic plaster house, wooden door, greenery, peaceful ordinary life, no tourist imagery. Warm daylight, realistic dark skin texture, premium compassionate documentary-style photography, restrained warm cream and burgundy accents matching a legal empowerment brand. Square medium environmental portrait, subjects central with room for rounded app crop. No writing, logos, readable screen, watermark, legal outcome claims, forced smiles, charity stereotypes or dramatic distress."
+    }
+  ]
+}

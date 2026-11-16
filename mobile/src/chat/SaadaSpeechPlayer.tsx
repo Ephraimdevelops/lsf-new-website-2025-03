@@ -97,7 +97,7 @@ export function SaadaSpeechPlayer({ messageId, sw, onClose }: { messageId: Id<'s
       {count > 1 && <Text style={styles.caption}>{sw ? 'Sehemu' : 'Part'} {part + 1}/{count}</Text>}
       <Pressable style={styles.close} accessibilityRole="button" accessibilityLabel={sw ? 'Funga sauti' : 'Close audio'} onPress={onClose}><Ionicons name="close" size={18} color={colors.inkMuted}/></Pressable>
     </View>
-    <Text style={styles.caption}>{sw ? 'Sauti ya AI · OpenAI' : 'AI-generated voice · OpenAI'}</Text>
+    <Text style={styles.caption}>{sw ? 'Sauti ya AI' : 'AI-generated voice'}</Text>
     {!!error && <Text accessibilityRole="alert" style={styles.error}>{error}</Text>}
   </View>;
 }

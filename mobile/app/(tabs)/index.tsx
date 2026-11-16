@@ -138,7 +138,7 @@ export default function HomeScreen() {
       <View style={styles.actionGrid}>
         {primaryActions.map((action) => (
           <Pressable key={action.en} accessibilityRole="button" accessibilityLabel={action[locale]} accessibilityHint={locale === "sw" ? action.subSw : action.subEn} style={({ pressed }) => [styles.actionCard, { backgroundColor: action.palette.background }, pressed && styles.pressed]} onPress={() => router.push(action.route)}>
-            <View style={[styles.actionIcon, { backgroundColor: "#FFFFFF" }]}><Ionicons name={action.icon} size={30} color={action.palette.foreground} /></View>
+            <View style={styles.actionIcon}><Ionicons name={action.icon} size={32} color={action.palette.foreground} /></View>
             <Text style={[styles.actionTitle, { color: action.palette.foreground }]}>{action[locale]}</Text>
             <Text style={styles.actionBody}>{locale === "sw" ? action.subSw : action.subEn}</Text>
             <Ionicons name="arrow-forward" size={21} color={action.palette.foreground} style={styles.actionArrow} />
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   actionArrow: { position: "absolute", right: 13, bottom: 16 },
   pressed: { opacity: 0.82, transform: [{ scale: 0.985 }] },
   caseCard: { minHeight: 96, marginTop: 24, borderRadius: 20, backgroundColor: "#FFFFFF", padding: 16, flexDirection: "row", alignItems: "center", gap: 12, borderWidth: 1, borderColor: colors.line },
-  caseIcon: { width: 52, height: 52, borderRadius: 15, backgroundColor: "#E0F0F5", alignItems: "center", justifyContent: "center" },
+  caseIcon: { width: 44, height: 48, alignItems: "center", justifyContent: "center" },
   caseCopy: { flex: 1 },
   caseTitle: { fontFamily: type.bold, color: "#102D3A", fontSize: 18 },
   caseBody: { marginTop: 1, fontFamily: type.medium, color: "#555966", fontSize: 13 },

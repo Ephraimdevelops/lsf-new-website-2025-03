@@ -23,7 +23,7 @@ import { IntakeDate, IntakeSelect } from "../src/intake/IntakeSelect";
 import { IntakeVoice } from "../src/intake/IntakeVoice";
 import { uploadEvidence } from "../src/intake/uploadEvidence";
 import { useLanguage } from "../src/i18n";
-import { colors, radius, spacing, type } from "../src/theme";
+import { colors, radius, spacing, type, typography } from "../src/theme";
 import { useSensitiveScreenProtection } from "../src/useSensitiveScreenProtection";
 
 const TOTAL_STEPS = 8;
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   progress: { height: 4, borderRadius: radius.pill, backgroundColor: colors.burgundy },
   section: { marginTop: spacing.xl, gap: spacing.lg },
   stepSymbol: { width: 54, height: 54, borderRadius: 19, backgroundColor: colors.burgundy, alignItems: "center", justifyContent: "center" },
-  title: { fontFamily: type.semibold, color: colors.charcoal, fontSize: 26, lineHeight: 33, letterSpacing: 0 },
+  title: { ...typography.pageTitle, letterSpacing: 0 },
   body: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 15, lineHeight: 22 },
   textArea: { minHeight: 180, borderRadius: 8, backgroundColor: "#F3F5F4", padding: spacing.lg, fontFamily: type.regular, color: colors.charcoal, fontSize: 16, lineHeight: 25 },
   counter: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, textAlign: "right", marginTop: -spacing.md },
@@ -506,10 +506,10 @@ const styles = StyleSheet.create({
   issueList: { gap: 0 },
   issueOption: { minHeight: 88, flexDirection: "row", alignItems: "center", gap: spacing.md, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: colors.line, paddingVertical: 17, paddingHorizontal: 4 },
   issueOptionSelected: { borderBottomColor: colors.burgundy },
-  issueOptionIcon: { width: 46, height: 46, borderRadius: 16, backgroundColor: colors.burgundySoft, alignItems: "center", justifyContent: "center" },
+  issueOptionIcon: { width: 36, height: 44, alignItems: "center", justifyContent: "center" },
   issueOptionIconSelected: { backgroundColor: "rgba(255,255,255,0.16)" },
   issueOptionCopy: { flex: 1 },
-  issueOptionTitle: { fontFamily: type.medium, color: colors.ink, fontSize: 16, lineHeight: 23 },
+  issueOptionTitle: { ...typography.itemTitle },
   issueOptionTitleSelected: { color: colors.surface },
   issueOptionBody: { marginTop: 4, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 20 },
   issueOptionBodySelected: { color: "#F8DCE6" },

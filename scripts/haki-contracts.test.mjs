@@ -8,7 +8,8 @@ import { requireIndependentBaseRoleReview, requireRemainingAdministrator } from 
 import { requireGuideResubmission } from "../convex/lib/guideLifecycle.ts";
 import { canClassifyIndependentParalegal, canUseCaseParticipantRole, canUseScopedCaseAffiliation, requireIndependentLegacyScopeReview } from "../convex/lib/caseParticipantAccess.ts";
 import { countDistinctReferralTransitions, summarizeTriage } from "../convex/lib/journeyMetrics.ts";
-import { prepareSaadaHistory } from "../convex/lib/saadaConversation.ts";
+import {loadHandlerModule} from "./test-support/convex-handler-harness.mjs";
+const {prepareSaadaHistory}=loadHandlerModule("convex/lib/saadaConversation.ts");
 import { noSourceResponse } from "../convex/lib/saadaEvidence.ts";
 import { isSameCaseRetry } from "../convex/lib/caseRetry.ts";
 import { acceptsMatchingIntake, requireMatchingLinkAccess, requireMatchingSource } from "../convex/lib/matchingAccess.ts";
@@ -560,7 +561,9 @@ test("appointment lifecycle is auditable and visible across worker and mobile su
   assert.match(mobileAppointments, /api\.caseManagement\.requestAppointment/);
   assert.match(mobileAppointments, /api\.caseManagement\.myCases/);
   assert.match(mobileAppointments, /providerName/);
-  assert.match(mobileAppointments, /Choose case/);
+  assert.match(mobileAppointments, /<IntakeSelect label=\{locale === "sw" \? "Miadi inahusu kesi ipi\?" : "Which case is this appointment for\?"\}/);
+  assert.match(mobileAppointments, /options=\{openCases\.map/);
+  assert.match(mobileAppointments, /!selectedCaseId \|\| !openCases\.some\(record => record\._id === selectedCaseId\)/);
   assert.match(mobileAppointments, /Send appointment request/);
   assert.match(mobileParalegals, /providerName:\s*item\.fullName/);
   assert.match(mobileParalegalProfile, /providerName:\s*name/);

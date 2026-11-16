@@ -16,7 +16,7 @@ import { CivicObject } from "../src/components/CivicObject";
 import { directoryLabel } from "../src/directoryLabels";
 import { regionOptions, districtOptions } from "../src/regionOptions";
 import { useLanguage } from "../src/i18n";
-import { colors, type } from "../src/theme";
+import { colors, type, typography } from "../src/theme";
 
 const providers: { key: string; icon: keyof typeof Ionicons.glyphMap }[] = [
   { key: "all", icon: "apps-outline" },
@@ -111,19 +111,19 @@ const styles = StyleSheet.create({
   reset: { minHeight: 42, justifyContent: "center" },
   resetText: { fontFamily: type.medium, fontSize: 13, color: colors.burgundy },
   paralegalLink: { flexDirection: "row", alignItems: "center", gap: 12, minHeight: 88, marginTop: 17 },
-  paralegalIcon: { width: 42, height: 42, borderRadius: 13, backgroundColor: "#EEF5F3", alignItems: "center", justifyContent: "center" },
+  paralegalIcon: { width: 36, height: 42, alignItems: "center", justifyContent: "center" },
   linkCopy: { flex: 1, gap: 3 },
   linkTitle: { fontFamily: type.semibold, color: colors.ink, fontSize: 14 },
   linkSubtitle: { fontFamily: type.regular, fontSize: 12, color: colors.inkMuted, lineHeight: 18 },
   sectionHeader: { marginTop: 20, marginBottom: 14, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  sectionTitle: { flex: 1, fontFamily: type.semibold, fontSize: 17, color: colors.ink },
+  sectionTitle: { ...typography.sectionTitle, flex: 1 },
   count: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
   service: { borderRadius: 18, backgroundColor: "#F7F6F6", padding: 16, marginBottom: 13 },
   serviceMain: { flexDirection: "row", alignItems: "flex-start", gap: 10 },
   serviceIcon: { width: 38, height: 38, borderRadius: 11, backgroundColor: "#EAF2EF", alignItems: "center", justifyContent: "center" },
   serviceCopy: { flex: 1, gap: 4 },
   serviceType: { fontFamily: type.regular, fontSize: 11, color: colors.inkMuted, lineHeight: 16 },
-  serviceName: { fontFamily: type.semibold, color: colors.ink, fontSize: 15, lineHeight: 22 },
+  serviceName: { ...typography.itemTitle },
   serviceDetails: { marginTop: 14, gap: 9 },
   locationLine: { flexDirection: "row", alignItems: "center", gap: 5 },
   locationText: { flex: 1, fontFamily: type.regular, fontSize: 12, lineHeight: 18, color: colors.inkMuted },

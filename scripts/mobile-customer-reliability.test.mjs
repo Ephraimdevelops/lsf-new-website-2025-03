@@ -1,3 +1,4 @@
+import * as mobileTheme from '../mobile/src/theme.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -10,12 +11,12 @@ const api = { users:{currentAccess:'access'}, caseManagement:{myCases:'cases',my
 const defer=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};};
 function runtime(file,options={}) {
   const slots=[];let cursor=0,cleanups=[],tree;
-  const fixture={auth:{isLoaded:true,isSignedIn:true,userId:'alice'},locale:'en',params:{},queries:{access:{user:{_id:'alice'}},cases:[{_id:'case-1',beneficiaryId:'alice',status:'assistance_underway',publicId:'SYNTHETIC-1',summary:'Synthetic case'}],appointments:[]},calls:[],...options};
+  const fixture={auth:{isLoaded:true,isSignedIn:true,userId:'alice'},locale:'en',params:{providerName:'Synthetic provider'},queries:{access:{user:{_id:'alice'}},cases:[{_id:'case-1',beneficiaryId:'alice',status:'assistance_underway',publicId:'SYNTHETIC-1',summary:'Synthetic case'}],appointments:[]},calls:[],...options};
   const react={useState(initial){const i=cursor++;if(!(i in slots))slots[i]=typeof initial==='function'?initial():initial;return[slots[i],next=>{slots[i]=typeof next==='function'?next(slots[i]):next;}];},useRef(initial){const i=cursor++;return slots[i]??(slots[i]={current:initial});},useLayoutEffect(fn){const i=cursor++;if(!(i in slots)){slots[i]=true;cleanups.push(fn());}}};
   const native={StyleSheet:{create:s=>s},Text:'Text',View:'View',TextInput:'TextInput',Pressable:'Pressable',Platform:{OS:'ios'},Linking:{openURL:async()=>{}},Alert:{alert(){} }};
   const ui=new Proxy({__esModule:true,default:'Icon'},{get:(o,k)=>k in o?o[k]:String(k)});
   const deps={react,'react/jsx-runtime':{jsx:(type,props,key)=>({type,props,key}),jsxs:(type,props,key)=>({type,props,key}),Fragment:'Fragment'},'react-native':native,'convex/react':{useQuery:ref=>fixture.queries[ref],useMutation:()=>async args=>{fixture.calls.push(args);return fixture.send?.(args);},useAction:()=>async()=>{}},'convex/values':{ConvexError:class extends Error{}},'expo-router':{router:{push(){},back(){}},useLocalSearchParams:()=>fixture.params}};
-  function require(name){if(deps[name])return deps[name];if(name.endsWith('/auth'))return{useAuth:()=>fixture.auth};if(name.endsWith('/i18n'))return{useLanguage:()=>({locale:fixture.locale})};if(name.endsWith('/backend/api'))return{api};if(name.endsWith('/theme'))return{colors:{},radius:{},spacing:{},type:{}};if(name.endsWith('/plainLanguage'))return{displayLabel:s=>s,plainError:(_e,_l,f)=>f};if(name.endsWith('/useSensitiveScreenProtection'))return{useSensitiveScreenProtection(){}};return ui;}
+  function require(name){if(deps[name])return deps[name];if(name.endsWith('/auth'))return{useAuth:()=>fixture.auth};if(name.endsWith('/i18n'))return{useLanguage:()=>({locale:fixture.locale})};if(name.endsWith('/backend/api'))return{api};if(name.endsWith('/theme'))return mobileTheme;if(name.endsWith('/plainLanguage'))return{displayLabel:s=>s,plainError:(_e,_l,f)=>f};if(name.endsWith('/useSensitiveScreenProtection'))return{useSensitiveScreenProtection(){}};return ui;}
   const before=process.env.HAKI_RELIABILITY_BEFORE==='1'?'output/mobile-reliability-2026-10-24/before/':'';
   const code=ts.transpileModule(fs.readFileSync(before+file,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText;
   const module={exports:{}};vm.runInNewContext(`(function(require,module,exports){${code}\n})`,{console,Date,Math,Map,JSON,window:{confirm:()=>false}})(require,module,module.exports);
@@ -25,14 +26,20 @@ function runtime(file,options={}) {
 }
 const appointment='mobile/app/appointments.tsx',saved='mobile/app/saved-document/[id].tsx';
 function prepare(r,{time='Monday morning',note='Synthetic note'}={}) {
-  r.render();const choice=r.nodes().find(n=>n.type==='Pressable'&&n.props?.children?.[0]?.props?.children==='SYNTHETIC-1');assert.ok(choice,'case selector must exist');choice.props.onPress();r.render();const inputs=r.nodes().filter(n=>n.type==='TextInput');inputs[0].props.onChangeText(time);inputs[1].props.onChangeText(note);r.render();
+  r.render();const choice=r.nodes().find(n=>n.type==='IntakeSelect'&&n.props?.value!==undefined);assert.ok(choice,'case selector must exist');assert.ok(choice.props.options.some(option=>option.value==='case-1'));choice.props.onChange('case-1');r.render();const inputs=r.nodes().filter(n=>n.type==='TextInput');inputs[0].props.onChangeText(time);inputs[1].props.onChangeText(note);r.render();
 }
 function send(r){const button=r.nodes().find(n=>n.type==='Button'&&/Send appointment request|Tuma ombi la miadi/.test(n.props?.label));assert.ok(button,'request button must exist');return button.props.onPress();}
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
 
 test('case and appointment loading never masquerade as confirmed empty results',()=>{
-  const r=runtime(appointment);r.fixture.queries.cases=undefined;r.fixture.queries.appointments=undefined;r.render();assert.doesNotMatch(r.text(),/No open case yet|No scheduled appointments yet/);assert.ok(r.nodes().filter(n=>n.type==='BrandLoading').length>=2);
-  r.fixture.queries.cases=[];r.fixture.queries.appointments=[];r.render();assert.match(r.text(),/No open case yet/);assert.match(r.text(),/No scheduled appointments yet/);
+  const r=runtime(appointment,{params:{}});
+  r.fixture.queries.cases=undefined;r.fixture.queries.appointments=undefined;r.render();
+  assert.doesNotMatch(r.text(),/No open case yet|No upcoming appointments/);
+  assert.ok(r.nodes().some(n=>n.type==='BrandLoading'));
+  r.fixture.queries.appointments=[];r.render();assert.match(r.text(),/No upcoming appointments/);
+  const request=r.nodes().find(n=>n.type==='Button'&&n.props.label==='Request an appointment');assert.ok(request);request.props.onPress();r.render();
+  assert.doesNotMatch(r.text(),/No open case yet/);assert.ok(r.nodes().some(n=>n.type==='BrandLoading'));
+  r.fixture.queries.cases=[];r.render();assert.match(r.text(),/No open case yet/);
   r.fixture.queries.access=undefined;r.render();assert.doesNotMatch(r.text(),/No open case yet/);
 });
 test('authentication loading does not show a sign-in prompt',()=>{

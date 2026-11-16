@@ -11,7 +11,10 @@ export function usePresenceHeartbeat(ready: boolean) {
     let sequence = 0;
     const send = () => void heartbeat({ sessionId, sequence: ++sequence, surface: 'mobile', foreground: AppState.currentState === 'active' && (typeof document === 'undefined' || document.visibilityState === 'visible') }).catch(() => undefined);
     if (typeof document !== 'undefined') document.addEventListener('visibilitychange', send);
-    send(); const timer = setInterval(send, 30_000);
+    const tick = () => {
+      if (AppState.currentState === 'active' && (typeof document === 'undefined' || document.visibilityState === 'visible')) send();
+    };
+    tick(); const timer = setInterval(tick, 30_000);
     const subscription = AppState.addEventListener('change', send);
     return () => { clearInterval(timer); subscription.remove(); if (typeof document !== 'undefined') document.removeEventListener('visibilitychange', send); void heartbeat({ sessionId, sequence: ++sequence, surface: 'mobile', foreground: false }).catch(() => undefined); };
   }, [ready, prefs?.sharePresence, heartbeat]);

@@ -25,7 +25,7 @@ import { CivicPageHeader } from "../../src/components/CivicPageHeader";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
 import { shouldQueueError, usePendingActions, type PendingAction } from "../../src/pendingActions";
-import { colors, radius, spacing, type } from "../../src/theme";
+import { colors, radius, spacing, type, typography } from "../../src/theme";
 import { useSensitiveScreenProtection } from "../../src/useSensitiveScreenProtection";
 
 type CaseTab = "timeline" | "messages" | "documents" | "appointments" | "referrals" | "tasks" | "feedback";
@@ -117,36 +117,6 @@ function formatDate(timestamp?: number, locale: "sw" | "en" = "en") {
     timeStyle: "short",
     timeZone: "Africa/Dar_es_Salaam",
   });
-}
-
-function nextStep(status: keyof typeof caseStatusLabels.en, locale: "sw" | "en") {
-  const labels = {
-    sw: {
-      under_review: "Timu ya LSF inapitia maelezo yako.",
-      waiting_for_information: "Tafadhali jibu ujumbe au ongeza taarifa utakazoombwa.",
-      assignment_pending: "Tunatafuta msaidizi sahihi wa kisheria.",
-      assigned: "Unaweza kuwasiliana na msaidizi wako kupitia ujumbe.",
-      appointment_scheduled: "Jiandae kwa miadi yako na weka nyaraka karibu.",
-      referred: "Fuata maelekezo ya rufaa uliyopokea.",
-      assistance_underway: "Msaada unaendelea. Endelea kufuatilia hatua.",
-      resolved: "Kesi imepata matokeo. Toa maoni yako ili kuboresha huduma.",
-      closed_unresolved: "Kesi imefungwa bila kutatuliwa. Wasiliana na LSF kama bado unahitaji msaada.",
-      closed: "Kesi imefungwa.",
-    },
-    en: {
-      under_review: "LSF is reviewing your information.",
-      waiting_for_information: "Please respond to any message or information request.",
-      assignment_pending: "We are matching you with the right legal support worker.",
-      assigned: "You can message your assigned support worker.",
-      appointment_scheduled: "Prepare for your appointment and keep documents nearby.",
-      referred: "Follow the referral guidance you received.",
-      assistance_underway: "Support is underway. Keep tracking each step.",
-      resolved: "An outcome has been recorded. Your feedback helps improve the service.",
-      closed_unresolved: "The case was closed unresolved. Contact LSF if you still need help.",
-      closed: "This case is closed.",
-    },
-  };
-  return labels[locale][status];
 }
 
 function workNextStep(status: string, locale: "sw" | "en") {
@@ -648,17 +618,13 @@ function ScopedCaseDetailScreen() {
     <Screen footer={isWorkCase ? <ParalegalNavigation current="cases" /> : undefined}>
       <CivicPageHeader compact back title={isWorkCase ? (locale === "sw" ? "Kazi ya kesi" : "Case work") : (locale === "sw" ? "Kesi yangu" : "My case")} actionIcon="notifications-outline" actionLabel={locale === "sw" ? "Arifa" : "Notifications"} onAction={() => router.push("/notifications")} />
 
-      <CasePresence caseId={caseId} />
       <View style={styles.summaryCard}>
         <View style={styles.caseIntro}><View style={styles.bannerCopy}>
+          {!isWorkCase && <View style={styles.statusLabel}><Ionicons name={caseStatus === "waiting_for_information" ? "alert-circle-outline" : isClosureState ? "folder-outline" : "time-outline"} size={22} color={caseStatus === "waiting_for_information" ? colors.burgundy : colors.teal} /><Text style={styles.statusLabelText}>{locale === "sw" ? "Hali ya kesi" : "Case status"}</Text></View>}
+          <Text accessibilityRole="header" style={styles.status}>{isWorkCase ? workCaseStatusTitle(caseStatus, locale === "sw") : caseStatusLabels[locale][caseStatus]}</Text>
           <Text style={styles.caseId}>{details.case.publicId}</Text>
-          <Text style={styles.status}>{isWorkCase ? workCaseStatusTitle(caseStatus, locale === "sw") : caseStatusLabels[locale][caseStatus]}</Text>
-        </View><CivicIllustration pose="review" size={96} /></View>
-        {(!isWorkCase || tab === "timeline" && !workToolsOpen) && <Text style={styles.summary}>{details.case.summary}</Text>}
-        {!isWorkCase && <View style={styles.nextStep}>
-          <Ionicons name="compass-outline" size={18} color={colors.burgundy} />
-          <Text style={styles.nextStepText}>{nextStep(caseStatus, locale)}</Text>
-        </View>}
+        </View><CivicIllustration pose="review" size={80} /></View>
+        {(!isWorkCase || tab === "timeline" && !workToolsOpen) && <View style={styles.caseDescription}><Text style={styles.caseDescriptionLabel}>{locale === "sw" ? "Kuhusu kesi" : "About this case"}</Text><Text style={styles.summary}>{details.case.summary}</Text></View>}
       </View>
 
       {isClosureState && (!isWorkCase || tab !== "feedback") ? (
@@ -770,6 +736,7 @@ function ScopedCaseDetailScreen() {
 
       {(!isWorkCase || !workToolsOpen) && tab === "messages" ? (
         <View style={styles.messageArea}>
+          <CasePresence caseId={caseId} />
           {messages?.length ? messages.map((item) => (
             <View key={item._id} style={styles.messageBubble}>
               {item.type === "voice" && item.audioUrl ? <VoiceNote url={item.audioUrl} durationMs={item.durationMs ?? 0} sw={locale === "sw"} /> : <Text style={styles.messageText}>{item.body}</Text>}
@@ -1149,14 +1116,16 @@ const styles = StyleSheet.create({
   loading: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.background },
   header: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: spacing.md },
   headerTitle: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17 },
-  summaryCard: { gap: spacing.md },
+  summaryCard: { gap: 12 },
+  statusLabel: { flexDirection: "row", alignItems: "center", gap: 7 },
+  statusLabelText: { ...typography.supporting, fontFamily: type.medium },
+  caseDescription: { gap: 4, paddingVertical: 4 },
+  caseDescriptionLabel: { ...typography.metadata },
   caseIntro: { flexDirection: "row", alignItems: "center", gap: 16 },
   row: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: spacing.md },
-  caseId: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
-  status: { fontFamily: type.semibold, color: colors.ink, fontSize: 22, lineHeight: 30, marginTop: 8 },
-  summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21 },
-  nextStep: { flexDirection: "row", gap: spacing.sm, backgroundColor: "#EEF5F3", borderRadius: 8, padding: 16 },
-  nextStepText: { flex: 1, fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 13, lineHeight: 19 },
+  caseId: { ...typography.metadata, marginTop: 6 },
+  status: { ...typography.compactTitle, fontFamily: type.bold, marginTop: 6 },
+  summary: { ...typography.supporting },
   appointmentBanner: { marginTop: spacing.lg, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line, borderRadius: radius.md, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
   closureBanner: { marginTop: spacing.lg, backgroundColor: colors.softPink, borderWidth: 1, borderColor: "#F0D5DF", borderRadius: radius.md, padding: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md },
   iconChip: { width: 38, height: 38, borderRadius: 19, backgroundColor: colors.softPink, alignItems: "center", justifyContent: "center" },
@@ -1171,20 +1140,20 @@ const styles = StyleSheet.create({
   pendingText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 18 },
   workTabs: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginVertical: 16 },
   workTab: { flexBasis: "47%", flexGrow: 1, backgroundColor: colors.tealSoft, borderRadius: 12 },
-  tabs: { flexDirection: "row", gap: spacing.sm, paddingTop: spacing.xl, paddingBottom: 4 },
+  tabs: { flexDirection: "row", gap: spacing.sm, paddingTop: 16, paddingBottom: 4 },
   tab: { minHeight: 48, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 6, borderBottomWidth: 2, borderBottomColor: "transparent", paddingVertical: 12, paddingHorizontal: 12 },
   activeTab: { borderBottomColor: colors.burgundy },
   tabText: { fontFamily: type.medium, fontWeight: "500", color: colors.inkMuted, fontSize: 13 },
   activeTabText: { color: colors.burgundy },
-  timeline: { marginTop: spacing.xl },
-  event: { flexDirection: "row", minHeight: 86 },
+  timeline: { marginTop: 16 },
+  event: { flexDirection: "row", minHeight: 64 },
   rail: { width: 28, alignItems: "center" },
   dot: { width: 13, height: 13, borderRadius: 7, backgroundColor: colors.teal, borderWidth: 3, borderColor: colors.background },
   currentDot: { backgroundColor: colors.burgundy },
   line: { width: 2, flex: 1, backgroundColor: colors.line },
-  eventBody: { flex: 1, paddingLeft: spacing.md, paddingBottom: spacing.xl },
-  eventTitle: { fontFamily: type.medium, fontWeight: "500", color: colors.charcoal, fontSize: 14, lineHeight: 20 },
-  eventDate: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, marginTop: spacing.xs },
+  eventBody: { flex: 1, paddingLeft: 12, paddingBottom: 18 },
+  eventTitle: { ...typography.body, fontFamily: type.medium },
+  eventDate: { ...typography.metadata, marginTop: 4 },
   messageArea: { marginTop: spacing.xl, gap: spacing.md },
   messageBubble: { alignSelf: "flex-start", maxWidth: "92%", backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, borderWidth: 1, borderColor: colors.line },
   messageText: { fontFamily: type.regular, color: colors.charcoal, fontSize: 14, lineHeight: 20 },

@@ -14,7 +14,7 @@ import { CivicObject } from "../../src/components/CivicObject";
 import { Screen } from "../../src/components/Screen";
 import { useLanguage } from "../../src/i18n";
 import { useAccountSync } from "../../src/useStoreUserEffect";
-import { colors, type } from "../../src/theme";
+import { colors, type, typography } from "../../src/theme";
 
 const requestStatus: Record<string, { sw: string; en: string }> = {
   draft: { sw: "Rasimu", en: "Draft" },
@@ -56,10 +56,10 @@ export default function CasesScreen() {
 
   return <Screen>
     <CivicPageHeader compact title={sw ? "Maombi na kesi" : "Requests and cases"} actionIcon="add" actionLabel={sw ? "Omba msaada mpya" : "Request new help"} onAction={() => router.push("/intake")} />
-    {isSignedIn ? <View style={styles.intro}><View style={styles.supportCopy}><Text style={styles.emptyTitle}>{sw ? "Hatua zako, pamoja." : "Your next steps, together."}</Text><Text style={styles.emptyBody}>{sw ? "Fuatilia ombi lako na hatua inayofuata." : "Follow your request and see what comes next."}</Text></View><CivicIllustration pose="review" size={100} /></View> : null}
+    {isSignedIn ? <View style={styles.intro}><View style={styles.supportCopy}><Text style={styles.introTitle}>{sw ? "Hatua zako, pamoja." : "Your next steps, together."}</Text><Text style={styles.emptyBody}>{sw ? "Fuatilia ombi lako na hatua inayofuata." : "Follow your request and see what comes next."}</Text></View><CivicIllustration pose="review" size={84} /></View> : null}
 
     {isSignedIn ? <View accessibilityRole="tablist" style={styles.tabs}>
-      {(["active", "history"] as const).map((tab) => <Pressable key={tab} accessibilityRole="tab" accessibilityState={{ selected: view === tab }} onPress={() => setView(tab)} style={[styles.tab, view === tab && styles.tabActive]}><Text style={[styles.tabText, view === tab && styles.tabTextActive]}>{tab === "active" ? (sw ? "Yanayoendelea" : "In progress") : (sw ? "Historia" : "History")}{!loading ? `  ${tab === "active" ? activeCount : historyCount}` : ""}</Text></Pressable>)}
+      {(["active", "history"] as const).map((tab) => <Pressable key={tab} accessibilityRole="tab" accessibilityState={{ selected: view === tab }} onPress={() => setView(tab)} style={[styles.tab, view === tab && styles.tabActive]}><Ionicons name={tab === "active" ? "time-outline" : "archive-outline"} size={20} color={view === tab ? colors.teal : colors.inkMuted} /><Text style={[styles.tabText, view === tab && styles.tabTextActive]}>{tab === "active" ? (sw ? "Yanayoendelea" : "In progress") : (sw ? "Historia" : "History")}</Text>{!loading ? <Text style={styles.tabCount}>{tab === "active" ? activeCount : historyCount}</Text> : null}</Pressable>)}
     </View> : null}
 
     {!isSignedIn ? <View style={styles.empty}>
@@ -75,15 +75,15 @@ export default function CasesScreen() {
       </View>
       <Button label={sw ? "Ingia kwenye akaunti" : "Sign in to your account"} style={styles.button} onPress={() => router.push("/sign-in")} />
     </View> : loading ? <View style={styles.loading}><BrandLoading compact text={sw ? "Tunapakua taarifa zako..." : "Loading your updates..."}/></View> : hasResults ? <>
-      {filteredRequests.length ? <Text style={styles.sectionLabel}>{sw ? "MAOMBI" : "REQUESTS"}</Text> : null}
+      {filteredRequests.length ? <Text style={styles.sectionLabel}>{sw ? "Maombi" : "Requests"}</Text> : null}
       {filteredRequests.map((item) => <Pressable accessibilityRole="button" key={item._id} style={({ pressed }) => [styles.record, pressed && styles.pressed]} onPress={() => router.push({ pathname: "/request/[id]", params: { id: item._id } })}>
         <View style={styles.recordTop}><Text style={styles.reference}>{item.publicId}</Text><Ionicons name="arrow-forward" size={19} color={colors.inkMuted} /></View>
         <Text style={styles.recordTitle}>{issueLabels[item.issueCategory ?? ""]?.[locale] ?? (sw ? "Ombi la msaada wa kisheria" : "Legal help request")}</Text>
         <View style={styles.statusRow}><View style={[styles.statusDot, item.status === "waiting_for_information" && styles.attentionDot]} /><Text style={styles.statusText}>{requestStatus[item.status]?.[locale] ?? item.status.replaceAll("_", " ")}</Text></View>
         <View style={styles.recordFooter}><Ionicons name={item.status === "waiting_for_information" ? "alert-circle-outline" : "time-outline"} size={16} color={colors.burgundy} /><Text style={styles.nextStep}>{item.status === "waiting_for_information" ? (sw ? "Fungua kuona taarifa zinazohitajika" : "See what information is needed") : (sw ? "Angalia maendeleo ya ombi" : "View request progress")}</Text></View>
       </Pressable>)}
-      {filteredCases.length ? <Text style={styles.sectionLabel}>{sw ? "KESI" : "CASES"}</Text> : null}
-      {filteredCases.map((item) => <Pressable accessibilityRole="button" key={item._id} style={({ pressed }) => [styles.record, pressed && styles.pressed]} onPress={() => router.push({ pathname: "/case/[id]", params: { id: item._id } })}>
+      {filteredCases.length ? <Text style={styles.sectionLabel}>{sw ? "Kesi" : "Cases"}</Text> : null}
+      {filteredCases.map((item) => <Pressable accessibilityRole="button" key={item._id} style={({ pressed }) => [styles.record, styles.caseRecord, pressed && styles.pressed]} onPress={() => router.push({ pathname: "/case/[id]", params: { id: item._id } })}>
         <View style={styles.recordTop}><Text style={styles.reference}>{item.publicId}</Text><Text style={styles.date}>{new Date(item.updatedAt).toLocaleDateString(sw ? "sw-TZ" : "en-TZ", { day: "numeric", month: "short" })}</Text></View>
         <Text style={styles.recordTitle} numberOfLines={2}>{item.summary}</Text>
         <View style={styles.statusRow}><View style={[styles.statusDot, item.status === "waiting_for_information" && styles.attentionDot]} /><Text style={styles.statusText}>{caseStatusLabels[locale][item.status]}</Text></View>
@@ -102,28 +102,31 @@ export default function CasesScreen() {
 }
 
 const styles = StyleSheet.create({
-  tabs: { flexDirection: "row", backgroundColor: "#F4F2F3", padding: 4, borderRadius: 10, marginBottom: 24 },
-  tab: { flex: 1, minHeight: 44, justifyContent: "center", alignItems: "center", paddingHorizontal: 6, borderRadius: 7 },
-  tabActive: { backgroundColor: colors.surface },
-  tabText: { fontFamily: type.medium, fontSize: 13, color: colors.inkMuted },
-  tabTextActive: { color: colors.burgundy, fontFamily: type.semibold },
-  sectionLabel: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 11, marginBottom: 12, marginTop: 8 },
-  intro: { flexDirection: "row", alignItems: "center", gap: 16, marginBottom: 24 },
-  record: { padding: 18, marginBottom: 12, borderRadius: 8, backgroundColor: "#F4F6F5", gap: 10 },
+  tabs: { flexDirection: "row", backgroundColor: "#F5F6F6", padding: 4, borderRadius: 8, marginBottom: 16, gap: 4 },
+  tab: { flex: 1, minHeight: 52, flexDirection: "row", flexWrap: "wrap", justifyContent: "center", alignItems: "center", paddingHorizontal: 6, paddingVertical: 8, gap: 5, borderRadius: 6 },
+  tabActive: { backgroundColor: colors.surface, shadowColor: "#142B29", shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6, elevation: 1 },
+  tabText: { ...typography.supporting, fontFamily: type.medium, flexShrink: 1 },
+  tabTextActive: { color: colors.ink, fontFamily: type.semibold },
+  tabCount: { ...typography.metadata, color: colors.teal, minWidth: 16, textAlign: "center" },
+  sectionLabel: { ...typography.sectionTitle, marginBottom: 10, marginTop: 12 },
+  intro: { flexDirection: "row", alignItems: "center", gap: 12, marginBottom: 16 },
+  introTitle: { ...typography.itemTitle },
+  record: { padding: 16, marginBottom: 12, borderRadius: 8, backgroundColor: "#F3F8F7", gap: 8, shadowColor: "#183C38", shadowOffset: { width: 0, height: 3 }, shadowOpacity: 0.025, shadowRadius: 10, elevation: 1 },
+  caseRecord: { backgroundColor: "#F7F6FA" },
   recordTop: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
-  reference: { fontFamily: type.medium, color: colors.inkMuted, fontSize: 12 },
-  date: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 11 },
-  recordTitle: { fontFamily: type.semibold, fontSize: 16, lineHeight: 23, color: colors.ink },
+  reference: { ...typography.metadata, flexShrink: 1 },
+  date: { ...typography.metadata },
+  recordTitle: { ...typography.itemTitle },
   statusRow: { flexDirection: "row", alignItems: "center", gap: 7 },
   statusDot: { width: 6, height: 6, borderRadius: 3, backgroundColor: colors.teal },
   attentionDot: { backgroundColor: colors.warning },
-  statusText: { flex: 1, fontFamily: type.regular, color: colors.inkMuted, fontSize: 13, lineHeight: 19 },
+  statusText: { flex: 1, ...typography.supporting },
   recordFooter: { flexDirection: "row", alignItems: "center", gap: 7, paddingTop: 5 },
-  nextStep: { flex: 1, fontFamily: type.medium, color: colors.burgundy, fontSize: 12, lineHeight: 18 },
+  nextStep: { flex: 1, ...typography.supporting, fontFamily: type.medium, color: colors.burgundy },
   empty: { paddingTop: 20, paddingBottom: 24 },
-  emptyIcon: { width: 58, height: 58, backgroundColor: colors.burgundySoft, borderRadius: 18, alignItems: "center", justifyContent: "center", marginBottom: 20 },
-  emptyTitle: { fontFamily: type.editorial, fontSize: 25, lineHeight: 32, color: colors.ink },
-  emptyBody: { marginTop: 9, fontFamily: type.regular, fontSize: 14, lineHeight: 22, color: colors.inkMuted },
+  emptyIcon: { width: 48, height: 48, alignItems: "center", justifyContent: "center", marginBottom: 16 },
+  emptyTitle: { ...typography.sectionTitle },
+  emptyBody: { ...typography.supporting, marginTop: 6 },
   benefits: { marginTop: 23, gap: 18 },
   benefit: { flexDirection: "row", alignItems: "center", gap: 12 },
   benefitText: { flex: 1, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: colors.ink },

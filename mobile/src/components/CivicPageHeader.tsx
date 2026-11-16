@@ -1,7 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { typography, colors, type } from "../theme";
+import { typography, colors } from "../theme";
 import { useLanguage } from "../i18n";
 
 export function CivicPageHeader({ title, subtitle, compact = false, back, backLabel, onBack, actionIcon, actionLabel, onAction }: {
@@ -19,7 +19,7 @@ export function CivicPageHeader({ title, subtitle, compact = false, back, backLa
   return <View style={styles.header}>
     <View style={styles.top}>
       {back ? <Pressable accessibilityRole="button" accessibilityLabel={backLabel ?? (locale === "sw" ? "Rudi" : "Back")} onPress={onBack ?? (() => router.canGoBack() ? router.back() : router.replace("/(tabs)"))} style={styles.back}><Ionicons name="arrow-back" size={23} color={colors.ink} /></Pressable> : null}
-      <Text accessibilityRole="header" style={[styles.title, compact && { fontSize: 24, lineHeight: 31 }]}>{title}</Text>
+      <Text accessibilityRole="header" style={[styles.title, compact && typography.compactTitle]}>{title}</Text>
       {actionIcon && actionLabel && onAction ? <Pressable accessibilityRole="button" accessibilityLabel={actionLabel} onPress={onAction} style={({ pressed }) => [styles.action, pressed && styles.pressed]}><Ionicons name={actionIcon} size={23} color={colors.burgundy} /></Pressable> : null}
     </View>
     {subtitle ? <Text style={styles.subtitle}>{subtitle}</Text> : null}
@@ -27,11 +27,11 @@ export function CivicPageHeader({ title, subtitle, compact = false, back, backLa
 }
 
 const styles = StyleSheet.create({
-  header: { paddingTop: 12, marginBottom: 24 },
+  header: { paddingTop: 12, marginBottom: 18 },
   top: { flexDirection: "row", alignItems: "center", gap: 10 },
   back: { width: 44, minHeight: 48, justifyContent: "center" },
   title: { flex: 1, ...typography.pageTitle },
-  action: { width: 48, height: 48, borderRadius: 24, alignItems: "center", justifyContent: "center", backgroundColor: colors.burgundySoft },
-  subtitle: { marginTop: 7, fontFamily: type.regular, fontSize: 14, lineHeight: 21, color: colors.inkMuted },
+  action: { width: 48, height: 48, alignItems: "center", justifyContent: "center" },
+  subtitle: { ...typography.body, marginTop: 6, color: colors.inkMuted },
   pressed: { opacity: 0.65 },
 });

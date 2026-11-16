@@ -44,7 +44,7 @@ export default function SavedDocumentScreen() {
   }
   function confirmBrief() {
     const title = sw ? "AI isome hati hii?" : "Let AI read this document?";
-    const message = sw ? "Hati itatumwa kwa OpenAI kuandaa muhtasari wa AI. Muhtasari unaweza kukosea; si ushauri wa kisheria. Endelea ikiwa unakubali." : "Your document will be sent to OpenAI for an AI summary. It can be wrong and is not legal advice. Continue if you agree.";
+    const message = sw ? "Hati itachakatwa na huduma ya AI kuandaa muhtasari. Muhtasari unaweza kukosea; si ushauri wa kisheria. Endelea ikiwa unakubali." : "Your document will be processed by an AI service for a summary. It can be wrong and is not legal advice. Continue if you agree.";
     if (Platform.OS === "web") { if (window.confirm(`${title}\n\n${message}`)) void createBrief(); }
     else Alert.alert(title, message, [{ text: sw ? "Ghairi" : "Cancel", style: "cancel" }, { text: sw ? "Nimekubali" : "I agree", onPress: () => void createBrief() }]);
   }

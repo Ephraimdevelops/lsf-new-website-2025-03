@@ -40,13 +40,18 @@ test('push preview uses recipient locale and stays neutral for every copy catego
   const sw=notificationCopy(type,'sw',en);assert.match(sw.title,/Taarifa/);assert.doesNotMatch(sw.body,/land|employment|beneficiary|caseId|private/);assert.ok(sw.body.length>5);
  }
 });
-test('primary copy uses everyday Kiswahili and retains named AI recipient and deletion confirmation',()=>{
+test('primary copy uses everyday Kiswahili and retains AI processing consent and deletion confirmation',()=>{
  const catalogue=JSON.parse(fs.readFileSync(new URL('../src/i18n/uiCopy.json',import.meta.url),'utf8'));
  assert.equal(catalogue['My Haki Yangu workspace'],'Maombi yangu ya msaada');
  assert.equal(catalogue['Send message'],'Tuma ujumbe');
  assert.equal(catalogue['Current intake'],'Inapokea watu wapya?');
  const brief=fs.readFileSync(new URL('../mobile/app/saved-document/[id].tsx',import.meta.url),'utf8');
- assert.match(brief,/OpenAI/);assert.match(brief,/muhtasari/);
+ assert.match(brief,/AI service/);assert.match(brief,/huduma ya AI/);assert.match(brief,/consent: true/);assert.match(brief,/muhtasari/);
  const deletion=fs.readFileSync(new URL('../mobile/src/components/DeleteAccount.tsx',import.meta.url),'utf8');
  assert.match(deletion,/confirmation !== "DELETE"/);assert.match(deletion,/historia ya mabadiliko/);
+});
+
+test('source-review failures explain the next step without exposing backend diagnostics',()=>{
+ assert.match(plainError(new Error('[CONVEX M request-id] Uncaught Error: A different administrator must review this source.'),'en'),/different administrator/i);
+ assert.match(plainError(new Error('Resolve the source curation flags before approval.'),'en'),/highlighted source-review issues/);
 });

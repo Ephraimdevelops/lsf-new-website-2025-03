@@ -15,7 +15,7 @@ import { SectionHeading } from "../../src/components/Surface";
 import { useLanguage } from "../../src/i18n";
 import { resources } from "../../src/resources";
 import { useSavedResources } from "../../src/useSavedResources";
-import { colors, radius, spacing, type } from "../../src/theme";
+import { colors, radius, spacing, type, typography } from "../../src/theme";
 import { api } from "../../src/backend/api";
 import { useAuth } from "../../src/auth";
 import { useAccountSync } from "../../src/useStoreUserEffect";
@@ -126,9 +126,9 @@ export default function LearnScreen({ libraryOnly = false }: { libraryOnly?: boo
 
 const styles = StyleSheet.create({
   libraryIntro: { flexDirection: "row", alignItems: "center", gap: 16, marginBottom: 20 },
-  introHeading: { fontFamily: type.semibold, fontSize: 21, lineHeight: 28, color: colors.ink },
+  introHeading: { fontFamily: type.bold, fontSize: 23, lineHeight: 30, color: colors.ink },
   savedIntro: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 15, lineHeight: 23, marginBottom: spacing.xl },
-  savedSection: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: spacing.xl, marginBottom: spacing.sm },
+  savedSection: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: spacing.lg, marginBottom: spacing.sm, paddingBottom: 10, borderBottomWidth: 1, borderBottomColor: colors.line },
   sectionCount: { fontFamily: type.medium, color: colors.burgundy, fontSize: 13 },
   savedShortcut: { minHeight: 54, flexDirection: "row", alignItems: "center", gap: spacing.md, borderBottomWidth: 1, borderColor: colors.line },
   shortcutText: { flex: 1, fontFamily: type.medium, color: colors.ink, fontSize: 15 },
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   search: { minHeight: 54, borderRadius: 8, backgroundColor: "#F3F5F4", flexDirection: "row", alignItems: "center", paddingHorizontal: spacing.md },
   input: { flex: 1, paddingHorizontal: spacing.sm, fontFamily: type.regular, color: colors.charcoal, fontSize: 15 },
   libraryHeader: { marginTop: spacing.xl, marginBottom: spacing.sm, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: spacing.md },
-  sectionTitle: { flex: 1, fontFamily: type.editorial, color: colors.ink, fontSize: 20 },
+  sectionTitle: { ...typography.sectionTitle, flex: 1 },
   savedToggle: { minHeight: 48, flexDirection: "row", alignItems: "center", gap: 6, paddingHorizontal: spacing.sm },
   savedToggleText: { fontFamily: type.bold, color: colors.burgundy, fontSize: 12 },
   checklistNotice: { flexDirection: "row", alignItems: "flex-start", gap: spacing.sm, backgroundColor: colors.tealSoft, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.sm },
@@ -156,10 +156,10 @@ const styles = StyleSheet.create({
   categoryTextActive: { color: colors.surface },
   section: { fontFamily: type.bold, fontWeight: "700", color: colors.charcoal, fontSize: 17, marginTop: spacing.xl, marginBottom: spacing.md },
   guide: { flexDirection: "row", alignItems: "center", gap: spacing.md, backgroundColor: colors.surface, borderBottomWidth: 1, borderBottomColor: colors.line, paddingVertical: spacing.md },
-  guideIcon: { width: 40, height: 40, borderRadius: 8, backgroundColor: "#F3F5F4", alignItems: "center", justifyContent: "center" },
+  guideIcon: { width: 36, height: 44, alignItems: "center", justifyContent: "center" },
   guideCopy: { flex: 1 },
-  guideText: { fontFamily: type.semibold, color: colors.charcoal, fontSize: 16, lineHeight: 23 },
-  summary: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 14, lineHeight: 21, marginTop: 4 },
+  guideText: { ...typography.itemTitle },
+  summary: { ...typography.supporting, marginTop: 4 },
   guideMeta: { marginTop: spacing.sm, flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   minutes: { fontFamily: type.regular, color: colors.inkMuted, fontSize: 12, marginTop: 4 },
   readAction: { fontFamily: type.bold, color: colors.burgundy, fontSize: 11 },
