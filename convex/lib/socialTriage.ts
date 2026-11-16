@@ -35,8 +35,8 @@ export function replyEscalation(parsed:any, evidence:{legal:boolean;directory:bo
 }
 
 export function aiContinuationReply(locale:string,reason?:string){
- if(reason==='no_verified_answer')return locale==='sw'?'Sina chanzo kilichoidhinishwa kinachothibitisha jibu hilo kwa sasa, hivyo sitabuni sheria au mawasiliano. Naweza kukusaidia kupanga maelezo na hatua za maandalizi hapa. Unataka kufanikisha nini katika suala hili?':'I could not verify that answer from the approved information available, so I will not invent a rule or contact. I can still help organise the facts and prepare next steps here. What outcome are you trying to achieve?';
- return locale==='sw'?'Samahani, sijafanikiwa kuandaa jibu la kuaminika kwa ujumbe huu. Bado niko hapa kama Haki Yangu AI; sijahamisha mazungumzo kwa mtu. Tafadhali jaribu swali tena kwa ufupi.':'I could not produce a reliable answer to this message. I’m still here as Haki Yangu AI; this chat has not been transferred to a person. Please try the question again briefly.';
+ if(reason==='no_verified_answer')return locale==='sw'?'Sijaweza kuthibitisha taarifa hiyo kwenye vyanzo nilivyonavyo. Sitaki kukupa sheria au mawasiliano yasiyo sahihi.':'I could not verify that detail from the information available to me. I do not want to give you an incorrect rule or contact.';
+ return locale==='sw'?'Samahani, jibu langu halikukamilika. Tafadhali tuma tena swali lako la mwisho; bado tunaendelea na mazungumzo haya.':'Sorry, my answer did not finish. Please send your last question again; we are still in the same conversation.';
 }
 
 export function socialPriority(reason?:string){return reason==='urgent_safety'?'urgent':reason==='sensitive_case'||reason==='not_helped'?'priority':'standard';}

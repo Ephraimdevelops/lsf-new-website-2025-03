@@ -1,4 +1,4 @@
-import {formatHakiReply,selectConversationRecall} from "./lib/saadaVoice";
+import {formatHakiReply,selectConversationRecall,briefReplyPreference} from "./lib/saadaVoice";
 import {v} from 'convex/values';
 import {paginationOptsValidator} from 'convex/server';
 import {query,mutation,internalMutation,internalQuery} from './_generated/server';
@@ -42,7 +42,9 @@ export const receive=internalMutation({args:{channel,account:v.string(),sender:v
     const patch=humanHandoffPatch(previousHandoff.active&&['urgent_safety','sensitive_case','ai_opt_out'].includes(previousHandoff.reason)?previousHandoff.reason:reason,Date.now(),args.text);
     await ctx.db.patch(conversation._id,{...patch,...(patch.humanModeReason==='ai_opt_out'?{consent:false,voiceConsent:false}:{})});
   }
-  const locale=responseLocale(args.text,undefined,recent.filter(x=>!x.staffReply).reverse().map(x=>x.text));
+  const locale=responseLocale(args.text,conversation.replyLocale,recent.filter(x=>!x.staffReply).reverse().map(x=>x.text));
+  const briefReply=briefReplyPreference(args.text,[],conversation.briefReply);
+  await ctx.db.patch(conversation._id,{replyLocale:locale,briefReply});
   const pendingVoice=accepted?recent.find(x=>!x.staffReply):undefined;
   const inheritedVoice=pendingVoice?.channel==='whatsapp'&&pendingVoice.inputType==='audio'&&pendingVoice.mediaId&&pendingVoice.transcriptionStatus==='awaiting_consent'?pendingVoice:undefined;
   if(inheritedVoice&&conversation.consent){await ctx.db.patch(conversation._id,{voiceConsent:true});conversation={...conversation,voiceConsent:true};}
@@ -51,7 +53,7 @@ export const receive=internalMutation({args:{channel,account:v.string(),sender:v
   const isVoice=args.inputType==='audio'||!!inheritedVoice;
   const voiceNotice='I received your voice note, but voice transcription is not available here yet. Please type your question, or reply HUMAN for the LSF team.\n\nNimepokea ujumbe wako wa sauti, lakini bado siwezi kuusikiliza hapa. Tafadhali andika swali lako, au jibu MTU kwa msaada wa timu ya LSF.';
   const automaticReply=isVoice&&!escalate&&!canTranscribe?(args.channel==='whatsapp'&&voiceMedia&&(!conversation.consent||!conversation.voiceConsent)?(locale==='sw'?'Nimepokea ujumbe wako wa sauti. Ukiidhinisha, huduma ya AI itausoma kuwa maandishi ili nikujibu.':'I received your voice note. With your agreement, an AI service will transcribe it so I can answer.')+'\n\n'+consentReply(locale):voiceNotice+(!conversation.consent?'\n\n'+consentReply(locale):'')):reason&&!conversation.humanMode?handoffReply(locale):!escalate&&!conversation.consent&&!accepted?consentReply(locale):undefined;
-  const id=await ctx.db.insert('social_messages',{...args,...(inheritedVoice?{voiceSourceMessageId:inheritedVoice._id}:{}),...(isVoice&&voiceMedia?{inputType:'audio' as const,mediaId:voiceMedia,transcriptionStatus:canTranscribe?'pending':'awaiting_consent'}:{}),status:automaticReply?'approved':escalate?'escalated':'drafting',...(resumeForNewMessage&&!escalate?{resumedAfterHandoff:true}:{}),...(escalate?{escalationReason:reason||'human_takeover'}:{}),...(automaticReply?{approvedText:formatHakiReply(automaticReply),automatic:true}:{})});
+  const id=await ctx.db.insert('social_messages',{...args,replyLocale:locale,briefReply,...(inheritedVoice?{voiceSourceMessageId:inheritedVoice._id}:{}),...(isVoice&&voiceMedia?{inputType:'audio' as const,mediaId:voiceMedia,transcriptionStatus:canTranscribe?'pending':'awaiting_consent'}:{}),status:automaticReply?'approved':escalate?'escalated':'drafting',...(resumeForNewMessage&&!escalate?{resumedAfterHandoff:true}:{}),...(escalate?{escalationReason:reason||'human_takeover'}:{}),...(automaticReply?{approvedText:formatHakiReply(automaticReply),automatic:true}:{})});
   if(inheritedVoice)await ctx.db.patch(inheritedVoice._id,{transcriptionStatus:'linked'});
   if(automaticReply)await ctx.scheduler.runAfter(0,internal.socialMessagingActions.send,{id});
   else if(!escalate)await ctx.scheduler.runAfter(0,canTranscribe?internal.socialVoice.transcribe:internal.socialMessagingActions.draft,{id});
@@ -86,8 +88,10 @@ export const finishDraft=internalMutation({args:{id:v.id('social_messages'),text
   }
   // An unsupported/model-failed response is withheld, not converted into a
   // human takeover. A fresh DM can immediately try the AI again.
-  const reply=formatHakiReply(reason?aiContinuationReply(socialLocale(row.text),reason):text!);
-  await ctx.db.patch(id,{status:'approved',automatic:true,aiKind:reason?'information':kind,escalationReason:undefined,...(reason?{error:'AI answer withheld: '+reason}:{}),approvedText:row.resumedAfterHandoff?resumedAIReply(reply,socialLocale(row.text)):reply});
+  const recent=await ctx.db.query('social_messages').withIndex('by_sender',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).order('desc').take(25);
+  const locale=row.transcriptionLocale??row.replyLocale??responseLocale(row.transcribedText??row.text,conversation?.replyLocale,recent.filter(x=>!x.staffReply&&x._id!==id).reverse().map(x=>x.transcribedText??x.text));
+  const reply=formatHakiReply(reason?aiContinuationReply(locale,reason):text!);
+  await ctx.db.patch(id,{status:'approved',automatic:true,aiKind:reason?'information':kind,escalationReason:undefined,...(reason?{error:'AI answer withheld: '+reason}:{}),approvedText:row.resumedAfterHandoff?resumedAIReply(reply,locale):reply});
   await ctx.scheduler.runAfter(0,internal.socialMessagingActions.send,{id});
 }});
 export const claimSend=internalMutation({args:{id:v.id('social_messages')},handler:async(ctx,{id})=>{
@@ -167,4 +171,15 @@ export const claimTranscription=internalMutation({args:{id:v.id('social_messages
  const recent=await ctx.db.query('social_messages').withIndex('by_sender',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).order('desc').take(24);
  const transcriptionLocale=responseLocale('',undefined,recent.filter(x=>!x.staffReply&&x.inputType!=='audio').reverse().map(x=>x.text));
  await ctx.db.patch(id,{transcriptionStatus:'processing',transcriptionLocale});return {...row,transcriptionLocale};
+}});
+
+// Best-effort activity signal only for a current, consented automatic draft.
+// Repeated jobs, staff takeovers and superseded messages must never reactivate it.
+export const claimTyping=internalMutation({args:{id:v.id('social_messages')},handler:async(ctx,{id})=>{
+ const row=await ctx.db.get(id);
+ if(!row||row.status!=='drafting'||row.typingStartedAt||!['whatsapp','messenger'].includes(row.channel)||Date.now()-row.sentAt>23*60*60*1000)return null;
+ const c=await ctx.db.query('social_conversations').withIndex('by_identity',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).unique();
+ const latest=await ctx.db.query('social_messages').withIndex('by_sender',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).order('desc').first();
+ if(!c?.consent||c.humanMode||latest?._id!==id)return null;
+ await ctx.db.patch(id,{typingStartedAt:Date.now()});return row;
 }});

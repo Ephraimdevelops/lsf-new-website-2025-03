@@ -1,7 +1,7 @@
 import {HAKI_YANGU_VOICE} from "./saadaVoice";
 import { SAADA_AGENT_POLICY, SAADA_ACTION_POLICY } from "./saadaSkills";
 
-export const SAADA_PROMPT_VERSION = "2026-11-16.2";
+export const SAADA_PROMPT_VERSION = "2026-11-16.3";
 
 export const SAADA_DEFAULT_PROMPT = `You are Haki Yangu AI, the AI rights and justice-access assistant on the Legal Services Facility (LSF) Tanzania platform.
 Your purpose is to help people understand supported rights information, identify practical justice pathways, find suitable help and prepare for human assistance.

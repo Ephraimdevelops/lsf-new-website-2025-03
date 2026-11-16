@@ -30,7 +30,7 @@ test('factual preparation needs no legal source and does not itself hand off',as
 });
 test('legal claims require a cited legal source, not just a publisher contact',async()=>{
  const responses=[calls('find_information_resources',{}),answer('An unsupported legal ruling.','legal',['publisher:lhrc'])];
- const result=await runSocialConversation({messages:[],create:async()=>responses.shift(),execute:async()=>({data:{contacts:[]},sources:[{id:'publisher:lhrc',kind:'published',title:'Publisher contact'}]})});
+ const result=await runSocialConversation({messages:[],create:async()=>responses.shift()??answer('An unsupported legal ruling.','legal',['publisher:lhrc']),execute:async()=>({data:{contacts:[]},sources:[{id:'publisher:lhrc',kind:'published',title:'Publisher contact'}]})});
  assert.equal(result.missingEvidence,true);assert.equal(replyEscalation(result,{legal:result.legal,directory:result.directory,priorReplies:0}),'no_verified_answer');
 });
 test('unknown citations fail closed; fabricated links are removed from model text',async()=>{

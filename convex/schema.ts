@@ -1509,6 +1509,7 @@ export default defineSchema({
     account: v.string(), sender: v.string(), eventId: v.string(), text: v.string(), sentAt: v.number(),
     inputType: v.optional(v.literal("audio")),
     mediaId:v.optional(v.string()),voiceSourceMessageId:v.optional(v.id("social_messages")),transcribedText:v.optional(v.string()),transcriptionStatus:v.optional(v.string()),transcriptionLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))),
+    replyLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))), briefReply:v.optional(v.boolean()), typingStartedAt:v.optional(v.number()),
     aiKind: v.optional(v.string()),
     aiTools: v.optional(v.array(v.string())), aiSourceUrls: v.optional(v.array(v.string())), aiPromptVersion: v.optional(v.string()),
     staffReply: v.optional(v.boolean()), automatic: v.optional(v.boolean()), escalationReason: v.optional(v.string()),
@@ -1519,6 +1520,6 @@ export default defineSchema({
   }).index("by_event", ["channel", "eventId"]).index("by_status", ["status"]).index("by_sender", ["channel", "account", "sender"]),
 
   conversation_context:defineTable({scope:v.string(),facts:v.object({name:v.optional(v.string()),location:v.optional(v.string()),issue:v.optional(v.string()),desiredOutcome:v.optional(v.string()),nextStep:v.optional(v.string())}),updatedAt:v.number(),forgotBefore:v.optional(v.number())}).index('by_scope',['scope']),
-  social_conversations: defineTable({channel:v.string(),account:v.string(),sender:v.string(),humanMode:v.boolean(),humanModeUntil:v.optional(v.number()),humanModeReason:v.optional(v.string()),consent:v.boolean(),voiceConsent:v.optional(v.boolean()),updatedAt:v.number()}).index("by_identity",["channel","account","sender"]),
+  social_conversations: defineTable({replyLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))),briefReply:v.optional(v.boolean()),channel:v.string(),account:v.string(),sender:v.string(),humanMode:v.boolean(),humanModeUntil:v.optional(v.number()),humanModeReason:v.optional(v.string()),consent:v.boolean(),voiceConsent:v.optional(v.boolean()),updatedAt:v.number()}).index("by_identity",["channel","account","sender"]),
 
 });

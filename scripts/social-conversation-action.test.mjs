@@ -80,3 +80,28 @@ test('social recall uses only the inbound message identity and spaces sentence r
  assert.deepEqual(f.reads.find(x=>x.name==='socialMessaging:recallHistory').args,{id:'message-fixture',search:undefined});
  const saved=f.writes.find(x=>x.name==='socialMessaging:finishDraft').args;assert.match(saved.text,/Asha\.\n\nUlisema/);assert.equal(saved.escalate,undefined);assert.deepEqual(saved.tools,['recall_conversation']);
 });
+
+test('native WhatsApp typing uses the inbound event and cannot block the AI answer',async()=>{
+ const keys=['META_MESSAGING_ENABLED','META_GRAPH_VERSION','META_WHATSAPP_PHONE_ID','META_WHATSAPP_TOKEN'];
+ const saved=Object.fromEntries(keys.map(key=>[key,process.env[key]])),originalFetch=globalThis.fetch,requests=[];
+ try{
+  Object.assign(process.env,{META_MESSAGING_ENABLED:'true',META_GRAPH_VERSION:'v25.0',META_WHATSAPP_PHONE_ID:'typing-office',META_WHATSAPP_TOKEN:'offline-token'});
+  globalThis.fetch=async(url,options)=>{requests.push({url,payload:JSON.parse(options.body)});throw Error('Activity API unavailable');};
+  globalThis.__socialCalls=[];globalThis.__socialRounds=[answer('Karibu, naweza kukusaidiaje?','greeting')];
+  const f=fixture({'socialMessaging:get':{status:'drafting',text:'Habari'},'socialMessaging:history':[{question:'Habari'}]});
+  const mutate=f.ctx.runMutation;f.ctx.runMutation=async(ref,args)=>getFunctionName(ref)==='socialMessaging:claimTyping'?{channel:'whatsapp',account:'typing-office',sender:'fictional',eventId:'wamid.inbound-fixture'}:mutate(ref,args);
+  await actions.draft._handler(f.ctx,{id:'message-fixture'});
+  assert.equal(requests.length,1);assert.deepEqual(requests[0].payload,{messaging_product:'whatsapp',status:'read',message_id:'wamid.inbound-fixture',typing_indicator:{type:'text'}});
+  assert.equal(f.writes.find(x=>x.name==='socialMessaging:finishDraft').args.kind,'greeting');
+ }finally{globalThis.fetch=originalFetch;for(const key of keys){if(saved[key]===undefined)delete process.env[key];else process.env[key]=saved[key];}}
+});
+
+test('an empty directory returns a real published LSF office alternative without inventing an individual',async()=>{
+ globalThis.__socialCalls=[];globalThis.__socialRounds=[tool('find_paralegals',{district:'Ilala'}),answer('Sina msaidizi aliyethibitishwa hapo. Haya ni mawasiliano ya ofisi ya LSF kwa kuulizia msaada.','information',['lsf:contact'])];
+ const f=fixture({'socialMessaging:get':{status:'drafting',text:'Nahitaji msaidizi wa kisheria Ilala'},'socialMessaging:history':[{question:'Nahitaji msaidizi wa kisheria Ilala'}]});
+ await actions.draft._handler(f.ctx,{id:'message-fixture'});
+ const context=JSON.parse(globalThis.__socialCalls[1].messages.find(x=>x.role==='tool').content);
+ assert.deepEqual(context.data.paralegals,[]);assert.equal(context.data.publishedOfficeAlternative.phone,'+255 22 260 1534');
+ assert.match(context.data.publishedOfficeAlternative.note,/Not the nearest/);
+ const saved=f.writes.find(x=>x.name==='socialMessaging:finishDraft').args;assert.equal(saved.escalate,undefined);assert.match(saved.text,/https:\/\/lsftz.org\/contact/);
+});

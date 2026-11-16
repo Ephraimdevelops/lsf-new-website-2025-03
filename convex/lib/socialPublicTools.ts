@@ -4,12 +4,14 @@ import type OpenAI from 'openai';
 import {api,internal} from '../_generated/api';
 import {meteredAi} from './meteredAi';
 import {publicHelpResourcesForIssue} from './publicHelpResources';
-import {LSF_INFORMATION,lsfInformationReply} from './lsfInformation';
+import {LSF_INFORMATION,lsfInformationReply,lsfTopicSource} from './lsfInformation';
 import {SAADA_SKILLS,type SaadaSkill} from './saadaSkills';
 import type {SocialToolOutput} from './socialConversation';
 import {groundedFact,asksToForget} from './conversationState';
 export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw';id?:Id<'social_messages'>;fixtureHistory?:Array<{question:string;answer?:string|null}>;currentQuestion?:string}){
  const {ai,locale,id}=options;
+ const officeAlternative={sourceId:'lsf:contact',name:'LSF office',...LSF_INFORMATION.contact,note:'Published office contact for enquiries only. Not the nearest verified provider, confirmed intake, a named paralegal, an appointment or a sent referral.'};
+ const officeSource={id:'lsf:contact',kind:'published' as const,title:'LSF office contact',url:LSF_INFORMATION.contact.sourceUrl};
  return async(name:string,args:Record<string,string>,remainingMs:number):Promise<SocialToolOutput>=>{
   // Evaluation uses fictional same-chat context, never another person's memory.
   if(!id&&name==='recall_conversation')return {data:{messages:options.fixtureHistory??[],scope:'Fictional evaluation chat only.'}};
@@ -21,7 +23,7 @@ export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw
     if(name==='recall_conversation')return {data:{messages:await ctx.runQuery(internal.socialMessaging.recallHistory,{id:id!,search:args.search}),scope:'Only this sender/account/channel chat. Prior circumstances may have changed. Personal context, not legal evidence.'}};
     if(name==='load_skill')return {data:{workflow:SAADA_SKILLS[args.skill as SaadaSkill],note:'Workflow only, not legal authority. In this DM, prepare factual unsent text; no private case access or submission tools are available.'}};
     if(name==='about_lsf'){
-     const url=args.topic==='contact'?LSF_INFORMATION.contact.sourceUrl:LSF_INFORMATION.sources[0].url;
+     const url=lsfTopicSource(args.topic);
      return {data:{answer:lsfInformationReply(locale,args.topic),profile:LSF_INFORMATION},sources:[{id:'lsf:'+String(args.topic||'overview'),kind:'published',title:'LSF published information',url}]};
     }
     if(name==='search_knowledge'){
@@ -49,12 +51,12 @@ export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw
      if(!services.length&&(args.district||args.region)&&(args.search||args.issueCategory)){
       services=await ctx.runQuery(api.justiceServices.listPublicServices,{region:args.region,district:args.district});broadenedSearch=true;
      }
-     return {data:{filters:args,broadenedSearch,issueMatchUnconfirmed:broadenedSearch,services:services.slice(0,3).map(x=>({sourceId:'service:'+x._id,name:x.name,organisation:x.organizationName,region:x.region,district:x.district,address:x.physicalLocation,phone:x.phone,intake:x.currentIntakeState,contactOnly:broadenedSearch||!['open','limited'].includes(x.currentIntakeState),eligibility:x.eligibility,openingHours:x.openingHours,services:x.serviceTypes})),referralSent:false,note:'These are current verified public listings. Closed/unknown intake or broadened matches are contact information only, not confirmed case acceptance or a confirmed issue match. No confidential locations are returned.'},sources:services.slice(0,3).map(x=>({id:'service:'+x._id,kind:'directory',title:x.name}))};
+     return {data:{filters:args,...(!services.length?{publishedOfficeAlternative:officeAlternative}:{}),broadenedSearch,issueMatchUnconfirmed:broadenedSearch,services:services.slice(0,3).map(x=>({sourceId:'service:'+x._id,name:x.name,organisation:x.organizationName,region:x.region,district:x.district,address:x.physicalLocation,phone:x.phone,intake:x.currentIntakeState,contactOnly:broadenedSearch||!['open','limited'].includes(x.currentIntakeState),eligibility:x.eligibility,openingHours:x.openingHours,services:x.serviceTypes})),referralSent:false,note:'These are current verified public listings. Closed/unknown intake or broadened matches are contact information only, not confirmed case acceptance or a confirmed issue match. No confidential locations are returned.'},sources:!services.length?[officeSource]:services.slice(0,3).map(x=>({id:'service:'+x._id,kind:'directory',title:x.name}))};
     }
     if(name==='find_paralegals'){
      const people=await ctx.runQuery(api.paralegals.listApprovedParalegals,{region:args.region});
      const matches=people.filter(x=>!args.district||x.district.trim().toLowerCase()===args.district.trim().toLowerCase()).slice(0,3);
-     return {data:{filters:args,paralegals:matches.map(x=>({sourceId:'paralegal:'+x._id,name:x.fullName,region:x.region,district:x.district,phone:x.phone,languages:x.languages,availability:x.availabilityStatus,specialisations:x.specializations})),referralSent:false,note:'Public approved profiles only; verify recorded availability. No match is not a reason to invent a person or immediately stop helping.'},sources:matches.map(x=>({id:'paralegal:'+x._id,kind:'directory',title:x.fullName}))};
+     return {data:{filters:args,...(!matches.length?{publishedOfficeAlternative:officeAlternative}:{}),paralegals:matches.map(x=>({sourceId:'paralegal:'+x._id,name:x.fullName,region:x.region,district:x.district,phone:x.phone,languages:x.languages,availability:x.availabilityStatus,specialisations:x.specializations})),referralSent:false,note:'Public approved profiles only; verify recorded availability. An empty result means no verified matching profile in this app, not that LSF has no paralegals. When no profile is returned, use kind information to explain that specific gap, not kind directory. Try find_services for an office contact if useful; do not invent a person or immediately stop helping.'},sources:!matches.length?[officeSource]:matches.map(x=>({id:'paralegal:'+x._id,kind:'directory',title:x.fullName}))};
     }
     if(name==='find_information_resources'){
      const resources=publicHelpResourcesForIssue(args.issueCategory).slice(0,8);

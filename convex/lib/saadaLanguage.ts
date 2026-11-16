@@ -5,6 +5,10 @@ const requestPattern = /\b(?:answer|reply|respond|speak|talk|continue|write|expl
 const languageCode = (name: string): Locale => /^(english|kiingereza)$/i.test(name) ? "en" : "sw";
 
 export function explicitResponseLocale(message: string): Locale | undefined {
+  // A statement of non-understanding is a language preference, not a request
+  // to answer in the language the person explicitly says they cannot understand.
+  if (/\b(?:ki{1,2}ngereza|english)\s+(?:si(?:elewi|jui)|sielewi)|\b(?:si(?:elewi|jui))\s+(?:ki{1,2}ngereza|english)\b/i.test(message)) return "sw";
+  if (/\b(?:i (?:do not|don.t|cannot|can.t) understand (?:kiswahili|swahili))\b/i.test(message)) return "en";
   const short = message.trim().replace(/[.!?]+$/g, "");
   if (/^(?:english|kiswahili|swahili|kiingereza)$/i.test(short)) return languageCode(short);
   const matches = [...message.matchAll(new RegExp(requestPattern))];
@@ -21,7 +25,7 @@ export function detectMessageLocale(message: string): Locale | undefined {
   const text = message.toLowerCase().trim();
   if (/^(?:yes|no|ok|okay|sawa|ndiyo|hapana|thanks|thank you|asante)[.!?\s]*$/.test(text)) return undefined;
   const words = text.match(/[a-z]+/g) ?? [];
-  const sw = new Set("ni ya za na ilianzishwa ilianza inafanya historia ofisi mawasiliano nani nyie kumbukumbu iko habari hujambo mambo shikamoo mimi sisi yangu zangu haki nini wapi lini vipi msaada kisheria nahitaji naomba nisaidie tafadhali kwa lugha kiswahili niko nipo wilaya mkoa mpangaji kodi mshahara sijalipwa mwajiri kazi nimefukuzwa mwenye nyumba sijui nifanye nawezaje kuanza hapa nataka kuelewa nijibu tuongee".split(" "));
+  const sw = new Set("ni ya za na ilianzishwa ilianza inafanya historia ofisi mawasiliano nani nyie kumbukumbu iko habari hujambo mambo shikamoo mimi sisi yangu zangu haki nini wapi lini vipi msaada kisheria nahitaji naomba nisaidie tafadhali kwa lugha kiswahili niko nipo wilaya mkoa mpangaji kodi mshahara sijalipwa mwajiri kazi nimefukuzwa mwenye nyumba sijui nifanye nawezaje kuanza hapa nataka kuelewa nijibu tuongee rasimu sijakuelewa aisee nimekuelewa naitwa maelezo malezo nisaidoe nifupishie unafupisha kingereza sielewi ujumla wangapi msaidiizi unamaanisha".split(" "));
   const en = new Set("hello hi hey i my me we our the am in with for and to of a an is are was were have has help please need want what how where when can could tenant landlord rent salary wages employer eviction fired unpaid understand rights legal find support near live work english company processes processing processor data messages privacy automated assistant service which who".split(" "));
   let swScore = 0, enScore = 0;
   for (const word of words) {

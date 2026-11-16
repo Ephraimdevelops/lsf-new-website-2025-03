@@ -5,7 +5,7 @@ import {v} from 'convex/values';
 import OpenAI from 'openai';
 import {CONVERSATION_QUALITY_CASES} from './lib/conversationQualityCases';
 import {makeSocialTools} from './lib/socialPublicTools';
-import {socialConversationMessages,runSocialConversation,type SocialTurn} from './lib/socialConversation';
+import {socialConversationMessages,runSocialConversation,type SocialTurn,SOCIAL_RESPONSE_FORMAT} from './lib/socialConversation';
 import {meteredAi} from './lib/meteredAi';
 import {costMicroUsd} from './lib/aiPricing';
 import {socialTriage,handoffReply,consentReply,acceptsSocialConsent,replyEscalation,aiContinuationReply} from './lib/socialTriage';
@@ -25,11 +25,17 @@ export const evaluate=action({args:{caseId:v.string(),model:v.union(v.literal('g
   else if(!consent&&!acceptsSocialConsent(question,history.length?{approvedText:history.at(-1)!.answer!,outboundId:'fixture-delivered',sentAt:Date.now()}:undefined))result={reply:consentReply(locale),kind:'consent',tools:[],protocol:true};
   else{
    consent=true;const prepared=socialConversationMessages(question,[...history.filter(x=>x.kind!=='consent'),{question}],prompt?.prompt);
-   const response=await runSocialConversation({messages:prepared.messages,execute:makeSocialTools(ctx,{ai:client,locale,fixtureHistory:history,currentQuestion:question}),create:async(messages,tools,remainingMs)=>{
-    const response=await meteredAi(ctx,{feature:'conversation_quality_eval',model:args.model,input:{messages,tools},maxOutputTokens:900},()=>client.chat.completions.create({model:args.model,messages,max_completion_tokens:900,response_format:{type:'json_object'},store:false,...(tools.length?{tools,tool_choice:'auto' as const}:{})},{timeout:Math.min(20000,remainingMs)}));calls++;inputTokens+=response.usage?.prompt_tokens??0;outputTokens+=response.usage?.completion_tokens??0;return response;
+   try{const response=await runSocialConversation({messages:prepared.messages,locale:prepared.locale,brief:prepared.brief,execute:makeSocialTools(ctx,{ai:client,locale,fixtureHistory:history,currentQuestion:question}),create:async(messages,tools,remainingMs)=>{
+    const response=await meteredAi(ctx,{feature:'conversation_quality_eval',model:args.model,input:{messages,tools},maxOutputTokens:900},()=>client.chat.completions.create({model:args.model,messages,max_completion_tokens:900,response_format:SOCIAL_RESPONSE_FORMAT,store:false,...(tools.length?{tools,tool_choice:'auto' as const}:{})},{timeout:Math.min(20000,remainingMs)}));calls++;inputTokens+=response.usage?.prompt_tokens??0;outputTokens+=response.usage?.completion_tokens??0;return response;
    }});
    const withheld=replyEscalation(response,{legal:response.legal,directory:response.directory,priorReplies:history.length});
    result={reply:withheld?aiContinuationReply(locale,withheld):response.reply,kind:response.kind,tools:response.usedTools,citations:response.cited,withheld:withheld??null,protocol:false};
+   }catch(error){
+    const message=error instanceof Error?error.message:'';
+    if(/budget|spend|allowance|rate.limit|Unauthorized|limit.*cost/i.test(message))throw error;
+    const category=/Invalid social answer: (\w+)/.exec(message)?.[1]??(/timeout/i.test(message)?'timeout':'evaluation_failed');
+    result={reply:aiContinuationReply(locale),kind:'information',tools:[],withheld:category,protocol:false};
+   }
   }
   const elapsed=Date.now()-started;latencyMs+=elapsed;turns.push({question,...result,latencyMs:elapsed});history.push({question,answer:result.reply,kind:result.kind});
  }

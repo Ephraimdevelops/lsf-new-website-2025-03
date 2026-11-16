@@ -1,3 +1,4 @@
+import {plainVocabularyReply} from "./saadaVoice";
 import { publicHelpResourcesForIssue } from "./publicHelpResources";
 import { explicitResponseLocale, withoutLanguageRequest } from "./saadaLanguage";
 export { responseLocale } from "./saadaLanguage";
@@ -15,6 +16,8 @@ export function appHelpText(locale?: "en" | "sw") {
 }
 
 export function conversationalReply(message: string, locale: "en" | "sw", previousUserTexts: string[] = []): string | undefined {
+  const vocabulary=plainVocabularyReply(message,locale);
+  if(vocabulary)return vocabulary;
   const text = withoutLanguageRequest(message).toLowerCase();
   const en = locale === "en";
   // A whole short identity question can tolerate one mistyped character. This

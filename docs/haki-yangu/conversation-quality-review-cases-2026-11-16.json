@@ -261,6 +261,60 @@
         "Answer truthfully when directly asked.",
         "Normal conversation should not repeatedly volunteer infrastructure brands."
       ]
+    },
+    {
+      "id": "conversation_repair_sw",
+      "messages": [
+        "Habari, naitwa Asha.",
+        "Nina mgogoro wa ardhi, nyumba yangu imebomolewa.",
+        "Maelezo mengi unaweza kunifupishia?",
+        "Aisee sijakuelewa kabisa",
+        "Rasimu ni nini?",
+        "Kingereza sielewi",
+        "Nipo Ukonga, nitapataje msaidizi wa kisheria?",
+        "Nipe mawasiliano yake",
+        "Nafikaje ofisini hapo?"
+      ],
+      "review_criteria": [
+        "Continue in Kiswahili, including misspellings and short follow-ups.",
+        "After simplification request use at most 65 words per answer.",
+        "Define rasimu directly without a legal-evidence failure.",
+        "Never invent a paralegal, contact, office address, bus route or landmark.",
+        "Use the known location without asking it again.",
+        "No unsupported legal conclusion or unsolicited human takeover."
+      ]
+    },
+    {
+      "id": "lsf_specific_questions",
+      "messages": [
+        "LSF CEO ni nani?",
+        "LSF ina wasaidizi wa kisheria wangapi kwa ujumla?",
+        "Una uhakika?",
+        "Mpango mkakati wa LSF ni wa kipindi gani?"
+      ],
+      "review_criteria": [
+        "Answer the specific organisational question, not a generic overview.",
+        "Name the published executive with source and appropriate freshness limits.",
+        "Distinguish historical partners, network individuals and app profiles.",
+        "Do not assert that missing current totals were never publicly published.",
+        "Identify the published 2022–2026 strategy without claiming a newer one."
+      ]
+    },
+    {
+      "id": "directory_followup_sw",
+      "messages": [
+        "Nipo Ukonga, nahitaji msaidizi wa kisheria kwa mgogoro wa ardhi.",
+        "Nipe mawasiliano yake",
+        "Ofisi hiyo ipo wapi?",
+        "Nawezaje kufika hapo?"
+      ],
+      "review_criteria": [
+        "Use a returned published office alternative when no verified individual matches.",
+        "Give a concrete known contact rather than unnamed government offices or telling the user to find the service.",
+        "Distinguish LSF office enquiries from an assigned or available paralegal.",
+        "Keep Kiswahili and pronoun references consistent across contact and office follow-ups.",
+        "Provide only the published address, with no invented bus route or landmarks."
+      ]
     }
   ]
 }
