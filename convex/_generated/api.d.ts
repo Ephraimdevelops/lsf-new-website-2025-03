@@ -61,6 +61,7 @@ import type * as lib_paralegalSearch from "../lib/paralegalSearch.js";
 import type * as lib_pdfText from "../lib/pdfText.js";
 import type * as lib_presence from "../lib/presence.js";
 import type * as lib_publicHelpResources from "../lib/publicHelpResources.js";
+import type * as lib_publishedParalegals from "../lib/publishedParalegals.js";
 import type * as lib_rateLimits from "../lib/rateLimits.js";
 import type * as lib_researchEntry from "../lib/researchEntry.js";
 import type * as lib_researchPdfManifest from "../lib/researchPdfManifest.js";
@@ -201,6 +202,7 @@ declare const fullApi: ApiFromModules<{
   "lib/pdfText": typeof lib_pdfText;
   "lib/presence": typeof lib_presence;
   "lib/publicHelpResources": typeof lib_publicHelpResources;
+  "lib/publishedParalegals": typeof lib_publishedParalegals;
   "lib/rateLimits": typeof lib_rateLimits;
   "lib/researchEntry": typeof lib_researchEntry;
   "lib/researchPdfManifest": typeof lib_researchPdfManifest;

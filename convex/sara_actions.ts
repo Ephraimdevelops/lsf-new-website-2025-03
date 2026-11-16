@@ -16,6 +16,7 @@ import { SAADA_SKILLS, type SaadaSkill } from "./lib/saadaSkills";
 import { indexSaadaChunks } from "./lib/saadaIndexBatch";
 import { meteredAi, meteredAiStream } from "./lib/meteredAi";
 import { conversationalReply, conversationalIntentReply, appHelpText, isAppHelpQuestion, responseLocale, assistanceFallback, clarificationQuestion, publishedSupportText } from "./lib/saadaAssistance";
+import {readPublishedParalegals,publishedParalegalMatches,LSF_PUBLIC_DIRECTORY_URL} from "./lib/publishedParalegals";
 import {matchesParalegalArea} from "./lib/paralegalSearch";
 import { lsfInformationReply, lsfInformationTopic } from "./lib/lsfInformation";
 import { monthlySaadaTokens } from "./lib/saadaCosts";
@@ -408,7 +409,12 @@ export const ask = action({
         }
         const lsfTopic=!args.documentId?lsfInformationTopic(args.message):undefined;
         if(lsfTopic){
-            const content=introduceSaada(lsfInformationReply(args.locale,lsfTopic),args.locale,conversationHistory);
+            let information=lsfInformationReply(args.locale,lsfTopic);
+            if(lsfTopic==='network'){
+                const directory=await readPublishedParalegals();
+                if('stats' in directory&&directory.stats)information+=(args.locale==='sw'?`\n\nTovuti ya LSF ina rekodi ${directory.stats.published} kwenye orodha yake ya umma. Hii ni idadi ya rekodi zilizochapishwa, si jumla iliyothibitishwa ya wasaidizi walio hai au wanaopatikana sasa.`:`\n\nLSF’s public website directory contains ${directory.stats.published} published records. This is a record count, not a confirmed total of active or currently available paralegals.`)+`\n\n[LSF published directory](${LSF_PUBLIC_DIRECTORY_URL})`;
+            }
+            const content=introduceSaada(information,args.locale,conversationHistory);
             await ctx.runMutation(internal.sara_chat.updateMessage,{messageId:botMessageId,content,isDone:true,tokens:0,toolCalls:["about_lsf"],questionAsked:args.message,clientRequestId:requestId,retrievedSources:[]});
             await activity("completed","completed","saada.activity.completed","LSF publisher information returned",{toolsUsed:["about_lsf"],tokens:0,bypassedLlm:true,responseLocale:args.locale});
             return content;
@@ -661,6 +667,15 @@ No approved current legal evidence matched this search. You can still understand
                         toolResultCount = matches.length;
                         searchResults = matches.length ? "Verified public paralegal profiles matched a recorded region, district or ward. This is not a calculated nearest match. No referral was sent." : "No verified public paralegal matched that region/district. Ask before searching a different district.";
                         for (const target of matches) resultCards.push(`::PARALEGAL_CARD:${JSON.stringify({ name: target.fullName, region: target.region, district: target.district, phone: target.phone, verified: target.isVerified })}::`);
+                        if(!matches.length){
+                            const published=await readPublishedParalegals();
+                            const contacts=publishedParalegalMatches(published.contacts,argsObj.region,argsObj.district);
+                            if(contacts.length){
+                                toolResultCount=contacts.length;
+                                searchResults=JSON.stringify({publishedContacts:contacts,sourceUrl:LSF_PUBLIC_DIRECTORY_URL,note:"Contacts from LSF’s published website directory, not verified/onboarded app profiles. Availability, specialisation and meeting address are unconfirmed. Give name, recorded area and phone, attribute to LSF's public directory and ask the person to confirm availability directly. Do not claim nearest, an appointment, assignment or referral."});
+                                for(const target of contacts)resultCards.push(`::PARALEGAL_CARD:${JSON.stringify({name:target.fullName,region:target.region,district:target.district,phone:target.phone,verified:false})}::`);
+                            }
+                        }
                     }
                     outcome = { content: searchResults, evidence: toolResultCount ? (name === "find_guides" ? "legal" : "directory") : "none", fallback: name === "find_guides" ? searchResults : noSourceResponse(args.locale, name === "find_services" ? "services" : "paralegals", toolResultCount) };
                 }

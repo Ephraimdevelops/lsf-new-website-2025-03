@@ -115,3 +115,18 @@ test('AI finds a recorded ward and receives only the selected public meeting off
  assert.deepEqual(f.reads.find(x=>x.name==='paralegals:listApprovedParalegals').args,{});
  assert.equal(f.writes.find(x=>x.name==='socialMessaging:finishDraft').args.escalate,undefined);
 });
+
+test('DM tools can reuse LSF published contacts without forwarding the beneficiary message or claiming an app assignment',async()=>{
+ const saved=process.env.LSF_PUBLIC_PARALEGAL_DIRECTORY_ENABLED,original=globalThis.fetch;const requests=[];
+ try{
+  process.env.LSF_PUBLIC_PARALEGAL_DIRECTORY_ENABLED='true';
+  globalThis.fetch=async(url,options)=>{requests.push({url,body:JSON.parse(options.body),headers:options.headers});return new Response(JSON.stringify({status:'success',value:[{_id:'published-fixture',fullName:'Fictional Published Person',phone:'0600000001',region:'Dar es Salaam',district:'Ilala',ward:'Ukonga',email:'PRIVATE-FIELD',availabilityStatus:'accepting_cases'}]}),{status:200});};
+  globalThis.__socialCalls=[];globalThis.__socialRounds=[tool('find_paralegals',{district:'Ukonga'}),answer('LSF lists this contact; confirm availability directly.','information',['published-paralegal:published-fixture'])];
+  const f=fixture({'socialMessaging:get':{status:'drafting',text:'Nahitaji msaidizi wa kisheria Ukonga'},'socialMessaging:history':[{question:'Nahitaji msaidizi wa kisheria Ukonga'}]});
+  await actions.draft._handler(f.ctx,{id:'message-fixture'});
+  assert.equal(requests.length,1);assert.deepEqual(requests[0].body,{path:'paralegals:listApprovedParalegals',format:'convex_encoded_json',args:[{}]});assert.equal(requests[0].headers.Authorization,undefined);
+  const data=JSON.parse(globalThis.__socialCalls[1].messages.find(x=>x.role==='tool').content).data;
+  assert.equal(data.publishedContacts[0].phone,'+255600000001');assert.equal(data.contactOnly,true);assert.equal(data.referralSent,false);assert.doesNotMatch(JSON.stringify(data),/PRIVATE-FIELD|accepting_cases/);
+  const savedDraft=f.writes.find(x=>x.name==='socialMessaging:finishDraft').args;assert.equal(savedDraft.escalate,undefined);assert.match(savedDraft.text,/https:\/\/lsftz.org\/legal-help/);
+ }finally{globalThis.fetch=original;if(saved===undefined)delete process.env.LSF_PUBLIC_PARALEGAL_DIRECTORY_ENABLED;else process.env.LSF_PUBLIC_PARALEGAL_DIRECTORY_ENABLED=saved;}
+});

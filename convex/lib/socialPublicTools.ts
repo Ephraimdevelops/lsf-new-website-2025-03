@@ -7,10 +7,12 @@ import {publicHelpResourcesForIssue} from './publicHelpResources';
 import {LSF_INFORMATION,lsfInformationReply,lsfTopicSource} from './lsfInformation';
 import {SAADA_SKILLS,type SaadaSkill} from './saadaSkills';
 import type {SocialToolOutput} from './socialConversation';
+import {readPublishedParalegals,publishedParalegalMatches,LSF_PUBLIC_DIRECTORY_URL} from './publishedParalegals';
 import {matchesParalegalArea} from './paralegalSearch';
 import {groundedFact,asksToForget} from './conversationState';
 export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw';id?:Id<'social_messages'>;fixtureHistory?:Array<{question:string;answer?:string|null}>;currentQuestion?:string}){
  const {ai,locale,id}=options;
+ let published:ReturnType<typeof readPublishedParalegals>|undefined;
  const officeAlternative={sourceId:'lsf:contact',name:'LSF office',...LSF_INFORMATION.contact,note:'Published office contact for enquiries only. Not the nearest verified provider, confirmed intake, a named paralegal, an appointment or a sent referral.'};
  const officeSource={id:'lsf:contact',kind:'published' as const,title:'LSF office contact',url:LSF_INFORMATION.contact.sourceUrl};
  return async(name:string,args:Record<string,string>,remainingMs:number):Promise<SocialToolOutput>=>{
@@ -25,6 +27,10 @@ export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw
     if(name==='load_skill')return {data:{workflow:SAADA_SKILLS[args.skill as SaadaSkill],note:'Workflow only, not legal authority. In this DM, prepare factual unsent text; no private case access or submission tools are available.'}};
     if(name==='about_lsf'){
      const url=lsfTopicSource(args.topic);
+     if(args.topic==='network'){
+      published??=readPublishedParalegals();const directory=await published;
+      if('stats' in directory&&directory.stats)return {data:{answer:lsfInformationReply(locale,args.topic),profile:LSF_INFORMATION,publishedDirectory:{...directory.stats,sourceUrl:LSF_PUBLIC_DIRECTORY_URL,note:'Published website record counts, not the total active LSF network, unique qualified people or app accounts. Usable means passed basic contact-data checks, not current availability.'}},sources:[{id:'lsf:network',kind:'published',title:'LSF published paralegal directory',url:LSF_PUBLIC_DIRECTORY_URL}]};
+     }
      return {data:{answer:lsfInformationReply(locale,args.topic),profile:LSF_INFORMATION},sources:[{id:'lsf:'+String(args.topic||'overview'),kind:'published',title:'LSF published information',url}]};
     }
     if(name==='search_knowledge'){
@@ -57,6 +63,11 @@ export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw
     if(name==='find_paralegals'){
      const people=await ctx.runQuery(api.paralegals.listApprovedParalegals,{});
      const matches=people.filter(x=>matchesParalegalArea(x,args.region,args.district)).slice(0,3);
+     if(!matches.length){
+      published??=readPublishedParalegals();const directory=await published;
+      const contacts=publishedParalegalMatches(directory.contacts,args.region,args.district);
+      if(contacts.length)return {data:{filters:args,paralegals:[],publishedContacts:contacts.map(x=>({...x,sourceId:'published-paralegal:'+x.sourceId})),contactOnly:true,referralSent:false,note:'These contacts are published on LSF’s live website, not verified/onboarded profiles in this app. Their availability, specialisation and meeting address are unconfirmed. Give the actual name, recorded area and phone. Return kind information with the published source. Do not claim nearest, accepting cases, personal location, an appointment or a sent referral.'},sources:contacts.map(x=>({id:'published-paralegal:'+x.sourceId,kind:'published',title:'LSF published paralegal directory',url:LSF_PUBLIC_DIRECTORY_URL}))};
+     }
      const offices=(await Promise.all(matches.map(x=>x.meetingPoint?ctx.runQuery(api.justiceServices.getPublicService,{id:x.meetingPoint.id}):null))).map(office=>office?.servicePointType==='safe_house'?null:office);
      return {data:{filters:args,...(!matches.length?{publishedOfficeAlternative:officeAlternative}:{}),paralegals:matches.map((x,i)=>({sourceId:'paralegal:'+x._id,name:x.fullName,region:x.region,district:x.district,ward:x.ward,phone:x.phone,languages:x.languages,availability:x.availabilityStatus,specialisations:x.specializations,meetingOffice:offices[i]?{name:offices[i]!.name,address:offices[i]!.physicalLocation,phone:offices[i]!.phone,openingHours:offices[i]!.openingHours}:null})),referralSent:false,note:'Public approved profiles only; verify recorded availability. Location matches a recorded region, district or ward, not calculated proximity; report the actual area and do not call it nearest. A meetingOffice is a chosen public office, not the person’s current position or a confirmed appointment. An empty result means no verified matching profile in this app, not that LSF has no paralegals. When no profile is returned, use kind information to explain that specific gap, not kind directory. Try find_services for an office contact if useful; do not invent a person or immediately stop helping.'},sources:!matches.length?[officeSource]:matches.map(x=>({id:'paralegal:'+x._id,kind:'directory',title:x.fullName}))};
     }

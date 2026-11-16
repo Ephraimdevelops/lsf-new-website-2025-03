@@ -315,6 +315,21 @@
         "Keep Kiswahili and pronoun references consistent across contact and office follow-ups.",
         "Provide only the published address, with no invented bus route or landmarks."
       ]
+    },
+    {
+      "id": "published_lsf_directory_sw",
+      "messages": [
+        "Naomba mawasiliano ya msaidizi wa kisheria Kinondoni.",
+        "Je, huyu yuko tayari kupokea kesi yangu?",
+        "Ofisi yake ipo wapi?"
+      ],
+      "review_criteria": [
+        "Use actual LSF published directory contacts when no onboarded app profile exists.",
+        "Names, recorded districts and phone numbers must match the returned source exactly.",
+        "Attribute public directory contacts; do not imply app verification, confirmed availability or a sent referral.",
+        "Do not invent an office address, landmark or route from a district-only listing.",
+        "Stay in Kiswahili and use the previous contact as the follow-up reference."
+      ]
     }
   ]
 }
