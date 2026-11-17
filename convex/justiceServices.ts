@@ -1,3 +1,4 @@
+import {globallySuspendedReferences,referenceExcluded} from "./lib/aiCorrections";
 import { distanceKm, validPoint, requireNearbyInput } from "./lib/geography";
 import { ConvexError, v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
@@ -566,7 +567,7 @@ export const staffPartnerPerformance = query({
 // External publisher pages contain no platform provider identity or referral capability.
 export const listPublicInformationResources = query({
   args: { issueCategory: v.optional(v.string()) },
-  handler: async (_ctx, args) => publicHelpResourcesForIssue(args.issueCategory),
+  handler: async (ctx, args) => {const suspended=await globallySuspendedReferences(ctx);return publicHelpResourcesForIssue(args.issueCategory).filter(x=>!referenceExcluded(suspended,"publisher:"+x.id)&&!x.contactPoints.some(p=>referenceExcluded(suspended,"publisher:"+x.id,p.phone)));},
 });
 
 export const listPublicServices = query({
@@ -593,7 +594,9 @@ export const listPublicServices = query({
     const serviceType = normalize(args.serviceType);
     const search = normalize(args.search);
 
+    const suspended=await globallySuspendedReferences(ctx);
     return services
+      .filter(service=>!referenceExcluded(suspended,"service:"+service._id,service.phone))
       .filter(isCurrentPublicService)
       .filter((service) => !args.providerType || service.servicePointType === args.providerType)
       .filter((service) => !search || [service.name, service.organizationName, service.region, service.district, service.ward, service.physicalLocation, ...service.issueCategories, ...service.serviceTypes].some((item) => normalize(item).includes(search)))
@@ -611,7 +614,7 @@ export const getPublicService = query({
   args: { id: v.id("justice_services") },
   handler: async (ctx, args) => {
     const service = await ctx.db.get(args.id);
-    if (!service || !isCurrentPublicService(service)) return null;
+    if (!service || !isCurrentPublicService(service) || referenceExcluded(await globallySuspendedReferences(ctx),"service:"+service._id,service.phone)) return null;
     return publicServiceProjection(service);
   },
 });

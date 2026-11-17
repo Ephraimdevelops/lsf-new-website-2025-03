@@ -1,3 +1,4 @@
+import {referenceExcluded} from './aiCorrections';
 import {plainVocabularyReply} from "./saadaVoice";
 import { publicHelpResourcesForIssue } from "./publicHelpResources";
 import { explicitResponseLocale, withoutLanguageRequest } from "./saadaLanguage";
@@ -115,11 +116,13 @@ export function publishedSupportText(
   issue?: string,
   district?: string,
   search?: string,
+  excludedIds: ReadonlySet<string> = new Set(),
 ) {
   const en = locale === "en";
   const normalized = district?.trim().toLowerCase();
   const term = search?.trim().toLowerCase();
   let resources = publicHelpResourcesForIssue(issue)
+    .filter(resource=>!referenceExcluded(excludedIds,"publisher:"+resource.id)&&!resource.contactPoints.some(p=>referenceExcluded(excludedIds,"publisher:"+resource.id,p.phone)))
     .filter(resource => !term || [resource.name, resource.titleEn, resource.titleSw].some(value => value.toLowerCase().includes(term)))
     .filter(resource => issue || term || resource.issues.length === 0)
     .sort(
@@ -158,13 +161,13 @@ export function publishedSupportText(
 }
 
 // Guaranteed useful, non-legal next step even if a model declines to call tools.
-export function assistanceFallback(message: string, locale?: 'en'|'sw', previousUserText='') {
+export function assistanceFallback(message: string, locale?: 'en'|'sw', previousUserText='', excludedIds:ReadonlySet<string>=new Set()) {
   const context = previousUserText + " " + message;
   const asksForSupport = /paral[a-z]{2,10}|legal support|msaidizi wa kisheria|msaada wa kisheria/i.test(context);
   if (asksForSupport) {
     const districts = publicHelpResourcesForIssue().flatMap(row => row.contactPoints.map(point => point.district));
     const district = districts.find(value => context.toLowerCase().includes(value.toLowerCase()));
-    return district ? publishedSupportText(locale, undefined, district) : clarificationQuestion('location', locale);
+    return district ? publishedSupportText(locale, undefined, district,undefined,excludedIds) : clarificationQuestion('location', locale);
   }
   const knownJurisdiction = /mainland|tanzania bara|zanzibar|unguja|pemba|kinondoni|dar es salaam|dodoma|arusha|mwanza/i.test(context);
   return clarificationQuestion(knownJurisdiction ? 'issue' : 'jurisdiction', locale, context);

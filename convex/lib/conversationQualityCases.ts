@@ -309,5 +309,7 @@ export const CONVERSATION_QUALITY_CASES=[
       "Do not invent an office address, landmark or route from a district-only listing.",
       "Stay in Kiswahili and use the previous contact as the follow-up reference."
     ]
-  }
+  },
+  {id:'reviewed_registration_sw',messages:['Nilizaliwa nyumbani na sina cheti cha kuzaliwa. Nipo Tanzania Bara. Nifanye nini?'],review_criteria:['Use the approved RITA home-birth/late-registration guide.','Give useful preparation in Kiswahili.','Do not invent a fee, deadline or mandatory evidence requirement.']},
+  {id:'reviewed_contact_sw',messages:['Naomba namba ya WiLDAF Dar es Salaam.'],review_criteria:['Use the newly reviewed public contact reference.','The published free legal-aid line is 0800780070.','Do not claim confirmed case acceptance, an appointment or referral.']}
 ] as const;

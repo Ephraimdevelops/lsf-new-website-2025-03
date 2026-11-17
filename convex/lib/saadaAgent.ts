@@ -7,6 +7,7 @@ const jurisdiction = {
   enum: ["national", "tanzania_mainland", "zanzibar"],
 };
 const definitions = {
+  report_information_problem:{description:"Record an explicitly reported problem with a shown contact, office, location, guide, source or AI answer for review; excludes it only in this chat. Use a RECENT SHOWN REFERENCES id, or last_answer. Does not change the shared source, contact anyone or transfer the chat.",properties:{referenceId:text,category:{type:'string',enum:['wrong_contact','unavailable','wrong_location','unsuitable_service','incorrect_guidance','outdated_information','other']}},required:['referenceId','category']},
   remember_context:{description:"Remember a brief explicit fact from the CURRENT user's exact words in this same chat. Use when they supply or correct their name/location/issue/desired outcome/next step. Copy the exact phrase, not an inference. Never credentials, phone numbers, identity documents or sensitive narratives. Does not update their profile or another channel.",properties:{field:{type:'string',enum:['name','location','issue','desiredOutcome','nextStep']},value:text},required:['field','value']},
   forget_context:{description:"Only when the person explicitly asks you to forget/clear saved details: clear this chat's memory and stop using earlier context. Does not erase visible chat messages or other chats.",properties:{},required:[]},
   recall_conversation: {description:"Recall this person's own saved messages in this same chat when earlier facts, their stated name or where the conversation left off are needed. No access to other people, other chats or channels. Personal context only, never legal evidence. Omit search for a general recap.",properties:{search:text},required:[]},
@@ -23,7 +24,7 @@ const definitions = {
   read_my_document_summary: { description: "Read a previously consented AI description of the person's own saved document by id from my_saved_documents. It is not original document text or legal evidence. Cannot analyse a new file or someone else's file.", properties: { id: text }, required: ["id"] },
   conversation_reply: { description: "Respond to a greeting, identity/name question, thanks, a question about your abilities, or a request to recall this conversation, including misspellings and informal English/Kiswahili. Select the person's intent; the server supplies truthful conversational wording. Not for legal advice or service matching.", properties: { kind: { type: "string", enum: ["identity", "greeting", "thanks", "capabilities", "recall", "availability"] } }, required: ["kind"] },
   ask_clarification: { description: "Ask a safe structured clarification when jurisdiction, location, issue, dates or desired help is missing. No legal evidence is required to ask a question.", properties: { field: { type: "string", enum: CLARIFICATION_FIELDS } }, required: ["field"] },
-  find_information_resources: { description: "Find publisher-owned public support information links and published office contacts. This is not verified intake, an individual paralegal match, or a referral.", properties: { issueCategory: text, district: text, search: text }, required: [] },
+  find_information_resources: { description: "Search reviewed preparation checklists, publisher-owned public support information and published office contacts. Use concise issue keywords in search. This is not verified intake, an individual paralegal match, or a referral.", properties: { issueCategory: text, district: text, search: text }, required: [] },
   load_skill: {
     description:
       "Load a versioned procedural workflow. This is not legal evidence.",
@@ -53,13 +54,14 @@ const definitions = {
       },
       region: text,
       district: text,
+      area:text,
     },
     required: [],
   },
   find_paralegals: {
     description:
-      "Find eligible public paralegals by region OR district. A district alone is enough to search; do not invent a region or silently substitute a district.",
-    properties: { region: text, district: text },
+      "Find eligible public paralegals by region OR district. A district alone is enough. For a nearby search, put the person’s stated neighbourhood in area; use returned proximity basis and never invent coordinates or claim unknown positions are nearest.",
+    properties: { region: text, district: text, area:text },
     required: [],
   },
   my_requests: {
@@ -295,6 +297,7 @@ export async function runSaadaAgent(options: {
         result =
           cache.get(key) ??
           (await options.execute(validated.name, validated.args));
+        if(validated.name==="report_information_problem"){cache.clear();results.length=0;}
         cache.set(key, result);
         toolsUsed.push(validated.name);
         results.push(result);

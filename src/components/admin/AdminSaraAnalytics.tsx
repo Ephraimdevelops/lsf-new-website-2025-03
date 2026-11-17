@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from 'recharts';
 import { Bot, Users, MessageSquare, Zap, Clock, Activity, ThumbsUp, DollarSign, ShieldAlert } from "lucide-react";
 
+import AiInformationReports from './AiInformationReports';
 import OpsDashboard from './OpsDashboard';
 
 const AdminSaraAnalytics = () => {
@@ -73,6 +74,7 @@ const AdminSaraAnalytics = () => {
 
             {/* CONTROL PANEL - KILL SWITCH */}
             <OpsDashboard />
+            <AiInformationReports />
 
             {/* Key Metrics */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-6">

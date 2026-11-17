@@ -1,3 +1,4 @@
+import {recordShownReferences} from './lib/aiCorrections';
 import {formatHakiReply,selectConversationRecall} from "./lib/saadaVoice";
 import { query, mutation, internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
@@ -217,11 +218,13 @@ export const updateMessage = internalMutation({
         questionAsked: v.optional(v.string()),
         clientRequestId: v.optional(v.string()),
         retrievedSources: v.optional(v.array(v.object({ documentId: v.string(), title: v.string(), publisher: v.optional(v.string()), versionLabel: v.optional(v.string()), sourceUrl: v.optional(v.string()) }))),
+        references:v.optional(v.array(v.object({id:v.string(),title:v.string(),kind:v.string(),url:v.optional(v.string()),phone:v.optional(v.string())}))),
         failureCode: v.optional(v.literal("unavailable")),
     },
     handler: async (ctx, args) => {
         const existing = await ctx.db.get(args.messageId);
         if (!existing || existing.role !== "assistant") throw new Error("Assistant message not found.");
+        if(args.isDone){const references=[...(args.references??[]),...(args.retrievedSources??[]).map(x=>({id:'law:'+x.documentId,title:x.title,kind:'legal',...(x.sourceUrl?{url:x.sourceUrl}:{})}))];await recordShownReferences(ctx,'app:'+JSON.stringify([existing.userId,existing.conversationId??null]),references,String(existing._id));}
         const previousMetadata = existing.metadata && typeof existing.metadata === "object" && !Array.isArray(existing.metadata) ? existing.metadata : {};
         await ctx.db.patch(args.messageId, {
             content: args.isDone ? formatHakiReply(args.content) : args.content,

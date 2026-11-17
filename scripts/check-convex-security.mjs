@@ -7,6 +7,11 @@ const convexDir = path.join(root, "convex");
 const srcDir = path.join(root, "src");
 
 const publicFunctions = new Map([
+  ["directoryResearch.reviewPublicReference", "admin"],
+  ["directoryResearch.withdrawPublicReference", "admin"],
+  ["directoryResearch.searchPublicReferences", "public"],
+  ["aiCorrections.reviewQueue", "admin"],
+  ["aiCorrections.review", "admin"],
   ["aiQuality.evaluate", "authenticated-action"],
   ["conversationMemory.get", "authenticated"],
   ["conversationMemory.update", "authenticated"],

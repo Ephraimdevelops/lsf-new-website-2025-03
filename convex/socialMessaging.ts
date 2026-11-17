@@ -5,6 +5,7 @@ import {query,mutation,internalMutation,internalQuery} from './_generated/server
 import {internal} from './_generated/api';
 import {requireAnyRole} from './lib/auth';
 import {socialTriage,socialLocale,handoffReply,consentReply,aiContinuationReply,acceptsSocialConsent} from './lib/socialTriage';
+import {recordShownReferences} from './lib/aiCorrections';
 import {responseLocale} from './lib/saadaLanguage';
 import {humanHandoffState,humanHandoffPatch,resumedAIReply} from './lib/socialHandoff';
 const channel=v.union(v.literal('whatsapp'),v.literal('messenger'),v.literal('instagram'));
@@ -75,7 +76,7 @@ export const approve=mutation({args:{id:v.id('social_messages'),text:v.string()}
   await ctx.db.patch(id,{status:'approved',automatic:false,approvedText:text.trim(),approvedBy:user._id,approvedAt:Date.now()});await ctx.scheduler.runAfter(0,internal.socialMessagingActions.send,{id});
 }});
 export const get=internalQuery({args:{id:v.id('social_messages')},handler:async(ctx,{id})=>ctx.db.get(id)});
-export const finishDraft=internalMutation({args:{id:v.id('social_messages'),text:v.optional(v.string()),kind:v.optional(v.string()),escalate:v.optional(v.string()),tools:v.optional(v.array(v.string())),sources:v.optional(v.array(v.string())),promptVersion:v.optional(v.string())},handler:async(ctx,{id,text,kind,escalate,tools,sources,promptVersion})=>{
+export const finishDraft=internalMutation({args:{id:v.id('social_messages'),text:v.optional(v.string()),kind:v.optional(v.string()),escalate:v.optional(v.string()),tools:v.optional(v.array(v.string())),sources:v.optional(v.array(v.string())),promptVersion:v.optional(v.string()),references:v.optional(v.array(v.object({id:v.string(),title:v.string(),kind:v.string(),url:v.optional(v.string()),phone:v.optional(v.string())})))},handler:async(ctx,{id,text,kind,escalate,tools,sources,promptVersion,references})=>{
   const row=await ctx.db.get(id);if(row?.status!=='drafting')return;
   if(tools||sources||promptVersion)await ctx.db.patch(id,{...(tools?{aiTools:tools.slice(0,6)}:{}),...(sources?{aiSourceUrls:sources.slice(0,3)}:{}),...(promptVersion?{aiPromptVersion:promptVersion}:{})});
   const conversation=await ctx.db.query('social_conversations').withIndex('by_identity',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).unique();
@@ -91,7 +92,7 @@ export const finishDraft=internalMutation({args:{id:v.id('social_messages'),text
   const recent=await ctx.db.query('social_messages').withIndex('by_sender',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).order('desc').take(25);
   const locale=row.transcriptionLocale??row.replyLocale??responseLocale(row.transcribedText??row.text,conversation?.replyLocale,recent.filter(x=>!x.staffReply&&x._id!==id).reverse().map(x=>x.transcribedText??x.text));
   const reply=formatHakiReply(reason?aiContinuationReply(locale,reason):text!);
-  await ctx.db.patch(id,{status:'approved',automatic:true,aiKind:reason?'information':kind,escalationReason:undefined,...(reason?{error:'AI answer withheld: '+reason}:{}),approvedText:row.resumedAfterHandoff?resumedAIReply(reply,locale):reply});
+  await ctx.db.patch(id,{status:'approved',automatic:true,aiKind:reason?'information':kind,...(!reason&&references?{aiReferences:references.slice(0,20)}:{}),escalationReason:undefined,...(reason?{error:'AI answer withheld: '+reason}:{}),approvedText:row.resumedAfterHandoff?resumedAIReply(reply,locale):reply});
   await ctx.scheduler.runAfter(0,internal.socialMessagingActions.send,{id});
 }});
 export const claimSend=internalMutation({args:{id:v.id('social_messages')},handler:async(ctx,{id})=>{
@@ -109,7 +110,8 @@ export const claimSend=internalMutation({args:{id:v.id('social_messages')},handl
  await ctx.db.patch(id,{status:'sending'});return row;
 }});
 export const finishSend=internalMutation({args:{id:v.id('social_messages'),outboundId:v.optional(v.string())},handler:async(ctx,{id,outboundId})=>{
- const row=await ctx.db.get(id);if(row?.status==='sending')await ctx.db.patch(id,{status:outboundId?(row.escalationReason?'escalated':'sent'):'delivery_uncertain',...(outboundId?{outboundId}:{error:'Delivery not confirmed. Check Meta inbox before taking further action; no automatic resend.'})});
+ const row=await ctx.db.get(id);if(row?.status==='sending'&&outboundId&&row.automatic){const c=await ctx.db.query('social_conversations').withIndex('by_identity',q=>q.eq('channel',row.channel).eq('account',row.account).eq('sender',row.sender)).unique();if(c)await recordShownReferences(ctx,'social:'+c._id,row.aiReferences??[],String(id));}
+ if(row?.status==='sending')await ctx.db.patch(id,{status:outboundId?(row.escalationReason?'escalated':'sent'):'delivery_uncertain',...(outboundId?{outboundId}:{error:'Delivery not confirmed. Check Meta inbox before taking further action; no automatic resend.'})});
 }});
 export const history=internalQuery({args:{id:v.id('social_messages')},handler:async(ctx,{id})=>{
  const row=await ctx.db.get(id);if(!row)return [];

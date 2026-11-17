@@ -1,3 +1,4 @@
+import {globallySuspendedReferences,referenceExcluded} from "./lib/aiCorrections";
 import { workerMatchingPoint } from "./lib/workerMatching";
 import { hasCurrentServiceReview } from "./lib/directoryLifecycle";
 import { validPoint, distanceKm, requireNearbyInput } from "./lib/geography";
@@ -46,11 +47,12 @@ export const listApprovedParalegals = query({
 
         if (includePrivate) return paralegals.map(p => ({ ...p, presence: "unavailable" as const, meetingPoint: null, distanceKm: null, distanceSource: "unknown" as const }));
 
-        paralegals = paralegals.filter(p => !p.syntheticDevelopmentFixture && isParalegalReady(p));
+        const suspended=await globallySuspendedReferences(ctx);
+        paralegals = paralegals.filter(p => !referenceExcluded(suspended,"paralegal:"+p._id,p.phone) && !p.syntheticDevelopmentFixture && isParalegalReady(p));
 
         return (await Promise.all(paralegals.map(async (paralegal) => {
           const office = paralegal.publicMeetingServiceId ? await ctx.db.get(paralegal.publicMeetingServiceId) : null;
-          const meeting = office && office.active && office.visibility === "public" && office.verificationStatus === "verified" && office.servicePointType !== "safe_house" && hasCurrentServiceReview(office.nextReviewAt, Date.now()) ? office : null;
+          const meeting = office && !referenceExcluded(suspended,"service:"+office._id,office.phone) && office.active && office.visibility === "public" && office.verificationStatus === "verified" && office.servicePointType !== "safe_house" && hasCurrentServiceReview(office.nextReviewAt, Date.now()) ? office : null;
           const account = await ctx.db.query("users").withIndex("by_email", q => q.eq("email", paralegal.email.toLowerCase())).first();
           const active = account && (await getActiveRoles(ctx, account._id)).includes("paralegal");
           const location = active ? await workerMatchingPoint(ctx, account!._id, paralegal.publicMeetingServiceId) : { point: validPoint(meeting) ? meeting : null, source: meeting && validPoint(meeting) ? "office" as const : "unknown" as const };

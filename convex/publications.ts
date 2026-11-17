@@ -1,3 +1,4 @@
+import {globallySuspendedReferences} from "./lib/aiCorrections";
 import { v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
 import { requireGuideResubmission } from "./lib/guideLifecycle";
@@ -480,7 +481,8 @@ export const listPublicLegalGuides = query({
     args: { refreshTick: v.optional(v.number()) },
     handler: async (ctx) => {
         const guides = await ctx.db.query("legal_guides").withIndex("by_status", (q) => q.eq("status", "approved")).collect();
-        return guides.filter((guide) => guide.reviewDueAt > Date.now()).map((guide) => ({
+        const suspended=await globallySuspendedReferences(ctx);
+        return guides.filter((guide) => !suspended.has("guide:"+guide._id)&&guide.reviewDueAt > Date.now()).map((guide) => ({
             _id: guide._id, titleSw: guide.titleSw, titleEn: guide.titleEn, summarySw: guide.summarySw, summaryEn: guide.summaryEn,
             stepsSw: guide.stepsSw, stepsEn: guide.stepsEn, category: guide.category, jurisdiction: guide.jurisdiction,
             sourceTitle: guide.sourceTitle, sourceUrl: guide.sourceUrl, publisher: guide.publisher, reviewDueAt: guide.reviewDueAt, version: guide.version,
@@ -506,11 +508,13 @@ export const retireLegalGuide = mutation({
 });
 
 export const searchPublicLegalGuides = query({
-    args: { search: v.optional(v.string()), jurisdiction: v.optional(v.union(v.literal("national"), v.literal("tanzania_mainland"), v.literal("zanzibar"))) },
+    args: { search: v.optional(v.string()), excludedIds:v.optional(v.array(v.string())), jurisdiction: v.optional(v.union(v.literal("national"), v.literal("tanzania_mainland"), v.literal("zanzibar"))) },
     handler: async (ctx, args) => {
         if ((args.search?.length ?? 0) > 300) throw new Error("Use a shorter guide search.");
         const records = await ctx.db.query("legal_guides").withIndex("by_status", q => q.eq("status", "approved")).collect();
-        return searchCurrentGuides(records, args.search, args.jurisdiction).map(guide => ({
+        const suspended=await globallySuspendedReferences(ctx);
+        if((args.excludedIds?.length??0)>300)throw Error("Too many exclusions");for(const id of args.excludedIds??[])suspended.add(id);
+        return searchCurrentGuides(records.filter(x=>!suspended.has("guide:"+x._id)), args.search, args.jurisdiction).map(guide => ({
             _id: guide._id, titleEn: guide.titleEn, titleSw: guide.titleSw,
             summaryEn: guide.summaryEn, summarySw: guide.summarySw, stepsEn: guide.stepsEn, stepsSw: guide.stepsSw,
             category: guide.category, jurisdiction: guide.jurisdiction, sourceTitle: guide.sourceTitle,

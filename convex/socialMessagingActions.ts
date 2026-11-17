@@ -15,13 +15,14 @@ export const draft=internalAction({args:{id:v.id('social_messages')},handler:asy
   const row=await ctx.runQuery(internal.socialMessaging.get,{id});
   if(row?.status!=='drafting'||(!row.consentConfirmedBy&&!await ctx.runQuery(internal.socialMessaging.hasConsent,{id})))return;
   await showTyping(ctx,id);
-  const [history,approvedPrompt,memory]=await Promise.all([ctx.runQuery(internal.socialMessaging.history,{id}),ctx.runQuery(internal.sara.getApprovedPromptInternal,{}),ctx.runQuery(internal.conversationMemory.socialInternal,{id})]);
-  const {messages,locale,brief}=socialConversationMessages(row.transcribedText??row.text,history,approvedPrompt?.prompt,memory?.facts,row.transcribedText?row.transcriptionLocale:undefined,{locale:row.replyLocale,brief:row.briefReply});
+  await ctx.runMutation(internal.aiCorrections.captureFeedback,{socialMessageId:id});
+  const [history,approvedPrompt,memory,corrections]=await Promise.all([ctx.runQuery(internal.socialMessaging.history,{id}),ctx.runQuery(internal.sara.getApprovedPromptInternal,{}),ctx.runQuery(internal.conversationMemory.socialInternal,{id}),ctx.runQuery(internal.aiCorrections.getState,{socialMessageId:id})]);
+  const {messages,locale,brief}=socialConversationMessages(row.transcribedText??row.text,history,approvedPrompt?.prompt,memory?.facts,row.transcribedText?row.transcriptionLocale:undefined,{locale:row.replyLocale,brief:row.briefReply,corrections});
   const ai=new OpenAI({apiKey:process.env.OPENAI_API_KEY,timeout:20000,maxRetries:0});
   const model=process.env.SAADA_CHAT_MODEL||'gpt-4o';
   const result=await runSocialConversation({messages,locale,brief,
    create:async(turns,tools,remainingMs)=>meteredAi(ctx,{socialMessageId:id,feature:'social_draft',model,input:{messages:turns,tools},maxOutputTokens:900},()=>ai.chat.completions.create({model,messages:turns,max_completion_tokens:900,response_format:SOCIAL_RESPONSE_FORMAT,store:false,...(tools.length?{tools,tool_choice:'auto' as const}:{})},{timeout:Math.min(20000,remainingMs)})),
-   execute:makeSocialTools(ctx,{ai,locale,id})
+   execute:makeSocialTools(ctx,{ai,locale,id,excludedIds:corrections?.excludedIds??[]})
   });
   const escalation=replyEscalation(result,{legal:result.legal,directory:result.directory,priorReplies:history.filter(x=>x.answer).length,consecutiveClarifications:(()=>{let count=0;for(const turn of [...history].reverse()){if(!turn.answer)continue;if(turn.kind!=='clarification')break;count++;}return count;})()});
   const urls=result.cited.filter(x=>x.url&&/^https?:\/\//.test(x.url)).slice(0,2);
@@ -30,7 +31,7 @@ export const draft=internalAction({args:{id:v.id('social_messages')},handler:asy
   // Never cut a legal answer midway through a condition or safety caveat.
   if(result.reply.length>1700)throw new Error('Social answer exceeds delivery budget');
   if(result.reply.length+suffix.length>1800)suffix='';
-  await ctx.runMutation(internal.socialMessaging.finishDraft,{id,text:result.reply+suffix,kind:result.kind,...(escalation?{escalate:escalation}:{}),tools:result.usedTools,sources:urls.map(x=>x.url!),promptVersion:SOCIAL_PROMPT_VERSION});
+  await ctx.runMutation(internal.socialMessaging.finishDraft,{id,text:result.reply+suffix,kind:result.kind,...(escalation?{escalate:escalation}:{}),tools:result.usedTools,sources:urls.map(x=>x.url!),promptVersion:SOCIAL_PROMPT_VERSION,references:result.cited.map(x=>({id:x.id,title:x.title,kind:x.kind,...(x.url?{url:x.url}:{}),...(x.phone?{phone:x.phone}:{})}))});
  }catch(error){
   // Operational category only: never store provider bodies, credentials or DM text.
   const message=error instanceof Error?error.message:'';

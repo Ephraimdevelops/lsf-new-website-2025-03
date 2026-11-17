@@ -31,6 +31,11 @@ export default defineSchema({
     externalKey: v.string(), kind: v.union(v.literal("organisation"), v.literal("centre"), v.literal("pathway")),
     title: v.string(), region: v.optional(v.string()), district: v.optional(v.string()), address: v.optional(v.string()),
     phone: v.optional(v.string()), email: v.optional(v.string()), notes: v.string(), sourceUrls: v.array(v.string()), originalRecord: v.string(),
+    publicReference: v.optional(v.object({
+      scope:v.union(v.literal("preparation"),v.literal("published_contact")),titleEn:v.string(),titleSw:v.string(),bodyEn:v.string(),bodySw:v.string(),
+      phone:v.optional(v.string()),email:v.optional(v.string()),address:v.optional(v.string()),region:v.optional(v.string()),district:v.optional(v.string()),
+      sourceUrls:v.array(v.string()),note:v.string(),reviewedBy:v.id("users"),reviewedAt:v.number(),reviewDueAt:v.number(),
+    })),
     searchText: v.string(), archived: v.boolean(), createdBy: v.id("users"), updatedBy: v.id("users"), updatedAt: v.number(),
   }).index("by_external_key", ["externalKey"]).index("by_archived", ["archived"])
     .searchIndex("search_research", { searchField: "searchText", filterFields: ["archived"] }),
@@ -1510,6 +1515,7 @@ export default defineSchema({
     inputType: v.optional(v.literal("audio")),
     mediaId:v.optional(v.string()),voiceSourceMessageId:v.optional(v.id("social_messages")),transcribedText:v.optional(v.string()),transcriptionStatus:v.optional(v.string()),transcriptionLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))),
     replyLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))), briefReply:v.optional(v.boolean()), typingStartedAt:v.optional(v.number()),
+    aiReferences:v.optional(v.array(v.object({id:v.string(),title:v.string(),kind:v.string(),url:v.optional(v.string()),phone:v.optional(v.string())}))),
     aiKind: v.optional(v.string()),
     aiTools: v.optional(v.array(v.string())), aiSourceUrls: v.optional(v.array(v.string())), aiPromptVersion: v.optional(v.string()),
     staffReply: v.optional(v.boolean()), automatic: v.optional(v.boolean()), escalationReason: v.optional(v.string()),
@@ -1519,6 +1525,9 @@ export default defineSchema({
     approvedAt: v.optional(v.number()), outboundId: v.optional(v.string()), error: v.optional(v.string()),
   }).index("by_event", ["channel", "eventId"]).index("by_status", ["status"]).index("by_sender", ["channel", "account", "sender"]),
 
+  ai_reference_exposures:defineTable({scope:v.string(),referenceId:v.string(),title:v.string(),kind:v.string(),url:v.optional(v.string()),phone:v.optional(v.string()),relatedIds:v.optional(v.array(v.string())),shownAt:v.number()}).index('by_scope',['scope']).index('by_scope_reference',['scope','referenceId']),
+  ai_information_reports:defineTable({scope:v.string(),referenceId:v.string(),title:v.string(),kind:v.string(),sourceUrl:v.optional(v.string()),category:v.string(),statement:v.string(),relatedIds:v.array(v.string()),status:v.string(),submittedAt:v.number(),resolvedReferenceId:v.optional(v.string()),decision:v.optional(v.string()),reviewNote:v.optional(v.string()),reviewedBy:v.optional(v.id('users')),reviewedAt:v.optional(v.number()),evidenceUrl:v.optional(v.string())}).index('by_scope',['scope']).index('by_status',['status']),
+  ai_reference_reviews:defineTable({referenceId:v.string(),phoneKey:v.optional(v.string()),suspended:v.boolean(),note:v.string(),evidenceUrl:v.string(),reviewedBy:v.id('users'),reviewedAt:v.number()}).index('by_reference',['referenceId']).index('by_suspended',['suspended']),
   conversation_context:defineTable({scope:v.string(),facts:v.object({name:v.optional(v.string()),location:v.optional(v.string()),issue:v.optional(v.string()),desiredOutcome:v.optional(v.string()),nextStep:v.optional(v.string())}),updatedAt:v.number(),forgotBefore:v.optional(v.number())}).index('by_scope',['scope']),
   social_conversations: defineTable({replyLocale:v.optional(v.union(v.literal("en"),v.literal("sw"))),briefReply:v.optional(v.boolean()),channel:v.string(),account:v.string(),sender:v.string(),humanMode:v.boolean(),humanModeUntil:v.optional(v.number()),humanModeReason:v.optional(v.string()),consent:v.boolean(),voiceConsent:v.optional(v.boolean()),updatedAt:v.number()}).index("by_identity",["channel","account","sender"]),
 

@@ -1,3 +1,4 @@
+import { globallySuspendedReferences } from "./lib/aiCorrections";
 import { mutation, query, internalMutation, internalQuery } from "./_generated/server";
 import { v } from "convex/values";
 import { paginationOptsValidator } from "convex/server";
@@ -353,11 +354,12 @@ export const getApprovedChunkIds = internalQuery({
     args: { ids: v.array(v.id("embeddings")) },
     handler: async (ctx, args) => {
         const allowed = [];
+        const suspended = await globallySuspendedReferences(ctx);
         for (const id of args.ids) {
             const chunk = await ctx.db.get(id);
             if (!chunk) continue;
             const document = await ctx.db.get(chunk.documentId);
-            if (document?.approvalStatus === "approved" && document.reviewDueAt && document.reviewDueAt > Date.now()) allowed.push(id);
+            if (!suspended.has("law:"+chunk.documentId) && document?.approvalStatus === "approved" && document.reviewDueAt && document.reviewDueAt > Date.now()) allowed.push(id);
         }
         return allowed;
     },
@@ -368,7 +370,8 @@ export const getApprovedChunkIds = internalQuery({
 // so unreviewed chunks cannot crowd approved passages out of the result set.
 export const searchApprovedPassages=internalQuery({args:{search:v.string()},handler:async(ctx,{search})=>{
     if(!search.trim()||search.length>200)return [];
-    const documents=(await ctx.db.query('documents').withIndex('by_approval_status',q=>q.eq('approvalStatus','approved')).take(40)).filter(x=>(x.reviewDueAt??0)>Date.now());
+    const suspended=await globallySuspendedReferences(ctx);
+    const documents=(await ctx.db.query('documents').withIndex('by_approval_status',q=>q.eq('approvalStatus','approved')).take(40)).filter(x=>!suspended.has('law:'+x._id)&&(x.reviewDueAt??0)>Date.now());
     const groups=await Promise.all(documents.map(async document=>({document,chunks:await ctx.db.query('embeddings').withSearchIndex('search_text',q=>q.search('text',search).eq('documentId',document._id)).take(2)})));
     const stop=new Set(['tanzania','mainland','zanzibar','legal','rights','about','which','what','does','have','with','that','this','sheria','haki','naomba']);
     const terms=[...new Set(search.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>3&&!stop.has(x)))];
