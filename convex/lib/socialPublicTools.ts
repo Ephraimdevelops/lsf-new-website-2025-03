@@ -34,6 +34,10 @@ export function makeSocialTools(ctx:ActionCtx,options:{ai:OpenAI;locale:'en'|'sw
     if(name==='forget_context')return {data:await ctx.runMutation(internal.conversationMemory.forgetSocial,{id:id!})};
     if(name==='recall_conversation')return {data:{messages:await ctx.runQuery(internal.socialMessaging.recallHistory,{id:id!,search:args.search}),scope:'Only this sender/account/channel chat. Prior circumstances may have changed. Personal context, not legal evidence.'}};
     if(name==='load_skill')return {data:{workflow:SAADA_SKILLS[args.skill as SaadaSkill],note:'Workflow only, not legal authority. In this DM, prepare factual unsent text; no private case access or submission tools are available.'}};
+    if(name==='search_lsf_knowledge'){
+     const passages=(await ctx.runQuery(internal.lsfKnowledge.searchApproved,{search:args.search.slice(0,400)})).filter(x=>!excluded.has(x.sourceId));
+     return {data:{passages,note:'Independently approved published LSF reports only. Cite the year of each figure. No legal authority, current staffing, case acceptance or referral is established.'},sources:passages.map(x=>({id:x.sourceId,kind:'published',title:x.title+(x.reportingPeriod?' — '+x.reportingPeriod:''),...(x.url?{url:x.url}:{})}))};
+    }
     if(name==='about_lsf'){
      if(referenceExcluded(excluded,'lsf:'+String(args.topic||'overview'),args.topic==='contact'?LSF_INFORMATION.contact.phone:undefined))return {data:{available:false,note:'This reference was disputed in this chat or suspended by review. Do not repeat its prior claim; check a different source or clarify the disputed detail.'}};
      const url=lsfTopicSource(args.topic);

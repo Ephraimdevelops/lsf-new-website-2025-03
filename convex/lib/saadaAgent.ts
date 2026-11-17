@@ -7,6 +7,7 @@ const jurisdiction = {
   enum: ["national", "tanzania_mainland", "zanzibar"],
 };
 const definitions = {
+  search_lsf_knowledge:{description:"Search independently approved, published LSF institutional reports for history, programme results, beneficiaries, regions, paralegal networks, strategy and financial statistics. Include a reporting year when asked. Quote figures with the report year; never treat historical figures as current totals, add overlapping reports together, or use reports as legal authority. Drafts are unavailable.",properties:{search:text},required:['search']},
   report_information_problem:{description:"Record an explicitly reported problem with a shown contact, office, location, guide, source or AI answer for review; excludes it only in this chat. Use a RECENT SHOWN REFERENCES id, or last_answer. Does not change the shared source, contact anyone or transfer the chat.",properties:{referenceId:text,category:{type:'string',enum:['wrong_contact','unavailable','wrong_location','unsuitable_service','incorrect_guidance','outdated_information','other']}},required:['referenceId','category']},
   remember_context:{description:"Remember a brief explicit fact from the CURRENT user's exact words in this same chat. Use when they supply or correct their name/location/issue/desired outcome/next step. Copy the exact phrase, not an inference. Never credentials, phone numbers, identity documents or sensitive narratives. Does not update their profile or another channel.",properties:{field:{type:'string',enum:['name','location','issue','desiredOutcome','nextStep']},value:text},required:['field','value']},
   forget_context:{description:"Only when the person explicitly asks you to forget/clear saved details: clear this chat's memory and stop using earlier context. Does not erase visible chat messages or other chats.",properties:{},required:[]},
@@ -155,7 +156,7 @@ export function validateSaadaTool(
 
 export type AgentToolResult = {
   content: string;
-  evidence: "legal" | "directory" | "personal" | "none";
+  evidence: "legal" | "directory" | "personal" | "organisation" | "none";
   fallback?: string;
   clarification?: boolean;
 };
@@ -194,6 +195,7 @@ export async function runSaadaAgent(options: {
   ) => Promise<AgentToolResult>;
   hasLegalEvidence: () => boolean;
   hasPersonalEvidence?: () => boolean;
+  hasOrganisationEvidence?:()=>boolean;
   noEvidence: string;
   now?: () => number;
 }) {
@@ -321,9 +323,9 @@ export async function runSaadaAgent(options: {
   }
   // Directory/skill-only responses are deterministic: they cannot authorize invented legal advice.
   const canGenerate =
-    options.hasLegalEvidence() || options.hasPersonalEvidence?.() ||
+    options.hasLegalEvidence() || options.hasPersonalEvidence?.() || options.hasOrganisationEvidence?.() ||
     results.some(
-      (result) => result.evidence === "legal" || result.evidence === "personal",
+      (result) => result.evidence === "legal" || result.evidence === "personal" || result.evidence === "organisation",
     );
   const question = results.filter(result => result.clarification && result.fallback).slice(-1)[0]?.fallback;
   if (question) content = question;

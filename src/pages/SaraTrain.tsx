@@ -1,3 +1,5 @@
+import SourceUploadProgress, {type SourceUploadStage} from "../components/haki-yangu/SourceUploadProgress";
+import {uploadSourcePdf} from "../lib/uploadSourcePdf";
 import { LoadingText } from '@/components/shared/BrandLoading';
 import { BrandLoadingIcon } from '@/components/shared/BrandLoading';
 import BrandLoading from '@/components/shared/BrandLoading';
@@ -44,13 +46,17 @@ const SaraTrain = () => {
     const [storedResearch, setStoredResearch] = useState<{ id: Id<'saada_research_pdfs'>; storageId: Id<'_storage'>; filename: string; url: string | null; sha256: string; byteSize: number; needsSecurityScan: boolean } | null>(null);
     const [isUploading, setIsUploading] = useState(false);
     const [progress, setProgress] = useState("");
-    const [source, setSource] = useState({ title: "", publisher: "", sourceUrl: "", jurisdiction: "national", language: "bilingual", contentCategory: "Law / legal guidance", versionLabel: "", effectiveDate: "", reviewDate: "" });
+    const [uploadStage,setUploadStage]=useState<SourceUploadStage|null>(null),[transferPercent,setTransferPercent]=useState<number|null>(null),[uploadTitle,setUploadTitle]=useState('');
+    const [activeStorageId,setActiveStorageId]=useState<Id<'_storage'>|null>(null);
+    const uploadStatus=useQuery(api.sara.myUploadStatus,activeStorageId?{storageId:activeStorageId}:'skip');
+    useEffect(()=>{if(uploadStatus?.stage)setUploadStage(uploadStatus.stage);},[uploadStatus?.stage]);
+    const [source, setSource] = useState({ sourceType:"legal_reference",publicationStatus:"unknown",reportingPeriod:"",title: "", publisher: "", sourceUrl: "", jurisdiction: "national", language: "bilingual", contentCategory: "Law / legal guidance", versionLabel: "", effectiveDate: "", reviewDate: "" });
     function prepareStoredResearch(row: PreparedResearchRow) {
         setView("add");
         const candidate = JSON.parse(row.provenance).candidate ?? {};
         setStoredResearch({ id: row._id, storageId: row.canReuseIndexingCopy ? row.indexingStorageId ?? row.storageId : row.storageId, filename: row.filename, url: row.url, sha256: row.sha256, byteSize: row.byteSize, needsSecurityScan: !row.canReuseIndexingCopy });
         setFile(null); uploadedFile.current = null;
-        setSource({ title: row.title, publisher: typeof candidate.publisher === 'string' ? candidate.publisher : '', sourceUrl: typeof candidate.sourceUrl === 'string' ? candidate.sourceUrl : '', jurisdiction: ['tanzania_mainland', 'zanzibar', 'national'].includes(candidate.approvedJurisdiction) ? candidate.approvedJurisdiction : 'other', language: ['sw', 'en', 'bilingual'].includes(candidate.observedLanguage) ? candidate.observedLanguage : 'other', contentCategory: typeof candidate.topicDraft === 'string' ? candidate.topicDraft : 'Law / legal guidance', versionLabel: typeof candidate.versionLabelDraft === 'string' ? candidate.versionLabelDraft.slice(0, 80) : '', effectiveDate: '', reviewDate: '' });
+        setSource({sourceType:"legal_reference",publicationStatus:"unknown",reportingPeriod:"",title: row.title, publisher: typeof candidate.publisher === 'string' ? candidate.publisher : '', sourceUrl: typeof candidate.sourceUrl === 'string' ? candidate.sourceUrl : '', jurisdiction: ['tanzania_mainland', 'zanzibar', 'national'].includes(candidate.approvedJurisdiction) ? candidate.approvedJurisdiction : 'other', language: ['sw', 'en', 'bilingual'].includes(candidate.observedLanguage) ? candidate.observedLanguage : 'other', contentCategory: typeof candidate.topicDraft === 'string' ? candidate.topicDraft : 'Law / legal guidance', versionLabel: typeof candidate.versionLabelDraft === 'string' ? candidate.versionLabelDraft.slice(0, 80) : '', effectiveDate: '', reviewDate: '' });
         setProgress('Stored original selected. Review the title, publisher, jurisdiction, edition and review date below before indexing. No approval has been granted.');
     }
 
@@ -68,8 +74,9 @@ const SaraTrain = () => {
                 return;
             }
             setFile(selected);
+            uploadedFile.current=null;setUploadStage(null);setActiveStorageId(null);
             setStoredResearch(null);
-            setSource((current) => ({ ...current, title: current.title || selected.name.replace(/\.pdf$/i, "") }));
+            setSource((current) => ({ ...current, title: selected.name.replace(/\.pdf$/i, ""),...(/LSF|annual.*report|fact.*sheet|capability|midterm|strategic.*approach/i.test(selected.name)?{sourceType:"lsf_knowledge",publicationStatus:/draft/i.test(selected.name)?"draft":"unknown"}:{}) }));
             setProgress("");
         }
         // Reset input value to allow selecting the same file again if needed
@@ -97,7 +104,7 @@ const SaraTrain = () => {
                 return;
             }
         }
-        setIsUploading(true);
+        setIsUploading(true);setUploadTitle(source.title.trim());setTransferPercent(0);setUploadStage("uploading");setActiveStorageId(null);
         setProgress("Preparing secure upload...");
 
         try {
@@ -115,11 +122,7 @@ const SaraTrain = () => {
                 if (!fileToUpload) throw new Error('Choose a PDF or a stored research source.');
                 const postUrl = storedResearch ? await generateResearchUploadUrl({id:storedResearch.id}) : await generateUploadUrl();
                 setProgress("Uploading the source PDF...");
-                const result = await fetch(postUrl, { method: "POST", headers: { "Content-Type": "application/pdf" }, body: fileToUpload });
-                if (!result.ok) throw new Error("Upload failed");
-                const body = await result.json() as { storageId?: Id<"_storage"> };
-                if (!body.storageId) throw new Error("Upload did not return a storage reference.");
-                storageId = body.storageId;
+                storageId = await uploadSourcePdf(postUrl,fileToUpload,state=>{setTransferPercent(state.percent);setUploadStage(state.phase);}) as Id<'_storage'>;
                 uploadedFile.current = { file: fileToUpload, metadata, storageId };
                 if (storedResearch) {
                     await linkIndexingCopy({ id: storedResearch.id, storageId });
@@ -128,8 +131,10 @@ const SaraTrain = () => {
             }
 
             // 3. Process Document (Parse + Embed)
+            setActiveStorageId(storageId);setUploadStage("extracting");
             setProgress("Extracting text and indexing for independent review...");
             const ingestion = {
+                sourceType:source.sourceType as "legal_reference"|"lsf_knowledge",publicationStatus:source.publicationStatus as "published"|"draft"|"unknown",reportingPeriod:source.reportingPeriod.trim()||undefined,
                 storageId,
                 title: source.title.trim(),
                 publisher: source.publisher,
@@ -143,7 +148,7 @@ const SaraTrain = () => {
             };
             const { storageId: receiptStorageId, ...metadataForReceipt } = ingestion;
             await recordUpload({ storageId: receiptStorageId, metadata: metadataForReceipt });
-            await ingestDocument(ingestion);
+            await ingestDocument(ingestion);setUploadStage("review");
 
             toast.success("Source uploaded. It will stay out of Haki Yangu AI answers until a different administrator approves it.");
             uploadedFile.current = null;
@@ -154,7 +159,7 @@ const SaraTrain = () => {
             console.error(error);
             const errorMessage = readError(error, "Unknown error");
             toast.error(`Source ingestion failed: ${errorMessage}`);
-            setProgress(`Error: ${errorMessage}`);
+            setProgress(`Error: ${errorMessage}`);setUploadStage("failed");
         } finally {
             setIsUploading(false);
         }
@@ -165,10 +170,11 @@ const SaraTrain = () => {
             <Container className="ai-resource-hub py-6">
                 <header className="resource-hub-heading"><div><p className="resource-hub-eyebrow">Haki Yangu AI</p><h1>AI resources</h1><p>Manage the information the assistant uses to help people.</p></div><Button disabled={isUploading} onClick={()=>setView("add")} className="gap-2"><Plus className="h-4 w-4"/>Add a document</Button></header>
                 <SaadaReadiness />
+                {uploadStage&&<SourceUploadProgress title={uploadTitle} stage={uploadStage} transferPercent={transferPercent} approvalStatus={uploadStatus&&'approvalStatus' in uploadStatus?uploadStatus.approvalStatus:undefined} completed={uploadStatus&&'indexingCompletedChunks' in uploadStatus?uploadStatus.indexingCompletedChunks:undefined} total={uploadStatus&&'indexingTotalChunks' in uploadStatus?uploadStatus.indexingTotalChunks:undefined} error={progress.startsWith('Error:')?progress.slice(7):undefined} onReview={()=>{setSourceSearch(uploadTitle);setView('pending');}}/>}
                 <nav className="resource-hub-tabs" aria-label="Resource sections">{([{id:'approved',label:'Ready for AI',count:readiness?.approvedCurrentSourceDocuments},{id:'pending',label:'Needs review',count:readiness?.pendingSourceDocuments},{id:'files',label:'Saved files'},{id:'settings',label:'AI settings'}] as const).map(tab=><button key={tab.id} type="button" aria-current={view===tab.id?'page':undefined} onClick={()=>setView(tab.id)}>{tab.label}{'count' in tab&&tab.count!==undefined&&<span>{tab.count}</span>}</button>)}</nav>
                 <div className="resource-hub-panel">
                     {view==='files'&&<><div className="resource-hub-section-heading"><h2>Saved files</h2><p>Keep original research PDFs here. Saving a file does not make it available to the AI.</p></div><ResearchPdfUpload onPrepare={prepareStoredResearch}/><details className="resource-hub-advanced"><summary>Removed or rejected documents</summary><DocumentList initialStatus="history"/></details></>}
-                    {view==='add'&&<div className="resource-hub-upload"><div className="resource-hub-section-heading"><h2>Add a document</h2><p>Add the PDF and its source details. A different administrator reviews it before the AI can use it.</p></div>
+                    {view==='add'&&<div className="resource-hub-upload"><div className="resource-hub-section-heading"><h2>Add a document</h2><p>Add the PDF and its source details. Word files need a PDF copy first. A different administrator reviews the document before the AI can use it.</p></div>
                     {(recoverableUploads.length > 0 || uploadPage.status === "CanLoadMore" || uploadPage.status === "LoadingMore") && <details className="my-6 rounded-xl border bg-slate-50 p-4" aria-label={c("Recover uploaded sources")}><summary className="cursor-pointer text-sm font-medium">Resume an interrupted upload</summary>
 
                         <p className="mt-1 text-sm">{c("If an upload was interrupted, finish it here. The document still needs review.")}</p>
@@ -211,6 +217,8 @@ const SaraTrain = () => {
 
                         <h3 className="resource-hub-form-step">2. Add the source details</h3>
                         <div className="grid gap-3 sm:grid-cols-2 mb-5">
+                            <label className="text-sm text-gray-600">Use of this source<select aria-label="Use of this source" disabled={isUploading} value={source.sourceType} onChange={e=>setSource({...source,sourceType:e.target.value})} className="mt-1 w-full rounded-lg border px-3 py-2"><option value="legal_reference">Law and legal guidance</option><option value="lsf_knowledge">LSF information, reports and statistics</option></select></label>
+                            {source.sourceType==='lsf_knowledge'&&<><label className="text-sm text-gray-600">Publication status<select aria-label="Publication status" disabled={isUploading} value={source.publicationStatus} onChange={e=>setSource({...source,publicationStatus:e.target.value})} className="mt-1 w-full rounded-lg border px-3 py-2"><option value="unknown">Not confirmed — reviewer to check</option><option value="draft">Draft — not for public AI answers</option><option value="published">Authorised published version</option></select></label><label className="text-sm text-gray-600">Reporting year or period<input aria-label="Reporting year or period" maxLength={80} disabled={isUploading} value={source.reportingPeriod} onChange={e=>setSource({...source,reportingPeriod:e.target.value})} placeholder="For example: 2025 or 2016–2020" className="mt-1 w-full rounded-lg border px-3 py-2"/></label><p className="self-center text-xs text-gray-500">Figures describe the period in this report. Older reports are historical references, not current totals. Drafts remain outside public AI answers.</p></>}
                             <label className="text-sm text-gray-600 sm:col-span-2">{c("Source title *")}<input value={source.title} maxLength={180} disabled={isUploading} onChange={(e) => setSource({ ...source, title: e.target.value })} placeholder={c("Exact document title")} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
                             <input aria-label={c("Official publisher / authority")} disabled={isUploading} value={source.publisher} onChange={(e) => setSource({ ...source, publisher: e.target.value })} placeholder={c("Official publisher / authority *")} className="rounded-lg border px-3 py-2" />
                             <input aria-label={c("Official source URL")} disabled={isUploading} value={source.sourceUrl} onChange={(e) => setSource({ ...source, sourceUrl: e.target.value })} placeholder={c("Official source URL (recommended)")} className="rounded-lg border px-3 py-2" />
@@ -221,6 +229,7 @@ const SaraTrain = () => {
                             <label className="text-sm text-gray-600">{c("Effective date")}<input type="date" value={source.effectiveDate} onChange={(e) => setSource({ ...source, effectiveDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
                             <label className="text-sm text-gray-600">{c("Review due *")}<input type="date" value={source.reviewDate} onChange={(e) => setSource({ ...source, reviewDate: e.target.value })} className="mt-1 w-full rounded-lg border px-3 py-2" /></label>
                         </div>
+                        {(file||storedResearch)&&!isUploading&&(!source.title.trim()||!source.publisher.trim()||!source.contentCategory.trim()||!source.versionLabel.trim()||!source.reviewDate)&&<p role="status" className="rounded-lg bg-amber-50 p-3 text-sm text-amber-950">Complete these required details to enable uploading: {[!source.title.trim()&&'title',!source.publisher.trim()&&'publisher',!source.contentCategory.trim()&&'category',!source.versionLabel.trim()&&'edition / version',!source.reviewDate&&'review due date'].filter(Boolean).join(', ')}.</p>}
                         {(file || storedResearch) && !isUploading && (
                             <div className="mt-6 flex justify-center">
                                 <Button
@@ -398,6 +407,8 @@ const DocumentList = ({initialStatus="approved",search=""}:{initialStatus?:"appr
                             </div>
                             <div className="mt-3 flex flex-wrap gap-2 text-xs">
                                 <span className={`rounded-full px-2 py-1 font-medium ${doc.approvalStatus === "approved" ? "bg-green-50 text-green-800" : doc.approvalStatus === "rejected" ? "bg-red-50 text-red-800" : "bg-amber-50 text-amber-800"}`}>{doc.approvalStatus==="approved"&&(doc.reviewDueAt??0)<=Date.now()?"Review expired · unavailable to AI":doc.approvalStatus==="pending"?"Needs review":doc.approvalStatus==="withdrawn"?"Removed":statusLabel(doc.approvalStatus) || "Needs review"}</span>
+                                {doc.sourceType==="lsf_knowledge"&&<span className="rounded-full bg-blue-50 px-2 py-1 text-blue-800">LSF knowledge · {doc.publicationStatus??"publication to check"}{doc.reportingPeriod?` · ${doc.reportingPeriod}`:""}</span>}
+                                {doc.indexingStatus==="processing"&&doc.indexingTotalChunks&&<span className="rounded-full bg-blue-50 px-2 py-1 text-blue-800">Indexing {Math.min(100,Math.floor((doc.indexingCompletedChunks??0)/doc.indexingTotalChunks*100))}% · {doc.indexingCompletedChunks??0}/{doc.indexingTotalChunks} parts</span>}
                                 {doc.indexingStatus!=="ready"&&<span className="rounded-full bg-gray-100 px-2 py-1 text-gray-600">{doc.indexingStatus==="processing"?"Preparing document":"Processing needs attention"}</span>}
                             </div>
                             {!!doc.curationFlags?.length&&<p className="resource-hub-flag-summary">{doc.curationFlags.length} review issues · {doc.curationFlags[0]}</p>}

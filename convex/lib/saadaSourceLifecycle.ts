@@ -1,4 +1,5 @@
 export function requireReadySourceForApproval(source: {
+  sourceType?:string;publicationStatus?:string;
   indexingStatus?: string;
   processedAt?: number;
   publisher?: string;
@@ -8,6 +9,7 @@ export function requireReadySourceForApproval(source: {
   versionLabel?: string;
   reviewDueAt?: number;
 }, hasIndexedChunk: boolean, now: number) {
+  if(source.sourceType==='lsf_knowledge'&&source.publicationStatus!=='published')throw new Error('Confirm an authorised published version before approving LSF information for public AI answers. Drafts stay in review.');
   if (source.indexingStatus !== "ready" || !source.processedAt || !hasIndexedChunk) {
     throw new Error("Source indexing must finish with searchable content before approval.");
   }

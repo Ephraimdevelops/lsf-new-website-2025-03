@@ -1213,6 +1213,10 @@ export default defineSchema({
   saada_upload_receipts: defineTable({ storageId: v.id("_storage"), uploadedByClerkId: v.string(), metadata: v.object(sourceUploadMetadata), createdAt: v.number() }).index("by_storage", ["storageId"]).index("by_uploader", ["uploadedByClerkId"]),
 
   documents: defineTable({
+    sourceType:v.optional(v.union(v.literal("legal_reference"),v.literal("lsf_knowledge"))),
+    publicationStatus:v.optional(v.union(v.literal("published"),v.literal("draft"),v.literal("unknown"))),
+    reportingPeriod:v.optional(v.string()),
+    indexingTotalChunks:v.optional(v.number()),indexingCompletedChunks:v.optional(v.number()),
     title: v.string(),
     text: v.optional(v.string()), // extracted text
     storageId: v.id("_storage"), // PDF file in Convex storage

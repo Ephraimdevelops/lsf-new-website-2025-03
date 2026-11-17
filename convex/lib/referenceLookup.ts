@@ -35,3 +35,5 @@ export function registrationQuestion(text: string) {
     )
   );
 }
+
+export function isLsfReportQuestion(text:string){return /\bLSF\b|legal services facility/i.test(text)&&/\b(?:report|annual|history|strategy|statistics|beneficiaries|people|women|children|reach|reached|assisted|helped|impact|budget|expenditure|income|financial|202[0-9]|takwimu|wanufaika|wanawake|watoto|mikoa|wilaya|ripoti|mwaka|historia|mkakati|bajeti|mapato|matumizi)\b/i.test(text);}

@@ -11,6 +11,7 @@ export const record = mutation({
     const { identity, user } = await requireAnyRole(ctx, ["admin", "staff"]);
     await requireCleanOwnedUpload(ctx, args.storageId, user._id, "ai_source");
     const metadata = { ...args.metadata, title: normalizeText(args.metadata.title, "Title", 180), publisher: normalizeText(args.metadata.publisher, "Publisher", 180), contentCategory: normalizeText(args.metadata.contentCategory, "Category", 100), versionLabel: normalizeText(args.metadata.versionLabel, "Version", 80) };
+    if((metadata.reportingPeriod?.length??0)>80)throw new Error("Keep the reporting period under 80 characters.");
     if (!Number.isFinite(metadata.reviewDueAt) || metadata.reviewDueAt <= Date.now()) throw new Error("Choose a future review date.");
     if (metadata.sourceUrl) { const url = new URL(metadata.sourceUrl); if (!["https:", "http:"].includes(url.protocol)) throw new Error("Source URL must use HTTP(S)."); }
     if (!await ctx.storage.getUrl(args.storageId)) throw new Error("Uploaded PDF is unavailable.");

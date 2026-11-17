@@ -19,6 +19,7 @@ export const generateUploadUrl = mutation(async (ctx) => {
 // Internal mutation to create the document record
 export const createDocument = internalMutation({
     args: {
+        sourceType:sourceUploadMetadata.sourceType,publicationStatus:sourceUploadMetadata.publicationStatus,reportingPeriod:sourceUploadMetadata.reportingPeriod,
         title: v.string(),
         storageId: v.id("_storage"),
         text: v.string(),
@@ -48,7 +49,7 @@ export const createDocument = internalMutation({
         const existing = await ctx.db.query("documents")
             .withIndex("by_storageId", (q) => q.eq("storageId", args.storageId)).first();
         if (existing) {
-            const fields = ["title", "uploadedByClerkId", "sourceUrl", "publisher", "jurisdiction", "language", "contentCategory", "versionLabel", "effectiveDate", "reviewDueAt", "replacesDocumentId", "type"] as const;
+            const fields = ["sourceType","publicationStatus","reportingPeriod","title", "uploadedByClerkId", "sourceUrl", "publisher", "jurisdiction", "language", "contentCategory", "versionLabel", "effectiveDate", "reviewDueAt", "replacesDocumentId", "type"] as const;
             if (fields.some((field) => existing[field] !== args[field])) throw new Error("An ingestion retry must match the original uploader and source metadata.");
             if (existing.approvalStatus === "withdrawn" || existing.approvalStatus === "rejected") throw new Error("This source was withdrawn or rejected. Upload a corrected source for review.");
             return { documentId: existing._id, created: false, indexingStatus: existing.indexingStatus, generation: existing.indexingGeneration ?? 0 };
@@ -62,6 +63,7 @@ export const createDocument = internalMutation({
             if (pending) throw new Error("A replacement is already awaiting review.");
         }
         const documentId = await ctx.db.insert("documents", {
+            sourceType:args.sourceType,publicationStatus:args.publicationStatus,reportingPeriod:args.reportingPeriod,
             title: args.title,
             text: args.text,
             storageId: args.storageId,
@@ -91,6 +93,7 @@ export const markDocumentProcessed = internalMutation({
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.id);
         if (!doc || doc.indexingGeneration !== args.generation || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
+        if(doc.indexingTotalChunks!==undefined&&doc.indexingCompletedChunks!==doc.indexingTotalChunks)throw new Error("Source indexing is incomplete.");
         const firstChunk = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).first();
         if (!firstChunk) throw new Error("No searchable content was indexed.");
         await ctx.db.patch(args.id, { processedAt: Date.now(), indexingStatus: "ready", indexingError: undefined });
@@ -122,10 +125,23 @@ export const beginDocumentReindex = internalMutation({
         const chunks = await ctx.db.query("embeddings").withIndex("by_documentId", (q) => q.eq("documentId", args.id)).collect();
         for (const chunk of chunks) await ctx.db.delete(chunk._id);
         const generation = (doc.indexingGeneration ?? 0) + 1;
-        await ctx.db.patch(args.id, { indexingStatus: "processing", indexingError: undefined, processedAt: undefined, indexingGeneration: generation, indexingUpdatedAt: Date.now() });
+        await ctx.db.patch(args.id, { indexingStatus: "processing", indexingError: undefined, processedAt: undefined, indexingGeneration: generation,indexingCompletedChunks:0,indexingTotalChunks:undefined, indexingUpdatedAt: Date.now() });
         return generation;
     },
 });
+
+export const startDocumentIndexProgress=internalMutation({args:{id:v.id('documents'),generation:v.number(),total:v.number()},handler:async(ctx,args)=>{
+ const doc=await ctx.db.get(args.id);if(!doc||doc.indexingGeneration!==args.generation||doc.approvalStatus!=='pending'||doc.indexingStatus!=='processing')throw Error('This source is no longer being indexed.');if(!Number.isSafeInteger(args.total)||args.total<1)throw Error('Invalid source part count.');await ctx.db.patch(args.id,{indexingTotalChunks:args.total,indexingCompletedChunks:0,indexingUpdatedAt:Date.now()});
+}});
+export const myUploadStatus=query({args:{storageId:v.id('_storage')},handler:async(ctx,args)=>{
+ const {user,identity}=await requireAnyRole(ctx, ["admin", "staff"]);
+ const upload=await ctx.db.query('managed_uploads').withIndex('by_storage',q=>q.eq('storageId',args.storageId)).unique();
+ if(!upload||upload.ownerId!==user._id||upload.purpose!=='ai_source')throw Error('Upload not found for this account.');
+ const doc=await ctx.db.query('documents').withIndex('by_storageId',q=>q.eq('storageId',args.storageId)).first();
+ if(!doc)return {stage:'extracting' as const};
+ if(doc.uploadedByClerkId!==identity.subject)throw Error('Upload not found for this account.');
+ return {stage:doc.indexingStatus==='failed'?'failed' as const:doc.indexingStatus==='ready'?'review' as const:'indexing' as const,documentId:doc._id,title:doc.title,indexingCompletedChunks:doc.indexingCompletedChunks??0,indexingTotalChunks:doc.indexingTotalChunks,approvalStatus:doc.approvalStatus,approvalBlockers:sourceApprovalBlockers(doc,identity.subject),error:doc.indexingError};
+}});
 
 // Internal mutation to save embeddings chunks
 export const addEmbeddings = internalMutation({
@@ -143,7 +159,7 @@ export const addEmbeddings = internalMutation({
     handler: async (ctx, args) => {
         const doc = await ctx.db.get(args.documentId);
         if (!doc || doc.indexingGeneration !== args.generation || doc.approvalStatus !== "pending" || doc.indexingStatus !== "processing") throw new Error("This source is no longer being indexed.");
-        await ctx.db.patch(args.documentId, { indexingUpdatedAt: Date.now() });
+        await ctx.db.patch(args.documentId, { indexingUpdatedAt: Date.now(),indexingCompletedChunks:(doc.indexingCompletedChunks??0)+args.chunks.length });
         for (const chunk of args.chunks) {
             await ctx.db.insert("embeddings", {
                 documentId: args.documentId,
@@ -301,6 +317,7 @@ export const listSourceEvidence = query({
 
 export const updatePendingSourceMetadata = mutation({
     args: { id: v.id("documents"), expectedSnapshot: v.string(), reason: v.string(), metadata: v.object({
+        sourceType:sourceUploadMetadata.sourceType,publicationStatus:sourceUploadMetadata.publicationStatus,reportingPeriod:sourceUploadMetadata.reportingPeriod,
         title: sourceUploadMetadata.title, publisher: sourceUploadMetadata.publisher, sourceUrl: sourceUploadMetadata.sourceUrl,
         jurisdiction: sourceUploadMetadata.jurisdiction, language: sourceUploadMetadata.language,
         contentCategory: sourceUploadMetadata.contentCategory, versionLabel: sourceUploadMetadata.versionLabel,
@@ -359,7 +376,7 @@ export const getApprovedChunkIds = internalQuery({
             const chunk = await ctx.db.get(id);
             if (!chunk) continue;
             const document = await ctx.db.get(chunk.documentId);
-            if (!suspended.has("law:"+chunk.documentId) && document?.approvalStatus === "approved" && document.reviewDueAt && document.reviewDueAt > Date.now()) allowed.push(id);
+            if (!suspended.has("law:"+chunk.documentId) && document?.sourceType!=="lsf_knowledge" && document?.approvalStatus === "approved" && document.reviewDueAt && document.reviewDueAt > Date.now()) allowed.push(id);
         }
         return allowed;
     },
@@ -371,7 +388,7 @@ export const getApprovedChunkIds = internalQuery({
 export const searchApprovedPassages=internalQuery({args:{search:v.string()},handler:async(ctx,{search})=>{
     if(!search.trim()||search.length>200)return [];
     const suspended=await globallySuspendedReferences(ctx);
-    const documents=(await ctx.db.query('documents').withIndex('by_approval_status',q=>q.eq('approvalStatus','approved')).take(40)).filter(x=>!suspended.has('law:'+x._id)&&(x.reviewDueAt??0)>Date.now());
+    const documents=(await ctx.db.query('documents').withIndex('by_approval_status',q=>q.eq('approvalStatus','approved')).take(40)).filter(x=>x.sourceType!=='lsf_knowledge'&&!suspended.has('law:'+x._id)&&(x.reviewDueAt??0)>Date.now());
     const groups=await Promise.all(documents.map(async document=>({document,chunks:await ctx.db.query('embeddings').withSearchIndex('search_text',q=>q.search('text',search).eq('documentId',document._id)).take(2)})));
     const stop=new Set(['tanzania','mainland','zanzibar','legal','rights','about','which','what','does','have','with','that','this','sheria','haki','naomba']);
     const terms=[...new Set(search.toLowerCase().split(/[^\p{L}\p{N}]+/u).filter(x=>x.length>3&&!stop.has(x)))];
@@ -439,7 +456,7 @@ export const getChunks = internalQuery({
             const chunk = await ctx.db.get(id);
             if (chunk) {
                 const document = await ctx.db.get(chunk.documentId);
-                if (document?.approvalStatus !== "approved" || !document.reviewDueAt || document.reviewDueAt <= Date.now()) continue;
+                if (document?.sourceType==="lsf_knowledge" || document?.approvalStatus !== "approved" || !document.reviewDueAt || document.reviewDueAt <= Date.now()) continue;
                 // Retrieval needs the passage, not the 1536-number embedding vector.
                 chunks.push({ _id: chunk._id, documentId: chunk.documentId, text: chunk.text, chunkIndex: chunk.chunkIndex, sourceTitle: document.title, sourceUrl: document.sourceUrl, publisher: document.publisher, versionLabel: document.versionLabel, effectiveDate: document.effectiveDate, jurisdiction: document.jurisdiction });
             }

@@ -7,6 +7,7 @@ const convexDir = path.join(root, "convex");
 const srcDir = path.join(root, "src");
 
 const publicFunctions = new Map([
+  ["sara.myUploadStatus", "staff"],
   ["directoryResearch.reviewPublicReference", "admin"],
   ["directoryResearch.withdrawPublicReference", "admin"],
   ["directoryResearch.searchPublicReferences", "public"],

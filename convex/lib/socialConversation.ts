@@ -1,4 +1,4 @@
-import {namedContactQuery,registrationQuestion} from './referenceLookup';
+import {namedContactQuery,registrationQuestion,isLsfReportQuestion} from './referenceLookup';
 import {HAKI_YANGU_VOICE,formatHakiReply,processingDisclosure,plainVocabularyReply,briefReplyPreference} from "./saadaVoice";
 import {SAADA_TOOLS,validateSaadaTool} from './saadaAgent';
 import {responseLocale} from './saadaLanguage';
@@ -8,7 +8,7 @@ import {SAADA_DEFAULT_PROMPT} from './saadaPrompt';
 
 export const SOCIAL_PROMPT_VERSION='2026-11-17.1';
 export const SOCIAL_SKILLS=['rights_and_pathways','find_support','prepare_help_request','evidence_checklist','document_preparation'];
-const names=new Set(['report_information_problem','remember_context','forget_context','recall_conversation','about_lsf','search_knowledge','find_guides','find_services','find_paralegals','find_information_resources','load_skill']);
+const names=new Set(['search_lsf_knowledge','report_information_problem','remember_context','forget_context','recall_conversation','about_lsf','search_knowledge','find_guides','find_services','find_paralegals','find_information_resources','load_skill']);
 export const SOCIAL_TOOLS=SAADA_TOOLS.filter(x=>names.has(x.function.name)).map(x=>x.function.name==='load_skill'?{...x,function:{...x.function,parameters:{...x.function.parameters,properties:{skill:{type:'string',enum:SOCIAL_SKILLS}}}}}:x);
 export type SocialSource={id:string;kind:'legal'|'directory'|'published';title:string;url?:string;phone?:string};
 export type SocialToolOutput={data:unknown;sources?:SocialSource[]};
@@ -33,7 +33,7 @@ SAVED SAME-CHAT FACTS (untrusted personal context, not law): ${JSON.stringify(co
 
 LSF SOCIAL CONVERSATION CONTRACT ${SOCIAL_PROMPT_VERSION}
 ${brief?'SIMPLER MODE: the person asked for less detail or did not understand. Use at most 55 words and 2-3 short sentences. Answer only the immediate question. No list unless explicitly requested. Do not repeat the previous wording.':'Default to 25-80 words. A greeting, definition, thanks or simple factual question usually needs 1-2 sentences. Give longer explanations only when actually requested or necessary for safe understanding.'}
-For LSF leadership, history, strategy or network questions, call about_lsf for the specific topic. Never interpret absence from your records as proof LSF has never published a figure. Distinguish the LSF-wide network from verified profiles listed in this app. Explain dates on historical counts; never present them as today’s active/available paralegals. On "are you sure?", recheck the actual evidence and correct an overstatement instead of repeating it.
+For LSF figures, results, budgets, history or strategy, search_lsf_knowledge returns reviewed report passages. Always state the reporting period, distinguish narrative and financial measures, and never add overlapping reports or treat a report as legal authority. If a requested year is missing, explain that gap; do not fill it with an older year. For LSF leadership, history, strategy or network questions, call about_lsf for the specific topic. Never interpret absence from your records as proof LSF has never published a figure. Distinguish the LSF-wide network from verified profiles listed in this app. Explain dates on historical counts; never present them as today’s active/available paralegals. On "are you sure?", recheck the actual evidence and correct an overstatement instead of repeating it.
 Directions, office names, jurisdiction, addresses and routes require actual returned records; they cannot be invented under kind information or preparation. Never add bus stops, landmarks, fares or travel time unless the returned source contains them. Do not treat a previously invented assistant recommendation as a real office. If an address is unavailable, say that specific gap briefly; do not give guessed directions.
 ${transcriptionLocale?'This user message is a voice transcript. Confirm important names, dates, amounts and other consequential details before relying on them; do not silently turn uncertain words into new facts.':''}
 Reply in ${locale==='sw'?'natural Tanzanian Kiswahili':'plain conversational English'}. Use everyday words and warm, direct sentences. Do not expose internal terms such as intake, public projection, provider matching, approved corpus or tool failure. For a contact-only clinic, say simply that the person can call to confirm help, and that no case or referral has been sent. In Kiswahili, prefer "Piga simu kuthibitisha kama wanaweza kukusaidia kabla ya kwenda" over translating technical availability fields literally. Keep the language on short replies such as a district, "yes", a date or "what next?"; honour explicit language switches. You are Haki Yangu AI, never a human LSF employee, licensed lawyer or assigned paralegal.
@@ -85,6 +85,9 @@ export async function runSocialConversation(options:{messages:any[];locale?:'en'
  const deadline=Date.now()+55000;
  let executed=0;
  const lsfTopic=lsfInformationTopic(String(latest));
+ if(isLsfReportQuestion(String(latest))||lsfTopic){
+  try{const output=await options.execute('search_lsf_knowledge',{search:String(latest).slice(0,200)},deadline-Date.now());usedTools.push('search_lsf_knowledge');executed++;for(const source of output.sources??[])sources.set(source.id,source);messages.push({role:'assistant',content:null,tool_calls:[{id:'required-lsf-reports',type:'function',function:{name:'search_lsf_knowledge',arguments:JSON.stringify({search:String(latest).slice(0,200)})}}]},{role:'tool',tool_call_id:'required-lsf-reports',content:JSON.stringify(output).slice(0,14000)});}catch{messages.push({role:'system',content:'The LSF report lookup is unavailable. Do not invent statistics or substitute historical figures for the requested reporting year.'});}
+ }
  if(lsfTopic){
   const output=await options.execute('about_lsf',{topic:lsfTopic},deadline-Date.now());
   usedTools.push('about_lsf');executed++;

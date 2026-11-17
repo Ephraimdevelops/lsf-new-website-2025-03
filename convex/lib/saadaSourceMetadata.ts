@@ -1,4 +1,4 @@
-export const sourceMetadataFields = ['title', 'publisher', 'sourceUrl', 'jurisdiction', 'language', 'contentCategory', 'versionLabel', 'effectiveDate', 'reviewDueAt'] as const;
+export const sourceMetadataFields = ['sourceType','publicationStatus','reportingPeriod','title', 'publisher', 'sourceUrl', 'jurisdiction', 'language', 'contentCategory', 'versionLabel', 'effectiveDate', 'reviewDueAt'] as const;
 
 export function sourceMetadataSnapshot(source: object) {
   const record = source as Record<string, unknown>;
@@ -12,6 +12,9 @@ export function normalizeSourceMetadata<T extends Record<string, unknown>>(input
     if (!value || value.length > maximum) throw new Error(`${key} must contain 1–${maximum} characters.`);
     (metadata as Record<string, unknown>)[key] = value;
   }
+  if(input.sourceType&&!['legal_reference','lsf_knowledge'].includes(String(input.sourceType)))throw new Error('Choose a supported source use.');
+  if(input.publicationStatus&&!['published','draft','unknown'].includes(String(input.publicationStatus)))throw new Error('Choose a publication status.');
+  if((String(input.reportingPeriod??'')).length>80)throw new Error('Keep the reporting period under 80 characters.');
   const url = String(input.sourceUrl ?? '').trim();
   if (url) {
     try { const parsed = new URL(url); if (!['https:', 'http:'].includes(parsed.protocol) || parsed.username || parsed.password || url.length > 2000) throw new Error(); }

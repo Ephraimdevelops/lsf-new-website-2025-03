@@ -52,7 +52,7 @@ const AdminSaraAnalytics = () => {
         ? Math.round((analytics.feedback.positive / analytics.feedback.total) * 100)
         : 0;
     const approvedSources = sources?.filter((source) =>
-        source.approvalStatus === "approved" &&
+        source.sourceType!=="lsf_knowledge" && source.approvalStatus === "approved" &&
         source.indexingStatus === "ready" &&
         typeof source.reviewDueAt === "number" &&
         source.reviewDueAt > Date.now()

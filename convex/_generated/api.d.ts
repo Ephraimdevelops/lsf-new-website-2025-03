@@ -95,6 +95,7 @@ import type * as lib_speechStream from "../lib/speechStream.js";
 import type * as lib_supportProximity from "../lib/supportProximity.js";
 import type * as lib_uploadPolicy from "../lib/uploadPolicy.js";
 import type * as lib_workerMatching from "../lib/workerMatching.js";
+import type * as lsfKnowledge from "../lsfKnowledge.js";
 import type * as managedUploads from "../managedUploads.js";
 import type * as media from "../media.js";
 import type * as metaInstagram from "../metaInstagram.js";
@@ -240,6 +241,7 @@ declare const fullApi: ApiFromModules<{
   "lib/supportProximity": typeof lib_supportProximity;
   "lib/uploadPolicy": typeof lib_uploadPolicy;
   "lib/workerMatching": typeof lib_workerMatching;
+  lsfKnowledge: typeof lsfKnowledge;
   managedUploads: typeof managedUploads;
   media: typeof media;
   metaInstagram: typeof metaInstagram;
