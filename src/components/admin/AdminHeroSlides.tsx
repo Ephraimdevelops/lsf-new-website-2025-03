@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { useToast } from '@/hooks/use-toast';
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../convex/_generated/api";
+import HeroImage from '@/components/home/hero/HeroImage';
 import { Id } from "../../../convex/_generated/dataModel";
 
 interface HeroSlide {
@@ -18,6 +19,8 @@ interface HeroSlide {
   description: string;
   category?: string;
   imageUrl: string;
+  ctaText?: string;
+  ctaLink?: string;
   stat?: string;
   statLabel?: string;
   order: number;
@@ -27,6 +30,7 @@ interface HeroSlide {
 const AdminHeroSlides = () => {
   const [editingSlide, setEditingSlide] = useState<HeroSlide | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [formData, setFormData] = useState<Partial<HeroSlide>>({
     title: '',
     subtitle: '',
@@ -34,7 +38,7 @@ const AdminHeroSlides = () => {
     category: '',
     imageUrl: '',
     stat: '',
-    statLabel: ''
+    statLabel: '', ctaText: 'Get Legal Help', ctaLink: '/legal-help', order: 1, isActive: true
   });
   const { toast } = useToast();
 
@@ -55,6 +59,14 @@ const AdminHeroSlides = () => {
       return;
     }
 
+    if (formData.ctaLink && !/^\/(?!\/)/.test(formData.ctaLink)) {
+      toast({ title: 'Check button destination', description: 'Use a website path such as /legal-help or /news.', variant: 'destructive' });
+      return;
+    }
+    if (!Number.isSafeInteger(formData.order) || (formData.order ?? 0) < 1) {
+      toast({ title: 'Check slide order', description: 'Use a whole number starting at 1.', variant: 'destructive' });
+      return;
+    }
     try {
       if (editingSlide) {
         await updateSlide({
@@ -66,8 +78,10 @@ const AdminHeroSlides = () => {
           imageUrl: formData.imageUrl || '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
           stat: formData.stat,
           statLabel: formData.statLabel,
-          order: editingSlide.order,
-          isActive: editingSlide.isActive,
+          ctaText: formData.ctaText?.trim(),
+          ctaLink: formData.ctaLink?.trim(),
+          order: formData.order ?? editingSlide.order,
+          isActive: formData.isActive ?? editingSlide.isActive,
         });
         toast({ title: 'Success', description: 'Hero slide updated successfully' });
       } else {
@@ -87,8 +101,10 @@ const AdminHeroSlides = () => {
           imageUrl: formData.imageUrl || '/lovable-uploads/09086165-bb32-43b3-ae0a-b266fd207f36.png',
           stat: formData.stat,
           statLabel: formData.statLabel,
-          order: slides.length + 1,
-          isActive: true,
+          ctaText: formData.ctaText?.trim(),
+          ctaLink: formData.ctaLink?.trim(),
+          order: formData.order ?? slides.length + 1,
+          isActive: formData.isActive ?? true,
         });
         toast({ title: 'Success', description: 'Hero slide created successfully' });
       }
@@ -132,7 +148,7 @@ const AdminHeroSlides = () => {
       category: '',
       imageUrl: '',
       stat: '',
-      statLabel: ''
+      statLabel: '', ctaText: 'Get Legal Help', ctaLink: '/legal-help', order: Math.max(0,...slides.map(slide => slide.order)) + 1, isActive: true
     });
     setIsDialogOpen(false);
   };
@@ -201,6 +217,7 @@ const AdminHeroSlides = () => {
       }
 
       try {
+        setUploadingImage(true);
         // 2. Client-side compression
         const file = await compressImage(originalFile);
 
@@ -238,7 +255,7 @@ const AdminHeroSlides = () => {
           description: error instanceof Error ? error.message : 'Failed to upload image.',
           variant: 'destructive',
         });
-      }
+      } finally { setUploadingImage(false); }
     }
   };
 
@@ -247,7 +264,7 @@ const AdminHeroSlides = () => {
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold">Hero Slides Management</h1>
-          <p className="text-gray-600 mt-2">Manage your homepage hero carousel slides (Maximum: 5 slides)</p>
+          <p className="text-gray-600 mt-2">These slides appear on the current homepage and homepage 03. Edit images, text, buttons, order and visibility. Maximum: 5 slides.</p>
         </div>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -308,12 +325,20 @@ const AdminHeroSlides = () => {
 
               <div>
                 <label className="block text-sm font-medium mb-2">Background Image</label>
-                <input type="file" accept="image/*" onChange={handleFileChange} />
+                <input type="file" aria-label="Hero background image" accept="image/*" disabled={uploadingImage} onChange={handleFileChange} />
+                <p className="mt-2 text-xs text-gray-500">Use a landscape photo, ideally 1920 × 1080 pixels. Keep faces and important details away from the left-hand text area; check the homepage on mobile too.</p>
+                {uploadingImage && <p role="status" className="mt-2 text-sm text-gray-600">Uploading and security-checking the image…</p>}
                 {formData.imageUrl && (
                   <p className="text-xs text-gray-500 mt-1 break-all">{formData.imageUrl}</p>
                 )}
               </div>
 
+              <div className="grid grid-cols-2 gap-4">
+                <label className="text-sm">Button text<Input aria-label="Button text" value={formData.ctaText || ''} onChange={e => setFormData({...formData, ctaText:e.target.value})} /></label>
+                <label className="text-sm">Button destination<Input aria-label="Button destination" placeholder="/legal-help" value={formData.ctaLink || ''} onChange={e => setFormData({...formData, ctaLink:e.target.value})} /></label>
+                <label className="text-sm">Display order<Input aria-label="Display order" type="number" min={1} step={1} value={formData.order ?? 1} onChange={e => setFormData({...formData, order:Number(e.target.value)})} /></label>
+                <label className="flex items-center gap-2 text-sm"><input type="checkbox" checked={formData.isActive ?? true} onChange={e => setFormData({...formData,isActive:e.target.checked})} />Show this slide on the website</label>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2">Statistic</label>
@@ -338,7 +363,7 @@ const AdminHeroSlides = () => {
                   <X className="h-4 w-4 mr-2" />
                   Cancel
                 </Button>
-                <Button onClick={handleSave}>
+                <Button onClick={handleSave} disabled={uploadingImage}>
                   <Save className="h-4 w-4 mr-2" />
                   {editingSlide ? 'Update Slide' : 'Create Slide'}
                 </Button>
@@ -364,7 +389,7 @@ const AdminHeroSlides = () => {
                   size="sm"
                   onClick={() => handleEdit(slide)}
                 >
-                  <Edit className="h-4 w-4" />
+                  <Edit className="h-4 w-4" /><span className="sr-only">Edit {slide.title}</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -372,7 +397,7 @@ const AdminHeroSlides = () => {
                   onClick={() => handleDelete(slide._id)}
                   disabled={slides.length <= 1}
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-4 w-4" /><span className="sr-only">Delete {slide.title}</span>
                 </Button>
               </div>
             </CardHeader>
@@ -380,7 +405,7 @@ const AdminHeroSlides = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-gray-600 mb-2">
-                    <strong>Category:</strong> {slide.category}
+                    <strong>Display:</strong> {slide.isActive ? "Visible" : "Hidden"} · Order {slide.order}<br /><strong>Category:</strong> {slide.category}
                   </p>
                   <p className="text-sm text-gray-600 mb-2">
                     <strong>Subtitle:</strong> {slide.subtitle}
@@ -389,12 +414,12 @@ const AdminHeroSlides = () => {
                     <strong>Description:</strong> {slide.description.substring(0, 150)}...
                   </p>
                   <p className="text-sm text-gray-600">
-                    <strong>Stat:</strong> {slide.stat} {slide.statLabel}
+                    <strong>Button:</strong> {slide.ctaText || "Default button"} → {slide.ctaLink || "/legal-help"}<br /><strong>Stat:</strong> {slide.stat} {slide.statLabel}
                   </p>
                 </div>
                 <div className="flex items-center justify-center">
                   {slide.imageUrl ? (
-                    <img
+                    <HeroImage
                       src={slide.imageUrl}
                       alt={slide.title}
                       className="w-full max-w-xs h-32 object-cover rounded-lg"

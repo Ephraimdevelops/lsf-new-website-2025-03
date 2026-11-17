@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import HeroImage from './HeroImage';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Container from '@/components/shared/Container';
@@ -50,6 +51,9 @@ const CinematicHero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slides, setSlides] = useState<HeroSlide[]>(fallbackSlides);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const transitionTimer = useRef<ReturnType<typeof setTimeout>>();
+  useEffect(() => () => clearTimeout(transitionTimer.current), []);
 
   // We don't need a loading state because we start with fallback content for instant paint
   const convexSlides = useQuery(api.hero.get);
@@ -73,22 +77,23 @@ const CinematicHero = () => {
   }, [convexSlides]);
 
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (slides.length < 2 || paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const timer = setInterval(() => {
       setIsAnimating(true);
-      setTimeout(() => {
+      transitionTimer.current = setTimeout(() => {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
         setIsAnimating(false);
       }, 500);
     }, 6000);
 
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slides.length, paused]);
 
   const nextSlide = () => {
     setIsAnimating(true);
-    setTimeout(() => {
+    clearTimeout(transitionTimer.current);
+    transitionTimer.current = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
       setIsAnimating(false);
     }, 300);
@@ -96,7 +101,8 @@ const CinematicHero = () => {
 
   const prevSlide = () => {
     setIsAnimating(true);
-    setTimeout(() => {
+    clearTimeout(transitionTimer.current);
+    transitionTimer.current = setTimeout(() => {
       setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
       setIsAnimating(false);
     }, 300);
@@ -116,15 +122,15 @@ const CinematicHero = () => {
     );
   }
 
-  const currentSlideData = slides[currentSlide];
+  const currentSlideData = slides[currentSlide % slides.length];
 
   return (
-    <section className="relative h-screen overflow-hidden bg-black">
+    <section className="relative h-screen overflow-hidden bg-black" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
       {/* Background Image with Ken Burns Effect */}
-      {currentSlideData.image_url && (
+      {(
         <div className="absolute inset-0">
           <div className="relative w-full h-full">
-            <img
+            <HeroImage
               key={currentSlide}
               src={currentSlideData.image_url}
               alt={currentSlideData.headline}

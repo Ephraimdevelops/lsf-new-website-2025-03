@@ -13,6 +13,7 @@ import TanzaniaDistrictMap from '../components/home/TanzaniaDistrictMap';
 import Layout from '../components/layout/Layout';
 import './NewHomepage.css';
 import './HomepageThree.css';
+import HeroImage from '@/components/home/hero/HeroImage';
 
 const upload = (name: string) => `/lovable-uploads/${name}`;
 const partners = [
@@ -32,7 +33,7 @@ function Hero() {
     { id: 'community', image: upload('09086165-bb32-43b3-ae0a-b266fd207f36.png'), label: 'Community impact', headline: 'Justice reaches further when we work together.', copy: 'From community paralegals to national partnerships, LSF brings rights, support and lasting change within reach.', action: 'Explore Our Work', href: '/what-we-do' },
     { id: 'digital', image: upload('lsf-paralegal-servicing.jpeg'), label: 'Support within reach', headline: 'Legal help should be close to home.', copy: 'Our network connects people with legal information, practical help and trusted local support.', action: 'Find Legal Support', href: '/legal-help' },
   ];
-  const published = homepageSlides?.filter(slide => slide.isActive && slide.imageUrl).sort((a, b) => a.order - b.order);
+  const published = homepageSlides?.filter(slide => slide.isActive).sort((a, b) => a.order - b.order);
   const slides = published?.length ? published.map(slide => ({ id: slide._id, image: slide.imageUrl!, label: slide.category || 'Justice for a fairer Tanzania', headline: slide.title, copy: slide.subtitle || slide.description || '', action: slide.ctaText || 'Get Legal Help', href: slide.ctaLink?.startsWith('/') ? slide.ctaLink : '/legal-help' })) : fallbackSlides;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -47,7 +48,7 @@ function Hero() {
   const words = slide.headline.trim().split(/\s+/);
   const highlight = index === 0 && !published?.length ? 'change begins.' : words.slice(-2).join(' ');
   const leading = index === 0 && !published?.length ? 'When people know their rights,' : words.slice(0, -2).join(' ');
-  return <section className="h3-hero" aria-labelledby="h3-hero-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}><img key={slide.id} className="h3-hero-image" src={slide.image} alt="" fetchPriority={index === 0 ? 'high' : 'auto'} /><div className="h3-hero-wash" /><div className="h3-wrap h3-hero-inner"><div key={`${slide.id}-copy`} className="h3-hero-copy"><p className="h3-kicker">{slide.label}</p><h1 id="h3-hero-title">{leading}{' '}<span>{highlight}</span></h1><p>{slide.copy}</p><div className="h3-hero-actions"><Link className="h3-button h3-button-primary" to={slide.href}>{slide.action} <ArrowRight size={17} /></Link><Link className="h3-button h3-button-white" to="/what-we-do">Explore Our Work <ArrowRight size={17} /></Link></div></div></div>{slides.length > 1 && <div className="h3-hero-controls"><button type="button" onClick={() => move(-1)} aria-label="Previous hero slide"><ArrowLeft size={18} /></button><div className="h3-hero-dots" aria-label="Choose hero slide">{slides.map((item, position) => <button type="button" key={item.id} onClick={() => setActive(position)} className={position === index ? 'is-active' : ''} aria-label={`Show slide ${position + 1}`} aria-current={position === index ? 'true' : undefined} />)}</div><button type="button" onClick={() => move(1)} aria-label="Next hero slide"><ArrowRight size={18} /></button></div>}</section>;
+  return <section className="h3-hero" aria-labelledby="h3-hero-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}><HeroImage key={slide.id} className="h3-hero-image" src={slide.image} alt="" fetchPriority={index === 0 ? 'high' : 'auto'} /><div className="h3-hero-wash" /><div className="h3-wrap h3-hero-inner"><div key={`${slide.id}-copy`} className="h3-hero-copy"><p className="h3-kicker">{slide.label}</p><h1 id="h3-hero-title">{leading}{' '}<span>{highlight}</span></h1><p>{slide.copy}</p><div className="h3-hero-actions"><Link className="h3-button h3-button-primary" to={slide.href}>{slide.action} <ArrowRight size={17} /></Link><Link className="h3-button h3-button-white" to="/what-we-do">Explore Our Work <ArrowRight size={17} /></Link></div></div></div>{slides.length > 1 && <div className="h3-hero-controls"><button type="button" onClick={() => move(-1)} aria-label="Previous hero slide"><ArrowLeft size={18} /></button><div className="h3-hero-dots" aria-label="Choose hero slide">{slides.map((item, position) => <button type="button" key={item.id} onClick={() => setActive(position)} className={position === index ? 'is-active' : ''} aria-label={`Show slide ${position + 1}`} aria-current={position === index ? 'true' : undefined} />)}</div><button type="button" onClick={() => move(1)} aria-label="Next hero slide"><ArrowRight size={18} /></button></div>}</section>;
 }
 
 function Pathways() {

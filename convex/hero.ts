@@ -4,6 +4,11 @@ import { requireAnyRole } from "./lib/auth";
 import { requirePublicMediaReference } from "./lib/managedUploads";
 import { resolveImageUrl } from "./lib/mediaHelpers";
 
+function validateSlideControls(slide: {order:number;ctaLink?:string}) {
+    if (!Number.isSafeInteger(slide.order) || slide.order < 1) throw new Error('Choose a display order starting at 1.');
+    if (slide.ctaLink && !/^\/(?!\/)/.test(slide.ctaLink)) throw new Error('Use a website path such as /legal-help for the button destination.');
+}
+
 // Get all slides
 export const get = query({
     args: {},
@@ -13,7 +18,7 @@ export const get = query({
             slides.map(async (slide) => {
                 if (slide.imageUrl) {
                     const resolved = await resolveImageUrl(ctx, slide.imageUrl);
-                    slide.imageUrl = resolved ?? slide.imageUrl;
+                    slide.imageUrl = resolved ?? '';
                 }
                 return slide;
             })
@@ -41,7 +46,11 @@ export const update = mutation({
         await requireAnyRole(ctx, ["admin", "staff"]);
 
         const { id, ...fields } = args;
+        validateSlideControls(fields);
         const previous = await ctx.db.get(id);
+        // An editor receives resolved URLs; preserve the original reference when
+        // the image is unchanged, including media uploaded before scan receipts.
+        if (previous?.imageUrl && fields.imageUrl === await resolveImageUrl(ctx, previous.imageUrl)) fields.imageUrl = previous.imageUrl;
         await requirePublicMediaReference(ctx, fields.imageUrl, previous?.imageUrl);
         await ctx.db.patch(id, fields);
     },
@@ -65,6 +74,7 @@ export const create = mutation({
     handler: async (ctx, args) => {
         await requireAnyRole(ctx, ["admin", "staff"]);
 
+        validateSlideControls(args);
         await requirePublicMediaReference(ctx, args.imageUrl);
         return await ctx.db.insert("hero_slides", args);
     },
